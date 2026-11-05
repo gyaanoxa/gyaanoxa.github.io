@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gyaanoxa.github.io/sitemap.xml
