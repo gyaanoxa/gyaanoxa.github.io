@@ -201,10 +201,13 @@ def main():
     page = put(page, "next", upcoming_cards(site.get("upcoming", []), now))
     (ROOT / "index.html").write_text(page, encoding="utf-8", newline="\n")
 
-    sm = ROOT / "sitemap.xml"
-    sm.write_text(re.sub(r"<lastmod>[^<]*</lastmod>", f"<lastmod>{today}</lastmod>",
-                         sm.read_text(encoding="utf-8"), count=1), encoding="utf-8", newline="\n")
-    print(f"ok: {len(longs)} videos, {len(shorts)} shorts, {total} views, feed {len(feed)}")
+    import pages                                  # series pages + timeline (same folder)
+    urls = ["/"] + pages.build({v["id"]: v for v in allv}) + ["/privacy.html", "/terms.html", "/data-deletion.html"]
+    sm = "".join(f"  <url><loc>https://gyaanoxa.com{u}</loc><lastmod>{today}</lastmod></url>\n" for u in urls)
+    (ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n'
+                                      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+                                      + sm + "</urlset>\n", encoding="utf-8", newline="\n")
+    print(f"ok: {len(longs)} videos, {len(shorts)} shorts, {total} views, feed {len(feed)}, pages {len(urls)}")
 
 
 if __name__ == "__main__":
