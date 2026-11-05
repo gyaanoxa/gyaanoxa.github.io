@@ -115,7 +115,19 @@
     });
   }
 
+  // Total site visits from GoatCounter (shown only when the count loads)
+  function visits() {
+    var el = document.querySelector(".visits");
+    if (!el || !window.fetch) return;
+    fetch("https://gyaanoxa.goatcounter.com/counter/TOTAL.json").then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d || !d.count) return;
+        el.querySelector(".gc-total").textContent = d.count;
+        el.hidden = false;
+      }).catch(function () {});
+  }
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function () { build(); localTimes(); });
-  } else { build(); localTimes(); }
+    document.addEventListener("DOMContentLoaded", function () { build(); localTimes(); visits(); });
+  } else { build(); localTimes(); visits(); }
 })();

@@ -548,3 +548,4 @@ a.pcard:hover { color: var(--text); transform: translateY(-3px); border-color: r
 @media (max-width: 760px) {
   .quiz { padding: 22px 18px; }
 }
+.visits b { color: var(--gold-2); font-weight: 600; }
