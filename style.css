@@ -389,3 +389,43 @@ footer .wrap { align-items: flex-start; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* ---------- language switcher ---------- */
+.lang { position: relative; }
+.lang-btn {
+  display: inline-flex; align-items: center; gap: 7px; height: 40px; padding: 0 14px 0 11px;
+  border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--text);
+  font: 600 14.5px var(--body); cursor: pointer; transition: border-color .15s, color .15s;
+}
+.lang-btn:hover, .lang.open .lang-btn { border-color: var(--gold); color: var(--gold); }
+.lang-btn svg { width: 18px; height: 18px; }
+.lang-menu {
+  position: absolute; right: 0; top: calc(100% + 10px); z-index: 30; width: 300px; max-height: min(70vh, 520px); overflow-y: auto;
+  display: none; grid-template-columns: 1fr 1fr; gap: 4px; padding: 12px;
+  background: #121850; border: 1px solid var(--line-2); border-radius: 18px; box-shadow: 0 24px 60px rgba(0, 0, 0, .55);
+}
+.lang.open .lang-menu { display: grid; }
+.lang-head, .lang-note { grid-column: 1 / -1; margin: 2px 6px 6px; font-size: 13px; color: var(--dim); }
+.lang-note { margin: 8px 6px 2px; font-size: 12px; }
+.lang-item {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 1px; padding: 8px 10px; border-radius: 10px;
+  border: 0; background: transparent; color: var(--text); cursor: pointer; text-align: left; font-family: var(--body);
+}
+.lang-item b { font-size: 15px; font-weight: 600; }
+.lang-item small { font-size: 12px; color: var(--dim); }
+.lang-item:hover { background: var(--surface-2); }
+.lang-item.on { background: rgba(255, 196, 0, .14); }
+.lang-item.on b { color: var(--gold); }
+.up .local { font-size: 13px; color: var(--gold-2); margin-top: 2px; }
+
+/* hide Google Translate's own bar and tooltips */
+.goog-te-banner-frame, .skiptranslate > iframe, #goog-gt-tt, .goog-te-balloon-frame, .VIpgJd-ZVi9od-ORHb-OEVmcd { display: none !important; }
+body { top: 0 !important; }
+.goog-text-highlight { background: none !important; box-shadow: none !important; }
+font { background: transparent !important; box-shadow: none !important; }
+
+@media (max-width: 760px) {
+  .lang-btn { padding: 0; width: 36px; height: 36px; justify-content: center; }
+  .lang-btn .lang-cur { display: none; }
+  .lang-menu { position: fixed; left: 12px; right: 12px; top: 70px; width: auto; }
+}
