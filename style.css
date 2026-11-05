@@ -1,22 +1,23 @@
 :root {
-  --bg: #0a0e2a;
-  --bg-2: #10164a;
-  --bg-3: #1b2366;
+  --bg: #0B1238;
+  --bg-2: #13205C;
+  --bg-3: #1E3591;
+  --blue: #2A4FC4;
   --surface: rgba(255, 255, 255, 0.045);
   --surface-2: rgba(255, 255, 255, 0.08);
   --line: rgba(255, 255, 255, 0.09);
   --line-2: rgba(255, 255, 255, 0.16);
-  --gold: #ffc400;
-  --gold-2: #ffdb4d;
-  --amber: #ff9d00;
-  --orange: #f57c1f;
-  --red: #e53935;
+  --gold: #FFC21A;
+  --gold-2: #FFD65C;
+  --amber: #F39A12;
+  --orange: #F39A12;
+  --red: #E63C3C;
   --text: #f5f6fc;
   --muted: #aab0d6;
   --dim: #7c83b3;
   --radius: 18px;
   --max: 1180px;
-  --display: "Baloo 2", "Mukta", system-ui, sans-serif;
+  --display: "Poppins", "Baloo 2", "Mukta", system-ui, sans-serif;
   --body: "Mukta", "Baloo 2", system-ui, sans-serif;
 }
 
@@ -84,7 +85,7 @@ p { margin: 0; }
 /* ---------- header ---------- */
 .top {
   position: sticky; top: 0; z-index: 20;
-  background: rgba(10, 14, 42, .78);
+  background: rgba(11, 18, 56, .82);
   -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
 }
@@ -402,7 +403,7 @@ footer .wrap { align-items: flex-start; }
 .lang-menu {
   position: absolute; right: 0; top: calc(100% + 10px); z-index: 30; width: 300px; max-height: min(70vh, 520px); overflow-y: auto;
   display: none; grid-template-columns: 1fr 1fr; gap: 4px; padding: 12px;
-  background: #121850; border: 1px solid var(--line-2); border-radius: 18px; box-shadow: 0 24px 60px rgba(0, 0, 0, .55);
+  background: #13205C; border: 1px solid var(--line-2); border-radius: 18px; box-shadow: 0 24px 60px rgba(0, 0, 0, .55);
 }
 .lang.open .lang-menu { display: grid; }
 .lang-head, .lang-note { grid-column: 1 / -1; margin: 2px 6px 6px; font-size: 13px; color: var(--dim); }
@@ -438,3 +439,24 @@ font { background: transparent !important; box-shadow: none !important; }
 .row-title:not(:first-of-type) { margin-top: 34px; }
 .short .views { position: absolute; left: 10px; bottom: 10px; padding: 3px 9px; border-radius: 8px; background: rgba(0, 0, 0, .62); color: #fff; font-size: 12.5px; font-weight: 600; }
 .shorts + .row-title { margin-top: 34px; }
+
+/* ---------- brand 2026 ---------- */
+.brand img { height: 42px; }
+footer .brand img { height: 38px; }
+.hero h1 { font-family: "Baloo 2", var(--display); }
+.logo-box { background: radial-gradient(circle at 50% 35%, var(--bg-3), var(--bg-2) 70%); display: grid; place-items: center; padding: 34px; }
+.logo-box img { width: 100%; height: auto; object-fit: contain; }
+.sub-tile img { border-radius: 50%; }
+.btn { background: linear-gradient(180deg, var(--gold-2), var(--gold) 55%, var(--amber)); }
+body::before {
+  background:
+    radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,.55) 50%, transparent 51%),
+    radial-gradient(1px 1px at 72% 12%, rgba(255,255,255,.4) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 40% 70%, rgba(255,255,255,.35) 50%, transparent 51%),
+    radial-gradient(1px 1px at 88% 60%, rgba(255,255,255,.45) 50%, transparent 51%),
+    radial-gradient(1px 1px at 25% 90%, rgba(255,255,255,.3) 50%, transparent 51%),
+    radial-gradient(1px 1px at 60% 40%, rgba(255,255,255,.3) 50%, transparent 51%),
+    radial-gradient(ellipse 80% 60% at 50% -10%, var(--blue) 0%, var(--bg-2) 45%, var(--bg) 100%);
+  background-size: 420px 420px, 560px 560px, 380px 380px, 640px 640px, 500px 500px, 300px 300px, 100% 100%;
+}
+.hero::after { background: radial-gradient(circle, rgba(42, 79, 196, .45), transparent 62%); }
