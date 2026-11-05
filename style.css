@@ -508,8 +508,8 @@ a.pcard:hover { color: var(--text); transform: translateY(-3px); border-color: r
 .vt li::before { content: ""; position: absolute; left: -29px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(255, 194, 26, .2); }
 .vt b { display: block; color: var(--gold-2); font-family: var(--display); font-size: 15px; }
 .vt span { color: var(--text); }
-.facts { padding-left: 20px; margin: 0; display: grid; gap: 10px; }
-.facts li { color: #d3d7ef; font-size: 15.5px; }
+.sp-facts { padding-left: 20px; margin: 0; display: grid; gap: 10px; }
+.sp-facts li { color: #d3d7ef; font-size: 15.5px; }
 .src { margin-top: 16px; color: var(--dim); font-size: 14px; }
 .quiz { padding: 32px; border-radius: 24px; border: 1px solid var(--line-2); background: radial-gradient(ellipse 70% 80% at 50% 0%, rgba(42, 79, 196, .35), transparent 70%), var(--surface); }
 .qq { margin-top: 22px; }

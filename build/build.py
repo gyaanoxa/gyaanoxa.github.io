@@ -192,9 +192,9 @@ def main():
     page = put(page, "top", "\n".join(short_card(v) for v in sorted(shorts, key=lambda v: -v["views"])[:10]))
     total = sum(v.get("views", 0) for v in allv)
     k = f"{total // 1000}K" if total >= 1000 else str(total)
-    count = len(allv) // 10 * 10
+    count = len(allv)
     page = put(page, "stats", f'''        <div class="stat"><b>{k}<em>+</em></b><span>views so far</span></div>
-        <div class="stat"><b>{count}<em>+</em></b><span>videos &amp; Shorts</span></div>
+        <div class="stat"><b>{count}</b><span>videos &amp; Shorts</span></div>
         <div class="stat"><b>{site.get("series_count", 3)}</b><span>story series</span></div>
         <div class="stat"><b>7<em> PM</em></b><span>new Short every evening</span></div>''')
     now = datetime.now(timezone.utc)

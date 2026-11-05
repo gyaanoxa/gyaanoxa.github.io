@@ -209,7 +209,7 @@ def series_page(d, public, index, all_series):
       </div>
       <div>
         <p class="eyebrow">What the sources say</p><h2>Facts &amp; sources</h2>
-        <ul class="facts">{facts}</ul>
+        <ul class="sp-facts">{facts}</ul>
         <p class="src">Source: <a href="{e(d["source"]["url"])}" target="_blank" rel="noopener">{e(d["source"]["title"])}</a> (Wikipedia) and the texts it cites. Legends are told as legends.</p>
       </div>
     </div>
