@@ -86,6 +86,7 @@ def page(title, desc, url, image, body, ld, index, extra_js=""):
 {extra_js}
 </script>
 <script src="/lang.js" defer></script>
+<script data-goatcounter="https://gyaanoxa.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
 """
