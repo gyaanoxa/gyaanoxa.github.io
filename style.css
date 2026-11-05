@@ -432,3 +432,9 @@ font { background: transparent !important; box-shadow: none !important; }
 .nav { gap: 22px; }
 .nav a { white-space: nowrap; }
 @media (max-width: 1180px) { .translated-ltr .nav, .translated-rtl .nav { display: none; } }
+
+/* ---------- v3: auto-updated rows ---------- */
+.row-title { font-size: 20px; color: var(--muted); margin: 6px 0 14px; }
+.row-title:not(:first-of-type) { margin-top: 34px; }
+.short .views { position: absolute; left: 10px; bottom: 10px; padding: 3px 9px; border-radius: 8px; background: rgba(0, 0, 0, .62); color: #fff; font-size: 12.5px; font-weight: 600; }
+.shorts + .row-title { margin-top: 34px; }
