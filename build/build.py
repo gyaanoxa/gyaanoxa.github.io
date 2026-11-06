@@ -188,8 +188,8 @@ def main():
         </a>'''
     page = (ROOT / "index.html").read_text(encoding="utf-8")
     page = put(page, "docs", "\n".join(doc_card(v, i == 0) for i, v in enumerate(docs)) + "\n" + tile)
-    page = put(page, "latest", "\n".join(short_card(v) for v in shorts[:5]))
-    page = put(page, "top", "\n".join(short_card(v) for v in sorted(shorts, key=lambda v: -v["views"])[:10]))
+    page = put(page, "latest", "\n".join(short_card(v) for v in shorts[:6]))
+    page = put(page, "top", "\n".join(short_card(v) for v in sorted(shorts, key=lambda v: -v["views"])[:6]))
     total = sum(v.get("views", 0) for v in allv)
     k = f"{total // 1000}K" if total >= 1000 else str(total)
     count = len(allv)

@@ -627,3 +627,96 @@ a.pcard:hover { color: var(--text); transform: translateY(-3px); border-color: r
   .art-intro { font-size: 18px; }
   .art h2 { font-size: 24px; }
 }
+
+/* ---------- compact layout (Nov 2026) ---------- */
+section { padding: 46px 0; }
+.head { margin-bottom: 22px; }
+h2 { font-size: clamp(26px, 3vw, 34px); }
+.sub { margin-top: 6px; font-size: 16px; }
+.eyebrow { margin-bottom: 6px; font-size: 13px; }
+
+/* hero: shorter, no duplicate facts row (the stats strip says it) */
+.hero { padding: 40px 0 18px; }
+.hero h1 { font-size: clamp(40px, 5.4vw, 66px); margin: 16px 0 4px; }
+.hero .topics { margin-bottom: 12px; }
+.hero .lead { margin-bottom: 22px; font-size: 17px; }
+.hero .facts { display: none; }
+.fan { height: 420px; }
+.fan img { width: 200px; }
+.fan img:nth-child(2) { width: 222px; }
+.stats { padding: 0 0 6px; }
+.stat { padding: 18px 16px; }
+
+/* cards */
+.docs { gap: 16px; }
+.card .meta { padding: 12px 14px 14px; }
+.card h3 { font-size: 18px; }
+.docs .card:first-child h3 { font-size: 24px; }
+.series { gap: 16px; }
+.s-art { height: 150px; }
+.s-body { padding: 0 18px 18px; }
+.s-body h3 { font-size: 22px; }
+.s-body p { font-size: 14.5px; }
+.upcoming { gap: 12px; }
+.up { padding: 12px 14px; }
+
+/* shorts: one row each */
+.shorts { grid-template-columns: repeat(6, 1fr); gap: 14px; }
+.row-title { font-size: 17px; margin: 0 0 10px; }
+.shorts + .row-title { margin-top: 22px; }
+
+/* home blog row: compact tiles, 3 per row */
+#read .agrid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+#read .acard { flex-direction: row; align-items: stretch; }
+#read .ac-img { flex: none; width: 34%; aspect-ratio: auto; }
+#read .ac-body { padding: 12px 14px; }
+#read .ac-body h3 { font-size: 16.5px; }
+#read .ac-body p { -webkit-line-clamp: 2; font-size: 13.5px; }
+
+/* about: one row of four, smaller logo */
+.about { grid-template-columns: 1fr 260px; gap: 36px; }
+.points { grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 18px; }
+.point { padding: 14px; }
+.point .ic { width: 34px; height: 34px; margin-bottom: 8px; }
+.point h3 { font-size: 16.5px; }
+.point p { font-size: 13.5px; }
+.logo-box { max-width: 260px; padding: 24px; border-radius: 30px; }
+.cta { padding: 40px 24px; }
+footer { padding: 28px 0 32px; margin-top: 10px; }
+
+/* blog + series pages */
+.sp section { padding: 40px 0; }
+.sp-hero { padding: 34px 0 10px; }
+.art-hero { padding: 32px 0 0; }
+.art h2 { margin: 26px 0 8px; }
+.agrid { gap: 14px; }
+
+@media (max-width: 1100px) {
+  .points { grid-template-columns: 1fr 1fr; }
+  #read .agrid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 1000px) {
+  .shorts { grid-template-columns: repeat(3, 1fr); }
+  .about { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  section, .sp section { padding: 30px 0; }
+  .hero { padding: 26px 0 8px; }
+  .fan { height: 290px; }
+  .fan img { width: 130px; }
+  .fan img:nth-child(2) { width: 146px; }
+  .shorts { grid-auto-columns: 40%; }
+  #read .agrid { grid-template-columns: 1fr; }
+  .points { grid-template-columns: 1fr 1fr; }
+  .point p { display: none; }
+  .logo-box { display: none; }
+  .cta { padding: 30px 18px; }
+}
+@media (max-width: 760px) {
+  #read .agrid { display: grid; grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 86%; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -20px; padding: 0 20px 8px; scroll-padding: 0 20px; scrollbar-width: none; }
+  #read .agrid::-webkit-scrollbar { display: none; }
+  #read .acard { scroll-snap-align: start; }
+  #read .ac-img { width: 32%; }
+  footer .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 24px; }
+  footer .f-brand, footer .f-base { grid-column: 1 / -1; }
+}

@@ -43,6 +43,12 @@ def thumb(a, public):
         return f"/assets/yt/{a['video']}.webp", "wide"
     if a.get("short") and (ROOT / "assets" / "covers" / f"{a['short']}.webp").exists():
         return f"/assets/covers/{a['short']}.webp", "tall"
+    if a.get("series"):        # a series story whose video is not public yet: its Part 1 cover
+        sf = ROOT / "data" / "series" / f"{a['series']}.json"
+        if sf.exists():
+            for p in json.loads(sf.read_text(encoding="utf-8"))["parts"]:
+                if p.get("short") and (ROOT / "assets" / "covers" / f"{p['short']}.webp").exists():
+                    return f"/assets/covers/{p['short']}.webp", "tall"
     art = ROOT / "assets" / f"{a.get('series')}-art.webp"
     return (f"/assets/{a['series']}-art.webp", "tall") if a.get("series") and art.exists() else ("/assets/og.jpg", "wide")
 
