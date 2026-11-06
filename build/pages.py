@@ -72,9 +72,15 @@ def shell(index):
     return svg, header, footer, head_links
 
 
+def no_dashes(s):
+    """The site never shows long dashes (they read like machine writing): "a — b" -> "a, b", "300–250" -> "300-250"."""
+    s = re.sub(r"(\d)\s*[–—]\s*(\d)", r"\1-\2", s)
+    return re.sub(r"\s*[—–]\s*", ", ", s)
+
+
 def page(title, desc, url, image, body, ld, index, extra_js="", head="", og_type="website"):
     svg, header, footer, head_links = shell(index)
-    return f"""<!doctype html>
+    return no_dashes(f"""<!doctype html>
 <html lang="hi">
 <head>
   <meta charset="utf-8">
@@ -138,7 +144,7 @@ def page(title, desc, url, image, body, ld, index, extra_js="", head="", og_type
 <script data-goatcounter="https://gyaanoxa.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
-"""
+""")
 
 
 QUIZ_JS = """

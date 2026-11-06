@@ -20,7 +20,7 @@ from pathlib import Path
 from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from pages import srcset, ver  # noqa: E402
+from pages import no_dashes, srcset, ver  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 CHANNEL = "UCFHg-SfAo30zWIBugVMwTaw"
@@ -214,7 +214,7 @@ def main():
         <div class="stat"><b>7<em> PM</em></b><span>new Short every evening</span></div>''')
     now = datetime.now(timezone.utc)
     page = put(page, "next", upcoming_cards(site.get("upcoming", []), now))
-    (ROOT / "index.html").write_text(page, encoding="utf-8", newline="\n")
+    (ROOT / "index.html").write_text(no_dashes(page), encoding="utf-8", newline="\n")
 
     import pages                                  # series pages + timeline (same folder)
     import blog
@@ -223,7 +223,7 @@ def main():
     cards = blog.home_cards(public)
     if cards:   # newest series stories + single stories on the home page
         home = (ROOT / "index.html").read_text(encoding="utf-8")
-        (ROOT / "index.html").write_text(put(home, "blog", cards), encoding="utf-8", newline="\n")
+        (ROOT / "index.html").write_text(no_dashes(put(home, "blog", cards)), encoding="utf-8", newline="\n")
     sm = "".join(f"  <url><loc>https://gyaanoxa.com{u}</loc><lastmod>{today}</lastmod></url>\n" for u in urls)
     (ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n'
                                       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

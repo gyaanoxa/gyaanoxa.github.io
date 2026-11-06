@@ -11,7 +11,7 @@
  "about_en": "The full story of Emperor Ashoka, the third Maurya ruler, from the legends of a cruel 'Chandashoka' to the Kalinga War and his Dhamma. We compare what the Buddhist texts claim with what historians and Ashoka's own edicts reveal, including Rock Edict 13 and James Prinsep's decoding of the Brahmi script.",
  "about_hi": "क्या सम्राट अशोक का कलिंग वाला पछतावा सच्चा था, या सिर्फ एक राजनीतिक बयान?\nकलिंग युद्ध में 1 लाख लोग मारे गए और 1.5 लाख बंदी बने, और ये गिनती खुद अशोक ने पत्थर पर खुदवाई।\nपर ये शिलालेख कलिंग में ही क्यों नहीं मिला? और क्या अशोक सच में 'चंडाशोक' था?\nइस वीडियो में जानिए अशोक की पूरी कहानी: किताबें क्या कहती हैं, और इतिहासकार क्या मानते हैं।",
  "facts": [
-  "Ashoka (c. 304 – 232 BCE) was the third Maurya emperor and ruled from c. 268 BCE from Pataliputra. His empire stretched from present-day Afghanistan to present-day Bangladesh.",
+  "Ashoka (c. 304-232 BCE) was the third Maurya emperor and ruled from c. 268 BCE from Pataliputra. His empire stretched from present-day Afghanistan to present-day Bangladesh.",
   "According to the Ashokavadana, his father Bindusara disliked him for his rough skin. Even so, an ascetic saw that Ashoka would be the next king. Legends disagree on where he was sent: the North Indian tradition says Takshashila, the Sri Lankan tradition says Ujjain.",
   "Legends say he took the throne by killing his brothers: 99 in the Mahavamsa and 100 in the Dipavamsa, while the Ashokavadana says Susima was tricked into a charcoal pit. Historians think these numbers are exaggerated, though he may have killed one or several brothers.",
   "The Ashokavadana calls him 'Chandashoka' and describes 500 ministers beheaded and a torture prison called 'Ashoka's Hell'. Scholars see these stories as exaggerations by Buddhist authors who wanted his conversion to look like a miracle.",
@@ -91,7 +91,7 @@
   }
  ],
  "era": "Maurya Empire",
- "years": "c. 268–232 BCE",
+ "years": "c. 268-232 BCE",
  "place": "Pataliputra (Patna, Bihar)",
  "intro_hi": "मौर्य वंश का तीसरा सम्राट, जिसे किताबें पहले 'चंडाशोक' और फिर 'धम्मशोक' कहती हैं। कलिंग युद्ध के बाद उसने खुद पत्थर पर अपना पछतावा लिखवाया।",
  "timeline": [
