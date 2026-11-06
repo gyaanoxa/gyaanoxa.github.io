@@ -549,3 +549,25 @@ a.pcard:hover { color: var(--text); transform: translateY(-3px); border-color: r
   .quiz { padding: 22px 18px; }
 }
 .visits b { color: var(--gold-2); font-weight: 600; }
+
+/* ---------- phone polish: swipe rows, tighter spacing ---------- */
+@media (max-width: 760px) {
+  section { padding: 36px 0; }
+  .sp section { padding: 36px 0; }
+  .head { margin-bottom: 20px; }
+  .docs, .series {
+    display: grid; grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 84%;
+    overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px;
+    margin: 0 -20px; padding: 0 20px 8px; scroll-padding: 0 20px; scrollbar-width: none;
+  }
+  .docs::-webkit-scrollbar, .series::-webkit-scrollbar { display: none; }
+  .docs > *, .series > * { scroll-snap-align: start; }
+  .docs .card:first-child { grid-column: auto; }
+  .docs .card:first-child .en { display: none; }
+  .sub-tile { min-height: 100%; }
+  .s-art { height: 160px; }
+  .stats { padding: 0 0 8px; }
+  .row-title { margin-top: 18px; }
+  .points { gap: 10px; }
+  .point { padding: 16px; }
+}

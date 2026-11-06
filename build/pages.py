@@ -136,7 +136,7 @@ def series_page(d, public, index, all_series):
     full_live = full.get("id") in public
     ftitle = public[full["id"]]["title"] if full_live else full["title"]
     hi_t = re.sub(r"\s*#\w+", "", ftitle).split(" | ")[0]
-    first_cover = next((f"/assets/covers/{p['short']}.webp" for p in d["parts"] if p.get("short")), "/assets/stacked.webp")
+    first_cover = next((f"/assets/covers/{p['short']}.webp" for p in d["parts"] if p.get("short")), f"/assets/{d['slug']}-art.webp" if (ROOT / "assets" / f"{d['slug']}-art.webp").exists() else "/assets/stacked.webp")
     image = f"{SITE}/assets/yt/{full['id']}.webp" if full_live and (ROOT / "assets" / "yt" / f"{full['id']}.webp").exists() else f"{SITE}/assets/og.jpg"
 
     if full_live:
