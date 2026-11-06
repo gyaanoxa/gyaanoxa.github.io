@@ -6,7 +6,7 @@ The header, footer and icons are copied from index.html, with links made absolut
 import html
 import json
 import re
-from datetime import datetime, timezone
+from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -33,7 +33,7 @@ def shell(index):
     return svg, header, footer, head_links
 
 
-def page(title, desc, url, image, body, ld, index, extra_js=""):
+def page(title, desc, url, image, body, ld, index, extra_js="", head="", og_type="website"):
     svg, header, footer, head_links = shell(index)
     return f"""<!doctype html>
 <html lang="hi">
@@ -43,14 +43,24 @@ def page(title, desc, url, image, body, ld, index, extra_js=""):
   <title>{e(title)}</title>
   <meta name="description" content="{e(desc)}">
   <meta name="theme-color" content="#13205C">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Gyaanoxa">
   <link rel="canonical" href="{SITE}{url}">
+  <link rel="alternate" hreflang="hi" href="{SITE}{url}">
+  <link rel="alternate" hreflang="x-default" href="{SITE}{url}">
+  <meta property="og:site_name" content="Gyaanoxa">
+  <meta property="og:locale" content="hi_IN">
   <meta property="og:title" content="{e(title)}">
   <meta property="og:description" content="{e(desc)}">
   <meta property="og:image" content="{e(image)}">
+  <meta property="og:image:alt" content="{e(title)}">
   <meta property="og:url" content="{SITE}{url}">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="{og_type}">
   <meta name="twitter:card" content="summary_large_image">
-{head_links}  <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
+  <meta name="twitter:title" content="{e(title)}">
+  <meta name="twitter:description" content="{e(desc)}">
+  <meta name="twitter:image" content="{e(image)}">
+{head}{head_links}  <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 </head>
 <body>
 
@@ -154,17 +164,22 @@ def series_page(d, public, index, all_series):
             f'<li><a class="chap" data-t="{t}" href="https://www.youtube.com/watch?v={e(full["id"])}&t={t}s" target="_blank" rel="noopener">'
             f'<span class="ts">{t // 60}:{t % 60:02d}</span>{e(n)}</a></li>' for t, n in full["chapters"]) + "</ol>"
 
+    bdir = ROOT / "data" / "blog"
     cards = []
     for p in d["parts"]:
         live = p.get("short") in public
         cov = f"/assets/covers/{p['short']}.webp" if p.get("short") and (ROOT / "assets" / "covers" / f"{p['short']}.webp").exists() else ""
-        inner = (f'<div class="pc-img">{f"<img loading=lazy src={cov} alt=\"\" width=540 height=960>" if cov else "<span class=pc-n>" + str(p["n"]) + "</span>"}'
-                 f'{"<span class=play><svg><use href=#i-play /></svg></span>" if live else ""}</div>'
-                 f'<div class="pc-body"><div class="pc-k">भाग {p["n"]}/{len(d["parts"])}</div><h3>{e(p["topic"])}</h3>'
-                 f'<p>{e(p["hook"])}</p>'
-                 f'<span class="pc-s{" live" if live else ""}">{"▶ Short देखें" if live else "🕒 " + e(when(p.get("at")) or "जल्द")}</span></div>')
-        cards.append(f'<a class="pcard" href="https://www.youtube.com/shorts/{e(p["short"])}" target="_blank" rel="noopener">{inner}</a>'
-                     if live else f'<div class="pcard">{inner}</div>')
+        if not cov and (ROOT / "assets" / "parts" / f"{slug}-part-{p['n']}.webp").exists():
+            cov = f"/assets/parts/{slug}-part-{p['n']}.webp"
+        img = (f'<img loading="lazy" src="{cov}" alt="" width="540" height="960">' if cov else f'<span class="pc-n">{p["n"]}</span>') +             ('<span class="play"><svg><use href="#i-play"/></svg></span>' if live else "")
+        short_url = f"https://www.youtube.com/shorts/{e(p['short'])}"
+        art = f"/blog/{slug}-part-{p['n']}/" if (bdir / f"{slug}-part-{p['n']}.json").exists() else ""
+        links = (f'<a class="pc-s live" href="{short_url}" target="_blank" rel="noopener">▶ Short देखें</a>' if live
+                 else f'<span class="pc-s">🕒 {e(when(p.get("at")) or "जल्द")}</span>') +             (f'<a class="pc-s read" href="{art}">📖 लेख पढ़ें</a>' if art else "")
+        pic = f'<a class="pc-img" href="{short_url}" target="_blank" rel="noopener" aria-label="{e(p["topic"])}">{img}</a>' if live             else f'<a class="pc-img" href="{art}" aria-label="{e(p["topic"])}">{img}</a>' if art else f'<div class="pc-img">{img}</div>'
+        title = f'<a href="{art}">{e(p["topic"])}</a>' if art else e(p["topic"])
+        cards.append(f'<div class="pcard">{pic}<div class="pc-body"><div class="pc-k">भाग {p["n"]}/{len(d["parts"])}</div>'
+                     f'<h3>{title}</h3><p>{e(p["hook"])}</p><div class="pc-links">{links}</div></div></div>')
 
     tl = "".join(f'<li><b>{e(a)}</b><span>{e(b)}</span></li>' for a, b in d.get("timeline", []))
     facts = "".join(f"<li>{e(f)}</li>" for f in d.get("facts", []))
@@ -177,15 +192,15 @@ def series_page(d, public, index, all_series):
         for o in all_series if o["slug"] != slug)
 
     reads = ""
-    bdir = ROOT / "data" / "blog"
-    keys = [f"{slug}-full-story"] + [f"{slug}-part-{x['n']}" for x in d["parts"]]
-    have = [(k, json.loads((bdir / f"{k}.json").read_text(encoding="utf-8"))) for k in keys if (bdir / f"{k}.json").exists()]
-    if have:
-        li = "".join(f'<a class="other" href="/blog/{e(k)}/"><b>{e(("पूरी कहानी" if k.endswith("full-story") else "भाग " + k.rsplit("-", 1)[1]))}</b>'
-                     f'<span>{e(re.sub(r"[ ]*#[A-Za-z0-9_]+", "", a["title"]).split(" | ")[0])}</span></a>' for k, a in have)
-        reads = ('  <section>\n    <div class="wrap"><p class="eyebrow">Read</p><h2>पढ़िए पूरी कहानी</h2>'
-                 '<p class="sub">हर भाग का विस्तार से लेख — मुख्य तारीखें और सवाल-जवाब के साथ।</p>'
-                 f'<div class="others">{li}</div></div>\n  </section>\n')
+    fs = bdir / f"{slug}-full-story.json"
+    if fs.exists():
+        a = json.loads(fs.read_text(encoding="utf-8"))
+        n = len(" ".join([a.get("intro", "")] + [x for sec in a["sections"] for x in sec["paras"]]).split())
+        reads = (f'  <section class="read-band">\n    <div class="wrap"><a class="rb" href="/blog/{slug}-full-story/">'
+                 f'<div><p class="eyebrow">Read · {max(2, round(n / 180))} मिनट</p>'
+                 f'<h2>{e(re.sub(r"[ ]*#[A-Za-z0-9_]+", "", a["title"]).split(" | ")[0])}</h2>'
+                 f'<p class="sub">पूरी कहानी एक लेख में — हर भाग, मुख्य तारीखें, किरदार और सवाल-जवाब। हर भाग का अलग लेख ऊपर कार्ड में।</p></div>'
+                 f'<span class="btn">पूरा लेख पढ़ें →</span></a></div>\n  </section>\n')
     body = f"""  <section class="sp-hero">
     <div class="wrap sp-grid">
       <div>
@@ -257,7 +272,10 @@ def series_page(d, public, index, all_series):
                              "embedUrl": f"https://www.youtube-nocookie.com/embed/{full['id']}", "contentUrl": f"https://www.youtube.com/watch?v={full['id']}",
                              "inLanguage": "hi"})
     desc = (d.get("about_en") or d["title_en"])[:300]
-    return page(f"{d['title_hi']} | {d['title_en']} — Gyaanoxa", desc, f"/{slug}/", image, body, ld, index, QUIZ_JS)
+    kw = [d["title_hi"], d["title_en"], f"{d['title_en']} in Hindi", f"{slug} history in Hindi", "भारत का इतिहास",
+          "Indian history in Hindi", "Gyaanoxa"]
+    head = f'  <meta name="keywords" content="{e(", ".join(kw))}">' + chr(10)
+    return page(f"{d['title_hi']} | {d['title_en']} — Gyaanoxa", desc, f"/{slug}/", image, body, ld, index, QUIZ_JS, head)
 
 
 def timeline_page(tl, public, index):

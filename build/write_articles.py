@@ -1,6 +1,7 @@
 """Writes the blog articles with Claude from the studio's own scripts (facts only from each video's script/summary).
 
-Run on the owner's PC:  python build/write_articles.py [slug ...]   (no slug = every article not written yet)
+Run on the owner's PC:  python build/write_articles.py [--redo] [slug ...]   (no slug = every article not written yet;
+--redo writes them again even if they exist - the old file stays when Claude fails)
 Output: data/blog/<slug>.json, rendered to /blog/<slug>/ by build/blog.py.
 """
 import json
@@ -59,6 +60,9 @@ Return ONLY JSON:
  "description": "1-2 sentence Hindi meta description, max 155 chars",
  "keywords": ["5-8 search phrases, Hindi and English, e.g. 'अशोक का इतिहास', 'Ashoka history in Hindi'"],
  "intro": "a gripping opening paragraph (3-4 sentences)",
+ "highlights": ["4-5 one-line Hindi bullet points: what the reader will learn (each a fact from the material)"],
+ "people": [["name (Hindi)", "one-line role in this story"]],
+ "did_you_know": ["1-3 surprising little-known facts from the material, one sentence each"],
  "sections": [{{"h2": "Hindi sub-heading", "paras": ["paragraph", "..."]}}],
  "key_dates": [["date/when", "what happened"]],
  "faq": [{{"q": "a question people search", "a": "2-3 sentence answer from the material"}}],
@@ -91,7 +95,7 @@ def material(job):
 
 def write(job):
     out = ROOT / "data" / "blog" / f"{job['slug']}.json"
-    if out.exists():
+    if out.exists() and not REDO:
         return job["slug"], "exists"
     sc, narration, summary, source = material(job)
     if job["series"] and job["part"]:
@@ -100,15 +104,18 @@ def write(job):
         context = (f"THIS ARTICLE: part {job['part']} of {job['of']} of the series '{series['series_title']}'. Focus ONLY on "
                    f"this part's topic: '{ep.get('title')}' ({ep.get('angle', '')}). Use the series facts only where they "
                    f"belong to this part; end by teasing the next part's question without answering it.")
-        length = "700-1000 words, 3-4 sections, 3 FAQ, 2-4 key dates."
+        length = ("1100-1500 words, 5-6 sections (background, the event itself, the people, what the sources disagree on, "
+                  "why it mattered), 4 FAQ, 3-5 key dates, 2-5 people.")
     elif job["series"]:
         series = json.loads((job["dir"].parent / "series.json").read_text(encoding="utf-8"))["plan"]
         context = (f"THIS ARTICLE: the complete story of the series '{series['series_title']}' "
                    f"({len(series['episodes'])} parts) - cover every part in order, one section per part.")
-        length = "1500-2200 words, one section per part plus an opening and a legacy section, 5 FAQ, 5-8 key dates."
+        length = ("2200-3000 words, one section per part plus an opening and a legacy section, 6 FAQ, 6-10 key dates, "
+                  "4-8 people.")
     else:
         context = "THIS ARTICLE: the full story of this single video."
-        length = "1000-1500 words, 4-6 sections, 4 FAQ, 3-6 key dates."
+        length = ("1600-2200 words, 6-8 sections (background, the main story step by step, the people, what the sources "
+                  "disagree on, legacy), 5 FAQ, 4-8 key dates, 3-6 people.")
     prompt = PROMPT.format(length=length, context=context, source=source,
                            summary="\n".join(f"- {s}" for s in summary), narration=narration)
     data = core.ask_claude(prompt, log=lambda m: None,
@@ -135,8 +142,10 @@ def _run(j):
         return j["slug"], f"FAILED {str(e)[:200]}"
 
 
+REDO = "--redo" in sys.argv
+
 if __name__ == "__main__":
-    want = set(sys.argv[1:])
+    want = set(a for a in sys.argv[1:] if a != "--redo")
     todo = [j for j in jobs() if not want or j["slug"] in want]
     print(len(todo), "articles", flush=True)
     with ThreadPoolExecutor(3) as ex:
