@@ -202,7 +202,13 @@ def main():
     (ROOT / "index.html").write_text(page, encoding="utf-8", newline="\n")
 
     import pages                                  # series pages + timeline (same folder)
-    urls = ["/"] + pages.build({v["id"]: v for v in allv}) + ["/privacy.html", "/terms.html", "/data-deletion.html"]
+    import blog
+    public = {v["id"]: v for v in allv}
+    urls = ["/"] + pages.build(public) + blog.build(public) + ["/privacy.html", "/terms.html", "/data-deletion.html"]
+    cards = blog.home_cards(public)
+    if cards:   # newest series stories + single stories on the home page
+        home = (ROOT / "index.html").read_text(encoding="utf-8")
+        (ROOT / "index.html").write_text(put(home, "blog", cards), encoding="utf-8", newline="\n")
     sm = "".join(f"  <url><loc>https://gyaanoxa.com{u}</loc><lastmod>{today}</lastmod></url>\n" for u in urls)
     (ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n'
                                       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

@@ -176,6 +176,16 @@ def series_page(d, public, index, all_series):
         f'<a class="other" href="/{e(o["slug"])}/"><b>{e(o["title_hi"])}</b><span>{e(o["title_en"])}</span></a>'
         for o in all_series if o["slug"] != slug)
 
+    reads = ""
+    bdir = ROOT / "data" / "blog"
+    keys = [f"{slug}-full-story"] + [f"{slug}-part-{x['n']}" for x in d["parts"]]
+    have = [(k, json.loads((bdir / f"{k}.json").read_text(encoding="utf-8"))) for k in keys if (bdir / f"{k}.json").exists()]
+    if have:
+        li = "".join(f'<a class="other" href="/blog/{e(k)}/"><b>{e(("पूरी कहानी" if k.endswith("full-story") else "भाग " + k.rsplit("-", 1)[1]))}</b>'
+                     f'<span>{e(re.sub(r"[ ]*#[A-Za-z0-9_]+", "", a["title"]).split(" | ")[0])}</span></a>' for k, a in have)
+        reads = ('  <section>\n    <div class="wrap"><p class="eyebrow">Read</p><h2>पढ़िए पूरी कहानी</h2>'
+                 '<p class="sub">हर भाग का विस्तार से लेख — मुख्य तारीखें और सवाल-जवाब के साथ।</p>'
+                 f'<div class="others">{li}</div></div>\n  </section>\n')
     body = f"""  <section class="sp-hero">
     <div class="wrap sp-grid">
       <div>
@@ -201,6 +211,7 @@ def series_page(d, public, index, all_series):
     </div>
   </section>
 
+{reads}
   <section>
     <div class="wrap two">
       <div>
