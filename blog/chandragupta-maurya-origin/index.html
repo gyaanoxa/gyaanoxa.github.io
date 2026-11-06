@@ -40,7 +40,142 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="/assets/fonts/Baloo2-800-devanagari.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/fonts.css">
+  <style>@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-500-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-600-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-700-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-700-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 800;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-800-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 800;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-800-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src: url(/assets/fonts/Mukta-400-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src: url(/assets/fonts/Mukta-400-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Mukta-500-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Mukta-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Mukta-600-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Mukta-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Poppins-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Poppins-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Poppins-700-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}</style>
   <link rel="stylesheet" href="/style.css">
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "headline": "चंद्रगुप्त मौर्य, जिनका जन्म और अंत दोनों रहस्य हैं", "description": "मौर्य साम्राज्य के संस्थापक चंद्रगुप्त मौर्य का जन्म, चाणक्य से मुलाकात, नंदों पर जीत और उनका रहस्यमय अंत। सच और किंवदंती को अलग रखकर पूरी कहानी।", "inLanguage": "hi", "datePublished": "2026-11-06", "keywords": "चंद्रगुप्त मौर्य का इतिहास, Chandragupta Maurya history in Hindi, चंद्रगुप्त मौर्य और चाणक्य, मौर्य साम्राज्य की स्थापना, चंद्रगुप्त मौर्य का जन्म, Chandragupta Maurya Seleucus, चंद्रगुप्त मौर्य श्रवणबेलगोला, Maurya Empire founder", "image": "https://gyaanoxa.com/assets/covers/rUOUSBxvqHw.webp", "url": "https://gyaanoxa.com/blog/chandragupta-maurya-origin/", "dateModified": "2026-11-06", "mainEntityOfPage": "https://gyaanoxa.com/blog/chandragupta-maurya-origin/", "wordCount": 1524, "articleSection": "Indian History", "about": [{"@type": "Person", "name": "चंद्रगुप्त मौर्य"}, {"@type": "Person", "name": "चाणक्य"}, {"@type": "Person", "name": "धन नंद"}, {"@type": "Person", "name": "सेल्यूकस (Seleucus I Nicator)"}, {"@type": "Person", "name": "मेगस्थनीज़ (Megasthenes)"}, {"@type": "Person", "name": "भद्रबाहु"}], "author": {"@type": "Organization", "name": "Gyaanoxa", "url": "https://gyaanoxa.com"}, "publisher": {"@type": "Organization", "name": "Gyaanoxa", "logo": {"@type": "ImageObject", "url": "https://gyaanoxa.com/assets/icon-512.png"}}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "चंद्रगुप्त मौर्य का जन्म किस परिवार में हुआ था?", "acceptedAnswer": {"@type": "Answer", "text": "इसका कोई पक्का ऐतिहासिक जवाब नहीं मिलता। रोमन इतिहासकार जस्टिन उन्हें साधारण परिवार का बताते हैं, बौद्ध ग्रंथ मोरिय वंश का क्षत्रिय, एक मध्यकालीन टीकाकार नंद रानी मुरा का बेटा, और मुद्राराक्षस उन्हें वृषल कहता है।"}}, {"@type": "Question", "name": "चाणक्य और चंद्रगुप्त की मुलाकात कैसे हुई?", "acceptedAnswer": {"@type": "Answer", "text": "हिंदू और बौद्ध कथाओं में चाणक्य ने विंझा जंगल के पास बालक चंद्रगुप्त को राजा बनने का खेल खेलते देखा, उसे एक शिकारी से खरीदकर गोद लिया और तक्षशिला में पढ़ाया। हेमचंद्र की जैन कथा के अनुसार चाणक्य ने उन्हें मोर पालने वाले समुदाय से गोद लिया था।"}}, {"@type": "Question", "name": "चंद्रगुप्त मौर्य ने नंद वंश को कब हराया?", "acceptedAnswer": {"@type": "Answer", "text": "आम तौर पर यह जीत लगभग 322 से 319 ईसा पूर्व के बीच मानी जाती है, जबकि एक वैकल्पिक कालक्रम इसे लगभग 311 से 305 ईसा पूर्व में रखता है। कथाओं के मुताबिक पहला हमला नाकाम रहा और आखिर में पाटलिपुत्र को घेरकर धन नंद को हराया गया।"}}, {"@type": "Question", "name": "चंद्रगुप्त और सेल्यूकस के बीच क्या समझौता हुआ?", "acceptedAnswer": {"@type": "Answer", "text": "लगभग 305 से 303 ईसा पूर्व के बीच टकराव के बाद दोनों में वैवाहिक गठबंधन हुआ। सेल्यूकस को 500 हाथी मिले और चंद्रगुप्त को सिंधु से लगे इलाके। शादी चंद्रगुप्त की हुई या बिंदुसार की, यह साफ नहीं है।"}}, {"@type": "Question", "name": "क्या चंद्रगुप्त मौर्य ने श्रवणबेलगोला में सल्लेखना की थी?", "acceptedAnswer": {"@type": "Answer", "text": "दिगंबर जैन कथाओं के अनुसार वे भद्रबाहु के साथ श्रवणबेलगोला गए और वहाँ सल्लेखना की। लेकिन ये कथाएँ लगभग 600 ईसवी के बाद की हैं, यूनानी सबूत उन्हें वैदिक यज्ञ और शिकार से जोड़ते हैं, और कुछ विद्वान इसे सम्प्रति चंद्रगुप्त की कहानी मानते हैं।"}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Gyaanoxa", "item": "https://gyaanoxa.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://gyaanoxa.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "चंद्रगुप्त मौर्य, जिनका जन्म और अंत दोनों रहस्य हैं", "item": "https://gyaanoxa.com/blog/chandragupta-maurya-origin/"}]}]}</script>
 </head>
@@ -105,7 +240,7 @@
       <div class="art-side"><nav class="side-box toc"><p class="eyebrow">इस लेख में</p><ol><li><a href="#s1">धुंधले अतीत वाला सम्राट</a></li><li><a href="#s2">जन्म को लेकर चार दावे</a></li><li><a href="#s3">खेल में राजा बना बालक</a></li><li><a href="#s4">सिकंदर के बाद का दौर</a></li><li><a href="#s5">नंदों का पतन और सेल्यूकस से टक्कर</a></li><li><a href="#s6">मेगस्थनीज़ का देखा दरबार</a></li><li><a href="#s7">श्रवणबेलगोला की कथा</a></li><li><a href="#s8">बँटे हुए स्रोत, पक्की विरासत</a></li></ol></nav><div class="side-box people"><p class="eyebrow">कहानी के किरदार</p><ul><li><b>चंद्रगुप्त मौर्य</b><span>मौर्य साम्राज्य के संस्थापक और पहले सम्राट</span></li><li><b>चाणक्य</b><span>कथाओं में चंद्रगुप्त के गुरु, जिन्होंने उन्हें गोद लेकर तैयार किया</span></li><li><b>धन नंद</b><span>मगध के नंद वंश के राजा, जिन्हें चंद्रगुप्त ने हराया</span></li><li><b>सेल्यूकस (Seleucus I Nicator)</b><span>सिकंदर के सेनापति, जिनसे टकराव के बाद वैवाहिक गठबंधन हुआ</span></li><li><b>मेगस्थनीज़ (Megasthenes)</b><span>यूनानी राजदूत, जो 4 साल चंद्रगुप्त के दरबार में रहे</span></li><li><b>भद्रबाहु</b><span>जैन मुनि, जिनके साथ दिगंबर जैन कथाओं में चंद्रगुप्त श्रवणबेलगोला गए</span></li></ul></div></div>
     </div>
   </section>
-  <section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>आगे पढ़ें</h2></div><a class="more" href="/blog/">सभी लेख</a></div><div class="agrid"><a class="acard tall" href="/blog/sardar-patel-ekta-diwas/"><div class="ac-img"><img loading="lazy" src="/assets/covers/VCwjh0d5IpQ.webp" alt=""></div><div class="ac-body"><span class="ac-k">लेख · 5 मिनट</span><h3>565 रियासतें और एक भारत, सरदार पटेल ने देश कैसे जोड़ा</h3><p>आज़ादी के बाद 565 रियासतें भारत में कैसे मिलीं? सरदार पटेल, जूनागढ़, हैदराबाद और ‘लौह पुरुष’ बनने की पूरी कहानी पढ़िए।</p></div></a><a class="acard wide" href="/blog/kohinoor-curse/"><div class="ac-img"><img loading="lazy" src="/assets/yt/NLngE8kUPeY.webp" alt=""></div><div class="ac-body"><span class="ac-k">लेख · 7 मिनट</span><h3>कोहिनूर का श्राप, मर्द राजाओं पर सच या अफ़वाह</h3><p>कोहिनूर कई राजाओं के हाथ से गुज़रा। कोई गद्दी से हटा, किसी का कत्ल हुआ। श्राप वाली कहानी कहां से आई और उसका सच क्या है, यहां पढ़िए।</p></div></a><a class="acard wide" href="/blog/kalinga-war/"><div class="ac-img"><img loading="lazy" src="/assets/yt/7EpfoUi1pk8.webp" alt=""></div><div class="ac-body"><span class="ac-k">लेख · 7 मिनट</span><h3>सम्राट अशोक की असली कहानी, जिसे इतिहास भूल गया था</h3><p>चंडाशोक से धम्म के सम्राट तक, कलिंग युद्ध, 99 भाइयों की कथा और वो सच जो अशोक के अपने शिलालेख बताते हैं। पढ़िए अशोक की पूरी कहानी।</p></div></a></div></div></section>
+  <section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>आगे पढ़ें</h2></div><a class="more" href="/blog/">सभी लेख</a></div><div class="agrid"><a class="acard tall" href="/blog/sardar-patel-ekta-diwas/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/VCwjh0d5IpQ.webp" srcset="/assets/s/360/covers/VCwjh0d5IpQ.webp 360w, /assets/covers/VCwjh0d5IpQ.webp 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">लेख · 5 मिनट</span><h3>565 रियासतें और एक भारत, सरदार पटेल ने देश कैसे जोड़ा</h3><p>आज़ादी के बाद 565 रियासतें भारत में कैसे मिलीं? सरदार पटेल, जूनागढ़, हैदराबाद और ‘लौह पुरुष’ बनने की पूरी कहानी पढ़िए।</p></div></a><a class="acard wide" href="/blog/kohinoor-curse/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/yt/NLngE8kUPeY.webp" srcset="/assets/s/360/yt/NLngE8kUPeY.webp 360w, /assets/yt/NLngE8kUPeY.webp 960w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">लेख · 7 मिनट</span><h3>कोहिनूर का श्राप, मर्द राजाओं पर सच या अफ़वाह</h3><p>कोहिनूर कई राजाओं के हाथ से गुज़रा। कोई गद्दी से हटा, किसी का कत्ल हुआ। श्राप वाली कहानी कहां से आई और उसका सच क्या है, यहां पढ़िए।</p></div></a><a class="acard wide" href="/blog/kalinga-war/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/yt/7EpfoUi1pk8.webp" srcset="/assets/s/360/yt/7EpfoUi1pk8.webp 360w, /assets/yt/7EpfoUi1pk8.webp 960w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">लेख · 7 मिनट</span><h3>सम्राट अशोक की असली कहानी, जिसे इतिहास भूल गया था</h3><p>चंडाशोक से धम्म के सम्राट तक, कलिंग युद्ध, 99 भाइयों की कथा और वो सच जो अशोक के अपने शिलालेख बताते हैं। पढ़िए अशोक की पूरी कहानी।</p></div></a></div></div></section>
 </main>
 
 <footer>
@@ -115,13 +250,13 @@
       <p>भारत के अनसुने सच. Indian history, science and mysteries in simple Hindi.</p>
     </div>
     <div class="f-col">
-      <h4>Watch</h4>
+      <h3>Watch</h3>
       <a href="https://www.youtube.com/@Gyaanoxa" target="_blank" rel="noopener">YouTube</a>
       <a href="https://www.youtube.com/@Gyaanoxa/shorts" target="_blank" rel="noopener">Shorts</a>
       <a href="https://www.instagram.com/gyaanoxa" target="_blank" rel="noopener">Instagram</a>
     </div>
     <div class="f-col">
-      <h4>Site</h4>
+      <h3>Site</h3>
       <a href="/#videos">Documentaries</a>
       <a href="/#series">Series</a>
       <a href="/#next">Coming next</a>
@@ -130,7 +265,7 @@
       <a href="/#about">About</a>
     </div>
     <div class="f-col">
-      <h4>Legal</h4>
+      <h3>Legal</h3>
       <a href="/privacy.html">Privacy Policy</a>
       <a href="/terms.html">Terms</a>
       <a href="/data-deletion.html">Data Deletion</a>

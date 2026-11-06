@@ -40,7 +40,142 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="/assets/fonts/Baloo2-800-devanagari.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/fonts.css">
+  <style>@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-500-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-600-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-700-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-700-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 800;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-800-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 800;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-800-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src: url(/assets/fonts/Mukta-400-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src: url(/assets/fonts/Mukta-400-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Mukta-500-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Mukta-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Mukta-600-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Mukta-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Poppins-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Poppins-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Poppins-700-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}</style>
   <link rel="stylesheet" href="/style.css">
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "headline": "नरकासुर की कैद से 16,000 राजकुमारियों की रिहाई", "description": "नरक चतुर्दशी की कथा। नरकासुर को किसने मारा, 16,000 राजकुमारियाँ कैसे आज़ाद हुईं, और गोवा, तमिलनाडु, बंगाल में यह दिन किस तरह मनाया जाता है।", "inLanguage": "hi", "datePublished": "2026-11-06", "keywords": "नरक चतुर्दशी की कथा, नरकासुर वध, छोटी दिवाली क्यों मनाते हैं, 16000 राजकुमारियाँ, Narakasura story in Hindi, Naraka Chaturdashi history, Bhoot Chaturdashi Bengal, Goa Narakasura effigy", "image": "https://gyaanoxa.com/assets/covers/pXICs5AaQMI.webp", "url": "https://gyaanoxa.com/blog/diwali-part-3/", "dateModified": "2026-11-06", "mainEntityOfPage": "https://gyaanoxa.com/blog/diwali-part-3/", "wordCount": 845, "articleSection": "5 Days of Diwali, 5 Legends", "about": [{"@type": "Person", "name": "नरकासुर (Narakasura)"}, {"@type": "Person", "name": "कृष्ण (Krishna)"}, {"@type": "Person", "name": "सत्यभामा (Satyabhama)"}], "author": {"@type": "Organization", "name": "Gyaanoxa", "url": "https://gyaanoxa.com"}, "publisher": {"@type": "Organization", "name": "Gyaanoxa", "logo": {"@type": "ImageObject", "url": "https://gyaanoxa.com/assets/icon-512.png"}}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "नरकासुर को किसने मारा था?", "acceptedAnswer": {"@type": "Answer", "text": "इस पर दो कथाएँ मिलती हैं। एक में कृष्ण और सत्यभामा मिलकर नरकासुर को मारते हैं, दूसरी में अकेले कृष्ण उसका अंत करते हैं। दोनों में उसकी मौत के बाद 16,000 राजकुमारियाँ आज़ाद होती हैं।"}}, {"@type": "Question", "name": "नरकासुर कहाँ का राजा था?", "acceptedAnswer": {"@type": "Answer", "text": "ग्रंथ उसे प्रागज्योतिषपुर का दुष्ट राजा बताते हैं। यह जगह आज के असम के पास मानी जाती है।"}}, {"@type": "Question", "name": "छोटी दिवाली या नरक चतुर्दशी क्यों मनाई जाती है?", "acceptedAnswer": {"@type": "Answer", "text": "दिवाली के पाँच दिनों में यह दूसरा दिन है। कथा के अनुसार इसी दिन नरकासुर मारा गया और उसकी कैद से 16,000 राजकुमारियाँ छूटीं, इसलिए इसे बुराई के अंत का दिन माना जाता है।"}}, {"@type": "Question", "name": "भूत चतुर्दशी क्या है?", "acceptedAnswer": {"@type": "Answer", "text": "बंगाल में नरक चतुर्दशी को भूत चतुर्दशी कहते हैं। इस दिन 14 पुरखों की याद में 14 दीये जलाए जाते हैं।"}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Gyaanoxa", "item": "https://gyaanoxa.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://gyaanoxa.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "5 Days of Diwali, 5 Legends", "item": "https://gyaanoxa.com/diwali/"}, {"@type": "ListItem", "position": 4, "name": "नरकासुर की कैद से 16,000 राजकुमारियों की रिहाई", "item": "https://gyaanoxa.com/blog/diwali-part-3/"}]}, {"@type": "VideoObject", "name": "भाग 3: 16,000 राजकुमारियों को किसने छुड़ाया?", "description": "नरक चतुर्दशी की कथा। नरकासुर को किसने मारा, 16,000 राजकुमारियाँ कैसे आज़ाद हुईं, और गोवा, तमिलनाडु, बंगाल में यह दिन किस तरह मनाया जाता है।", "thumbnailUrl": ["https://i.ytimg.com/vi/pXICs5AaQMI/hqdefault.jpg"], "uploadDate": "2026-11-06", "embedUrl": "https://www.youtube-nocookie.com/embed/pXICs5AaQMI", "inLanguage": "hi"}]}</script>
 </head>
@@ -105,7 +240,7 @@
       <div class="art-side"><nav class="side-box toc"><p class="eyebrow">इस लेख में</p><ol><li><a href="#s1">पाँच दिन का त्योहार</a></li><li><a href="#s2">प्रागज्योतिषपुर का राजा</a></li><li><a href="#s3">दो कथाएँ, दो जवाब</a></li><li><a href="#s4">गोवा में भोर के पुतले</a></li><li><a href="#s5">तमिलनाडु और बंगाल का यह दिन</a></li><li><a href="#s6">कृष्ण, सुभद्रा और आगे की रात</a></li></ol></nav><aside class="side-box series-nav"><p class="eyebrow">इस सीरीज़ के लेख</p><ol><li><a href="/blog/diwali-full-story/">पूरी कहानी</a></li><li><a href="/blog/diwali-part-1/">भाग 1: दिवाली 1 रात की नहीं, 5 दिन की क्यों?</a></li><li><a href="/blog/diwali-part-2/">भाग 2: धनतेरस: जब यमराज सोने के ढेर पर बैठे रहे</a></li><li class=on><a href="/blog/diwali-part-3/">भाग 3: 16,000 राजकुमारियों को किसने छुड़ाया?</a></li><li><a href="/blog/diwali-part-4/">भाग 4: एक रात, 3 धर्म: दिवाली की असली कहानियाँ</a></li><li><a href="/blog/diwali-part-5/">भाग 5: 7 दिन तक छोटी उंगली पर पूरा पहाड़?</a></li><li><a href="/blog/diwali-part-6/">भाग 6: यमराज और उनकी बहन से जुड़ा है भाई दूज?</a></li></ol><a class="more" href="/diwali/">Series page · Quiz</a></aside><div class="side-box people"><p class="eyebrow">कहानी के किरदार</p><ul><li><b>नरकासुर (Narakasura)</b><span>प्रागज्योतिषपुर का दुष्ट राजा, जिसने 16,000 राजकुमारियों को कैद कर रखा था</span></li><li><b>कृष्ण (Krishna)</b><span>दोनों कथाओं में नरकासुर का वध करते हैं</span></li><li><b>सत्यभामा (Satyabhama)</b><span>एक कथा में कृष्ण के साथ मिलकर नरकासुर को मारती हैं</span></li></ul></div></div>
     </div>
   </section>
-  <section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>आगे पढ़ें</h2></div><a class="more" href="/blog/">सभी लेख</a></div><div class="agrid"><a class="acard tall" href="/blog/diwali-part-4/"><div class="ac-img"><img loading="lazy" src="/assets/covers/6kGAHc73fBY.webp" alt=""></div><div class="ac-body"><span class="ac-k">भाग 4/6 · 5 मिनट</span><h3>एक रात, 3 धर्म, दिवाली की असली कहानियाँ</h3><p>दिवाली की सबसे अंधेरी रात सबसे ज़्यादा रोशन क्यों होती है, इसका जवाब तीन कहानियों में है। राम की वापसी, महावीर का निर्वाण और गुरु हरगोबिंद की रिहाई।</p></div></a><a class="acard tall" href="/blog/diwali-part-5/"><div class="ac-img"><img loading="lazy" src="/assets/covers/nPrRynRm-lg.webp" alt=""></div><div class="ac-body"><span class="ac-k">भाग 5/6 · 5 मिनट</span><h3>7 दिन छोटी उंगली पर टिका पहाड़, गोवर्धन पूजा की कथा</h3><p>दिवाली के चौथे दिन की कथा। कृष्ण, इंद्र का ग़ुस्सा, 7 दिन का तूफ़ान, अन्नकूट का मतलब और 3500 से ज़्यादा पकवानों वाला गिनीज़ रिकॉर्ड।</p></div></a><a class="acard tall" href="/blog/diwali-part-6/"><div class="ac-img"><img loading="lazy" src="/assets/covers/QdVTF5TYX7M.webp" alt=""></div><div class="ac-body"><span class="ac-k">भाग 6/6 · 4 मिनट</span><h3>यमराज की बहन से जुड़ा है भाई दूज</h3><p>भाई दूज को यम द्वितीया क्यों कहा जाता है? यमराज-यमुना और कृष्ण-सुभद्रा की कथाएँ, चंदामामा वाली रस्म और 1905 में टैगोर के लाल धागे की कहानी।</p></div></a></div></div></section>
+  <section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>आगे पढ़ें</h2></div><a class="more" href="/blog/">सभी लेख</a></div><div class="agrid"><a class="acard tall" href="/blog/diwali-part-4/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/6kGAHc73fBY.webp" srcset="/assets/s/360/covers/6kGAHc73fBY.webp 360w, /assets/covers/6kGAHc73fBY.webp 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">भाग 4/6 · 5 मिनट</span><h3>एक रात, 3 धर्म, दिवाली की असली कहानियाँ</h3><p>दिवाली की सबसे अंधेरी रात सबसे ज़्यादा रोशन क्यों होती है, इसका जवाब तीन कहानियों में है। राम की वापसी, महावीर का निर्वाण और गुरु हरगोबिंद की रिहाई।</p></div></a><a class="acard tall" href="/blog/diwali-part-5/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/nPrRynRm-lg.webp" srcset="/assets/s/360/covers/nPrRynRm-lg.webp 360w, /assets/covers/nPrRynRm-lg.webp 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">भाग 5/6 · 5 मिनट</span><h3>7 दिन छोटी उंगली पर टिका पहाड़, गोवर्धन पूजा की कथा</h3><p>दिवाली के चौथे दिन की कथा। कृष्ण, इंद्र का ग़ुस्सा, 7 दिन का तूफ़ान, अन्नकूट का मतलब और 3500 से ज़्यादा पकवानों वाला गिनीज़ रिकॉर्ड।</p></div></a><a class="acard tall" href="/blog/diwali-part-6/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/QdVTF5TYX7M.webp" srcset="/assets/s/360/covers/QdVTF5TYX7M.webp 360w, /assets/covers/QdVTF5TYX7M.webp 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">भाग 6/6 · 4 मिनट</span><h3>यमराज की बहन से जुड़ा है भाई दूज</h3><p>भाई दूज को यम द्वितीया क्यों कहा जाता है? यमराज-यमुना और कृष्ण-सुभद्रा की कथाएँ, चंदामामा वाली रस्म और 1905 में टैगोर के लाल धागे की कहानी।</p></div></a></div></div></section>
 </main>
 
 <footer>
@@ -115,13 +250,13 @@
       <p>भारत के अनसुने सच. Indian history, science and mysteries in simple Hindi.</p>
     </div>
     <div class="f-col">
-      <h4>Watch</h4>
+      <h3>Watch</h3>
       <a href="https://www.youtube.com/@Gyaanoxa" target="_blank" rel="noopener">YouTube</a>
       <a href="https://www.youtube.com/@Gyaanoxa/shorts" target="_blank" rel="noopener">Shorts</a>
       <a href="https://www.instagram.com/gyaanoxa" target="_blank" rel="noopener">Instagram</a>
     </div>
     <div class="f-col">
-      <h4>Site</h4>
+      <h3>Site</h3>
       <a href="/#videos">Documentaries</a>
       <a href="/#series">Series</a>
       <a href="/#next">Coming next</a>
@@ -130,7 +265,7 @@
       <a href="/#about">About</a>
     </div>
     <div class="f-col">
-      <h4>Legal</h4>
+      <h3>Legal</h3>
       <a href="/privacy.html">Privacy Policy</a>
       <a href="/terms.html">Terms</a>
       <a href="/data-deletion.html">Data Deletion</a>

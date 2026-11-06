@@ -40,7 +40,142 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="/assets/fonts/Baloo2-800-devanagari.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/fonts.css">
+  <style>@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-500-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-600-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-700-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-700-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 800;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-800-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 800;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-800-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src: url(/assets/fonts/Mukta-400-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src: url(/assets/fonts/Mukta-400-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Mukta-500-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Mukta-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Mukta-600-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Mukta-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Poppins-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Poppins-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Poppins-700-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}</style>
   <link rel="stylesheet" href="/style.css">
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "headline": "चंडाशोक, 500 मंत्रियों के कटे सिर और 'अशोक का नरक'", "description": "एक बौद्ध ग्रंथ कहता है कि अशोक ने 500 मंत्रियों के सिर काटे और पाटलिपुत्र में 'अशोक का नरक' बनवाया। इन कहानियों में कितना सच है, इतिहासकार इस पर क्या सोचते हैं, यहाँ पढ़िए।", "inLanguage": "hi", "datePublished": "2026-11-06", "keywords": "चंडाशोक, अशोक का नरक, अशोकावदान की कहानी, Ashoka's Hell Pataliputra, Chandashoka story in Hindi, अशोक का इतिहास, Ashoka history in Hindi, जल्लाद गिरिका", "image": "https://gyaanoxa.com/assets/covers/ZFGsWFFr7LQ.webp", "url": "https://gyaanoxa.com/blog/ashoka-part-3/", "dateModified": "2026-11-06", "mainEntityOfPage": "https://gyaanoxa.com/blog/ashoka-part-3/", "wordCount": 962, "articleSection": "Ashoka: From Fierce King to Righteous", "about": [{"@type": "Person", "name": "अशोक"}, {"@type": "Person", "name": "बिंदुसार"}, {"@type": "Person", "name": "सुसीम"}, {"@type": "Person", "name": "राधागुप्त"}, {"@type": "Person", "name": "गिरिका"}], "author": {"@type": "Organization", "name": "Gyaanoxa", "url": "https://gyaanoxa.com"}, "publisher": {"@type": "Organization", "name": "Gyaanoxa", "logo": {"@type": "ImageObject", "url": "https://gyaanoxa.com/assets/icon-512.png"}}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "अशोक को चंडाशोक क्यों कहा जाता है?", "acceptedAnswer": {"@type": "Answer", "text": "अशोकावदान नाम का बौद्ध ग्रंथ उसके शुरुआती राज को बेहद क्रूर बताता है और उसे 'चंडाशोक' कहता है। ग्रंथ के मुताबिक उसने 500 मंत्रियों के सिर कटवाए और यातना देने वाली एक जेल बनवाई। इतिहासकार इन कहानियों को बढ़ा-चढ़ाकर लिखी गई मानते हैं।"}}, {"@type": "Question", "name": "अशोक का नरक क्या था?", "acceptedAnswer": {"@type": "Answer", "text": "अशोकावदान के अनुसार यह पाटलिपुत्र में बनी एक जेल थी, जिसे जल्लाद गिरिका की माँग पर बनवाया गया था। कहते हैं कि बाहर से यह सुंदर दिखती थी, पर भीतर भयानक यातनाएँ दी जाती थीं।"}}, {"@type": "Question", "name": "क्या अशोक ने सच में 500 मंत्रियों को मारा था?", "acceptedAnswer": {"@type": "Answer", "text": "यह दावा अशोकावदान में मिलता है। ज़्यादातर इतिहासकारों का मानना है कि बौद्ध लेखकों ने अशोक की क्रूरता को बढ़ा-चढ़ाकर लिखा, ताकि बाद में आया उसका बदलाव चमत्कार जैसा लगे।"}}, {"@type": "Question", "name": "गिरिका कौन था?", "acceptedAnswer": {"@type": "Answer", "text": "अशोकावदान के अनुसार गिरिका एक जल्लाद था, जिसे प्रधानमंत्री राधागुप्त की सलाह पर रखा गया। उसकी माँग पर पाटलिपुत्र में 'अशोक का नरक' नाम की जेल बनी।"}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Gyaanoxa", "item": "https://gyaanoxa.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://gyaanoxa.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "Ashoka: From Fierce King to Righteous", "item": "https://gyaanoxa.com/ashoka/"}, {"@type": "ListItem", "position": 4, "name": "चंडाशोक, 500 मंत्रियों के कटे सिर और 'अशोक का नरक'", "item": "https://gyaanoxa.com/blog/ashoka-part-3/"}]}, {"@type": "VideoObject", "name": "भाग 3: 500 मंत्रियों के सिर खुद काटे?", "description": "एक बौद्ध ग्रंथ कहता है कि अशोक ने 500 मंत्रियों के सिर काटे और पाटलिपुत्र में 'अशोक का नरक' बनवाया। इन कहानियों में कितना सच है, इतिहासकार इस पर क्या सोचते हैं, यहाँ पढ़िए।", "thumbnailUrl": ["https://i.ytimg.com/vi/ZFGsWFFr7LQ/hqdefault.jpg"], "uploadDate": "2026-11-01", "embedUrl": "https://www.youtube-nocookie.com/embed/ZFGsWFFr7LQ", "inLanguage": "hi"}]}</script>
 </head>
@@ -105,7 +240,7 @@
       <div class="art-side"><nav class="side-box toc"><p class="eyebrow">इस लेख में</p><ol><li><a href="#s1">नापसंद राजकुमार से सम्राट तक</a></li><li><a href="#s2">500 मंत्री और 500 स्त्रियाँ</a></li><li><a href="#s3">जल्लाद गिरिका और &#x27;अशोक का नरक&#x27;</a></li><li><a href="#s4">इन किस्सों का स्रोत</a></li><li><a href="#s5">इतिहासकारों की राय</a></li><li><a href="#s6">आज के पाठक के लिए</a></li></ol></nav><aside class="side-box series-nav"><p class="eyebrow">इस सीरीज़ के लेख</p><ol><li><a href="/blog/ashoka-full-story/">पूरी कहानी</a></li><li><a href="/blog/ashoka-part-1/">भाग 1: जिस बेटे से पिता नफरत करते थे</a></li><li><a href="/blog/ashoka-part-2/">भाग 2: गद्दी के लिए भाइयों का कत्ल?</a></li><li class=on><a href="/blog/ashoka-part-3/">भाग 3: चंडाशोक और &#x27;अशोक का नरक&#x27;</a></li><li><a href="/blog/ashoka-part-4/">भाग 4: कलिंग युद्ध: 1 लाख मौतें, फिर पछतावा</a></li><li><a href="/blog/ashoka-part-5/">भाग 5: वो भिक्षु जिसने अशोक को बदला</a></li><li><a href="/blog/ashoka-part-6/">भाग 6: 84,000 स्तूप और धम्म के खंभे</a></li><li><a href="/blog/ashoka-part-7/">भाग 7: अशोक के बेटे-बेटी श्रीलंका क्यों गए?</a></li><li><a href="/blog/ashoka-part-8/">भाग 8: अशोक का काला सच और भुला दी गई विरासत</a></li></ol><a class="more" href="/ashoka/">Series page · Quiz</a></aside><div class="side-box people"><p class="eyebrow">कहानी के किरदार</p><ul><li><b>अशोक</b><span>मौर्य वंश का तीसरा सम्राट, जिसे अशोकावदान उसके शुरुआती राज के लिए &#x27;चंडाशोक&#x27; कहता है</span></li><li><b>बिंदुसार</b><span>अशोक के पिता, जो ग्रंथ के मुताबिक अशोक को पसंद नहीं करते थे</span></li><li><b>सुसीम</b><span>अशोक का भाई, जिसे किंवदंती के अनुसार धोखे से अंगारों के गड्ढे में गिरा दिया गया</span></li><li><b>राधागुप्त</b><span>अशोक का प्रधानमंत्री, जिसकी सलाह पर जल्लाद रखा गया</span></li><li><b>गिरिका</b><span>वह जल्लाद जिसकी माँग पर &#x27;अशोक का नरक&#x27; बनवाया गया</span></li></ul></div></div>
     </div>
   </section>
-  <section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>आगे पढ़ें</h2></div><a class="more" href="/blog/">सभी लेख</a></div><div class="agrid"><a class="acard tall" href="/blog/ashoka-part-4/"><div class="ac-img"><img loading="lazy" src="/assets/covers/4FNJM6KXGOs.webp" alt=""></div><div class="ac-body"><span class="ac-k">भाग 4/8 · 5 मिनट</span><h3>कलिंग युद्ध, 1 लाख मौतें और अशोक का पछतावा</h3><p>करीब 260 ईसा पूर्व के कलिंग युद्ध में 1 लाख लोग मारे गए और 1.5 लाख बंदी बने। अशोक के पछतावे की असलियत, और वह शिलालेख जो कलिंग में ही नहीं मिलता।</p></div></a><a class="acard tall" href="/blog/ashoka-part-5/"><div class="ac-img"><img loading="lazy" src="/assets/covers/SS-VNvAHIf0.webp" alt=""></div><div class="ac-body"><span class="ac-k">भाग 5/8 · 6 मिनट</span><h3>अशोक को किस भिक्षु ने बदला</h3><p>कथा कहती है कि जिस भाई को अशोक ने मरवाया, उसी के बेटे ने उन्हें धर्म की राह दिखाई। निग्रोध, भिक्षु समुद्र और 7 साल के बच्चे की कथाएँ पढ़िए, और यह भी कि शिलालेख इस बारे में क्या कहता है।</p></div></a><a class="acard tall" href="/blog/ashoka-part-6/"><div class="ac-img"><img loading="lazy" src="/assets/covers/ObEch-548w4.webp" alt=""></div><div class="ac-body"><span class="ac-k">भाग 6/8 · 6 मिनट</span><h3>एक दिन में 84,000 स्तूप? अशोक के धम्म का सच</h3><p>एक ही दिन में 84,000 स्तूप बनने की किंवदंती, और उसके पीछे अशोक के धम्म के खंभे, अस्पताल, कुएँ और मौत की सज़ा खत्म करने की कम सुनी गई कहानी।</p></div></a></div></div></section>
+  <section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>आगे पढ़ें</h2></div><a class="more" href="/blog/">सभी लेख</a></div><div class="agrid"><a class="acard tall" href="/blog/ashoka-part-4/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/4FNJM6KXGOs.webp" srcset="/assets/s/360/covers/4FNJM6KXGOs.webp 360w, /assets/covers/4FNJM6KXGOs.webp 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">भाग 4/8 · 5 मिनट</span><h3>कलिंग युद्ध, 1 लाख मौतें और अशोक का पछतावा</h3><p>करीब 260 ईसा पूर्व के कलिंग युद्ध में 1 लाख लोग मारे गए और 1.5 लाख बंदी बने। अशोक के पछतावे की असलियत, और वह शिलालेख जो कलिंग में ही नहीं मिलता।</p></div></a><a class="acard tall" href="/blog/ashoka-part-5/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/SS-VNvAHIf0.webp" srcset="/assets/s/360/covers/SS-VNvAHIf0.webp 360w, /assets/covers/SS-VNvAHIf0.webp 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">भाग 5/8 · 6 मिनट</span><h3>अशोक को किस भिक्षु ने बदला</h3><p>कथा कहती है कि जिस भाई को अशोक ने मरवाया, उसी के बेटे ने उन्हें धर्म की राह दिखाई। निग्रोध, भिक्षु समुद्र और 7 साल के बच्चे की कथाएँ पढ़िए, और यह भी कि शिलालेख इस बारे में क्या कहता है।</p></div></a><a class="acard tall" href="/blog/ashoka-part-6/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/ObEch-548w4.webp" srcset="/assets/s/360/covers/ObEch-548w4.webp 360w, /assets/covers/ObEch-548w4.webp 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">भाग 6/8 · 6 मिनट</span><h3>एक दिन में 84,000 स्तूप? अशोक के धम्म का सच</h3><p>एक ही दिन में 84,000 स्तूप बनने की किंवदंती, और उसके पीछे अशोक के धम्म के खंभे, अस्पताल, कुएँ और मौत की सज़ा खत्म करने की कम सुनी गई कहानी।</p></div></a></div></div></section>
 </main>
 
 <footer>
@@ -115,13 +250,13 @@
       <p>भारत के अनसुने सच. Indian history, science and mysteries in simple Hindi.</p>
     </div>
     <div class="f-col">
-      <h4>Watch</h4>
+      <h3>Watch</h3>
       <a href="https://www.youtube.com/@Gyaanoxa" target="_blank" rel="noopener">YouTube</a>
       <a href="https://www.youtube.com/@Gyaanoxa/shorts" target="_blank" rel="noopener">Shorts</a>
       <a href="https://www.instagram.com/gyaanoxa" target="_blank" rel="noopener">Instagram</a>
     </div>
     <div class="f-col">
-      <h4>Site</h4>
+      <h3>Site</h3>
       <a href="/#videos">Documentaries</a>
       <a href="/#series">Series</a>
       <a href="/#next">Coming next</a>
@@ -130,7 +265,7 @@
       <a href="/#about">About</a>
     </div>
     <div class="f-col">
-      <h4>Legal</h4>
+      <h3>Legal</h3>
       <a href="/privacy.html">Privacy Policy</a>
       <a href="/terms.html">Terms</a>
       <a href="/data-deletion.html">Data Deletion</a>

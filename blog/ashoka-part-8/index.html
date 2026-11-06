@@ -40,7 +40,142 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="/assets/fonts/Baloo2-800-devanagari.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/fonts.css">
+  <style>@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-500-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-600-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-700-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-700-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 800;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-800-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 800;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-800-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src: url(/assets/fonts/Mukta-400-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src: url(/assets/fonts/Mukta-400-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Mukta-500-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Mukta-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Mukta-600-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Mukta-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Poppins-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Poppins-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Poppins-700-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}</style>
   <link rel="stylesheet" href="/style.css">
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "headline": "बौद्ध अशोक और 18,000 मौतें, सच या प्रचार", "description": "अशोकावदान कहता है कि बौद्ध बनने के बाद भी अशोक ने 18,000 आजीविकों को मरवाया। इस दावे की पड़ताल, विद्वानों की राय और अशोक की भुला दी गई विरासत की पूरी कहानी।", "inLanguage": "hi", "datePublished": "2026-11-06", "keywords": "अशोक का काला सच, अशोकावदान आजीविक, अशोक की मृत्यु 232 ईसा पूर्व, ब्राह्मी लिपि जेम्स प्रिंसेप, अशोक चक्र और राजचिह्न, Ashoka dark truth in Hindi, Ashokavadana Ajivikas, Ashoka legacy Indian emblem", "image": "https://gyaanoxa.com/assets/covers/-IBp0JKpMKo.webp", "url": "https://gyaanoxa.com/blog/ashoka-part-8/", "dateModified": "2026-11-06", "mainEntityOfPage": "https://gyaanoxa.com/blog/ashoka-part-8/", "wordCount": 982, "articleSection": "Ashoka: From Fierce King to Righteous", "about": [{"@type": "Person", "name": "अशोक"}, {"@type": "Person", "name": "वीताशोक"}, {"@type": "Person", "name": "जेम्स प्रिंसेप (James Prinsep)"}, {"@type": "Person", "name": "बिंदुसार"}], "author": {"@type": "Organization", "name": "Gyaanoxa", "url": "https://gyaanoxa.com"}, "publisher": {"@type": "Organization", "name": "Gyaanoxa", "logo": {"@type": "ImageObject", "url": "https://gyaanoxa.com/assets/icon-512.png"}}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "क्या अशोक ने बौद्ध बनने के बाद 18,000 आजीविकों को मरवाया था?", "acceptedAnswer": {"@type": "Answer", "text": "पाँचवीं सदी का बौद्ध ग्रंथ अशोकावदान यह दावा करता है। विद्वान इसे सांप्रदायिक प्रचार मानते हैं, क्योंकि जैन ग्रंथों में यह किस्सा नहीं मिलता और अशोक के अपने शिलालेख हर धर्म के सम्मान की बात करते हैं।"}}, {"@type": "Question", "name": "अशोक के भाई वीताशोक की मौत कैसे हुई?", "acceptedAnswer": {"@type": "Answer", "text": "अशोकावदान के मुताबिक अशोक ने दूसरे पंथ वालों के सिर पर इनाम रखा था और इसी में उनका भाई वीताशोक गलती से मारा गया। विद्वान इस किस्से को भी उसी सांप्रदायिक प्रचार का हिस्सा मानते हैं।"}}, {"@type": "Question", "name": "ब्राह्मी लिपि को किसने पढ़ा?", "acceptedAnswer": {"@type": "Answer", "text": "अशोक की मृत्यु के बाद ब्राह्मी लिपि भुला दी गई थी। 19वीं सदी में जेम्स प्रिंसेप ने इस पर काम करके इसे फिर से पढ़ा, और तब अशोक के शिलालेखों के संदेश दुनिया के सामने आए।"}}, {"@type": "Question", "name": "भारत के राजचिह्न और तिरंगे का अशोक से क्या संबंध है?", "acceptedAnswer": {"@type": "Answer", "text": "भारत का राजचिह्न अशोक के सिंह शीर्ष से बना है। तिरंगे के बीच का चक्र अशोक चक्र है, जो उन्हीं की विरासत से आया है।"}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Gyaanoxa", "item": "https://gyaanoxa.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://gyaanoxa.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "Ashoka: From Fierce King to Righteous", "item": "https://gyaanoxa.com/ashoka/"}, {"@type": "ListItem", "position": 4, "name": "बौद्ध अशोक और 18,000 मौतें, सच या प्रचार", "item": "https://gyaanoxa.com/blog/ashoka-part-8/"}]}, {"@type": "VideoObject", "name": "भाग 8: बौद्ध अशोक और 18,000 मौतों का दावा?", "description": "अशोकावदान कहता है कि बौद्ध बनने के बाद भी अशोक ने 18,000 आजीविकों को मरवाया। इस दावे की पड़ताल, विद्वानों की राय और अशोक की भुला दी गई विरासत की पूरी कहानी।", "thumbnailUrl": ["https://i.ytimg.com/vi/-IBp0JKpMKo/hqdefault.jpg"], "uploadDate": "2026-11-03", "embedUrl": "https://www.youtube-nocookie.com/embed/-IBp0JKpMKo", "inLanguage": "hi"}]}</script>
 </head>
@@ -105,7 +240,7 @@
       <div class="art-side"><nav class="side-box toc"><p class="eyebrow">इस लेख में</p><ol><li><a href="#s1">एक राजा, दो चेहरे</a></li><li><a href="#s2">अशोकावदान में 18,000 मौतों का दावा</a></li><li><a href="#s3">कहानी के किरदार</a></li><li><a href="#s4">स्रोत क्या कहते हैं</a></li><li><a href="#s5">अशोक का अंत और भुला दी गई लिपि</a></li><li><a href="#s6">आज भी ज़िंदा विरासत</a></li></ol></nav><aside class="side-box series-nav"><p class="eyebrow">इस सीरीज़ के लेख</p><ol><li><a href="/blog/ashoka-full-story/">पूरी कहानी</a></li><li><a href="/blog/ashoka-part-1/">भाग 1: जिस बेटे से पिता नफरत करते थे</a></li><li><a href="/blog/ashoka-part-2/">भाग 2: गद्दी के लिए भाइयों का कत्ल?</a></li><li><a href="/blog/ashoka-part-3/">भाग 3: चंडाशोक और &#x27;अशोक का नरक&#x27;</a></li><li><a href="/blog/ashoka-part-4/">भाग 4: कलिंग युद्ध: 1 लाख मौतें, फिर पछतावा</a></li><li><a href="/blog/ashoka-part-5/">भाग 5: वो भिक्षु जिसने अशोक को बदला</a></li><li><a href="/blog/ashoka-part-6/">भाग 6: 84,000 स्तूप और धम्म के खंभे</a></li><li><a href="/blog/ashoka-part-7/">भाग 7: अशोक के बेटे-बेटी श्रीलंका क्यों गए?</a></li><li class=on><a href="/blog/ashoka-part-8/">भाग 8: अशोक का काला सच और भुला दी गई विरासत</a></li></ol><a class="more" href="/ashoka/">Series page · Quiz</a></aside><div class="side-box people"><p class="eyebrow">कहानी के किरदार</p><ul><li><b>अशोक</b><span>तीसरे मौर्य सम्राट, जिनकी छवि ग्रंथों और शिलालेखों में अलग-अलग दिखती है</span></li><li><b>वीताशोक</b><span>अशोक के भाई, जो अशोकावदान के मुताबिक गलती से मारे गए</span></li><li><b>जेम्स प्रिंसेप (James Prinsep)</b><span>19वीं सदी में भूली हुई ब्राह्मी लिपि को फिर से पढ़ने वाले</span></li><li><b>बिंदुसार</b><span>अशोक के पिता, जो अशोकावदान के अनुसार अशोक को पसंद नहीं करते थे</span></li></ul></div></div>
     </div>
   </section>
-  <section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>आगे पढ़ें</h2></div><a class="more" href="/blog/">सभी लेख</a></div><div class="agrid"><a class="acard wide" href="/blog/ashoka-full-story/"><div class="ac-img"><img loading="lazy" src="/assets/yt/-P0QL2Vdu6g.webp" alt=""></div><div class="ac-body"><span class="ac-k">पूरी कहानी · 12 मिनट</span><h3>चंडाशोक या धम्मशोक, सम्राट अशोक का अनसुना सच</h3><p>कलिंग में 1,00,000 मौतें, 99 भाइयों की कथा और 84,000 स्तूप। सम्राट अशोक के इतिहास में किंवदंती कहाँ खत्म होती है और सच कहाँ से शुरू होता है, पढ़िए।</p></div></a><a class="acard tall" href="/blog/ashoka-part-1/"><div class="ac-img"><img loading="lazy" src="/assets/covers/_gGwBindQmU.webp" alt=""></div><div class="ac-body"><span class="ac-k">भाग 1/8 · 5 मिनट</span><h3>पिता जिस बेटे से नफरत करते थे, वही बना सम्राट</h3><p>अशोक का जन्म, उनके नाम का अर्थ, बिंदुसार की नाराज़गी और साधु पिंगल वत्सजीव की वह भविष्यवाणी जो उन्होंने छुपा ली। अशोक के शुरुआती जीवन की कम सुनी गई कथा।</p></div></a><a class="acard tall" href="/blog/ashoka-part-2/"><div class="ac-img"><img loading="lazy" src="/assets/covers/3A3wjqSmdjI.webp" alt=""></div><div class="ac-body"><span class="ac-k">भाग 2/8 · 5 मिनट</span><h3>क्या 99 भाइयों को मारकर राजा बना अशोक?</h3><p>अशोक को गद्दी कैसे मिली? सुसीम, जलते कोयले का गड्ढा और 99 या 100 भाइयों की हत्या के दावे पर ग्रंथ क्या कहते हैं और इतिहासकार उन्हें कैसे देखते हैं, पढ़िए।</p></div></a></div></div></section>
+  <section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>आगे पढ़ें</h2></div><a class="more" href="/blog/">सभी लेख</a></div><div class="agrid"><a class="acard wide" href="/blog/ashoka-full-story/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/yt/-P0QL2Vdu6g.webp" srcset="/assets/s/360/yt/-P0QL2Vdu6g.webp 360w, /assets/yt/-P0QL2Vdu6g.webp 960w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">पूरी कहानी · 12 मिनट</span><h3>चंडाशोक या धम्मशोक, सम्राट अशोक का अनसुना सच</h3><p>कलिंग में 1,00,000 मौतें, 99 भाइयों की कथा और 84,000 स्तूप। सम्राट अशोक के इतिहास में किंवदंती कहाँ खत्म होती है और सच कहाँ से शुरू होता है, पढ़िए।</p></div></a><a class="acard tall" href="/blog/ashoka-part-1/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/_gGwBindQmU.webp" srcset="/assets/s/360/covers/_gGwBindQmU.webp 360w, /assets/covers/_gGwBindQmU.webp 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">भाग 1/8 · 5 मिनट</span><h3>पिता जिस बेटे से नफरत करते थे, वही बना सम्राट</h3><p>अशोक का जन्म, उनके नाम का अर्थ, बिंदुसार की नाराज़गी और साधु पिंगल वत्सजीव की वह भविष्यवाणी जो उन्होंने छुपा ली। अशोक के शुरुआती जीवन की कम सुनी गई कथा।</p></div></a><a class="acard tall" href="/blog/ashoka-part-2/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/3A3wjqSmdjI.webp" srcset="/assets/s/360/covers/3A3wjqSmdjI.webp 360w, /assets/covers/3A3wjqSmdjI.webp 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">भाग 2/8 · 5 मिनट</span><h3>क्या 99 भाइयों को मारकर राजा बना अशोक?</h3><p>अशोक को गद्दी कैसे मिली? सुसीम, जलते कोयले का गड्ढा और 99 या 100 भाइयों की हत्या के दावे पर ग्रंथ क्या कहते हैं और इतिहासकार उन्हें कैसे देखते हैं, पढ़िए।</p></div></a></div></div></section>
 </main>
 
 <footer>
@@ -115,13 +250,13 @@
       <p>भारत के अनसुने सच. Indian history, science and mysteries in simple Hindi.</p>
     </div>
     <div class="f-col">
-      <h4>Watch</h4>
+      <h3>Watch</h3>
       <a href="https://www.youtube.com/@Gyaanoxa" target="_blank" rel="noopener">YouTube</a>
       <a href="https://www.youtube.com/@Gyaanoxa/shorts" target="_blank" rel="noopener">Shorts</a>
       <a href="https://www.instagram.com/gyaanoxa" target="_blank" rel="noopener">Instagram</a>
     </div>
     <div class="f-col">
-      <h4>Site</h4>
+      <h3>Site</h3>
       <a href="/#videos">Documentaries</a>
       <a href="/#series">Series</a>
       <a href="/#next">Coming next</a>
@@ -130,7 +265,7 @@
       <a href="/#about">About</a>
     </div>
     <div class="f-col">
-      <h4>Legal</h4>
+      <h3>Legal</h3>
       <a href="/privacy.html">Privacy Policy</a>
       <a href="/terms.html">Terms</a>
       <a href="/data-deletion.html">Data Deletion</a>

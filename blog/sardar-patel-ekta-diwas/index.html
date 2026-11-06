@@ -40,7 +40,142 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="/assets/fonts/Baloo2-800-devanagari.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/fonts.css">
+  <style>@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-500-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-600-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-700-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-700-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 800;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-800-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 800;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-800-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src: url(/assets/fonts/Mukta-400-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src: url(/assets/fonts/Mukta-400-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Mukta-500-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Mukta-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Mukta-600-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Mukta-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Poppins-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Poppins-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Poppins-700-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}</style>
   <link rel="stylesheet" href="/style.css">
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "headline": "565 रियासतें और एक भारत, सरदार पटेल ने देश कैसे जोड़ा", "description": "आज़ादी के बाद 565 रियासतें भारत में कैसे मिलीं? सरदार पटेल, जूनागढ़, हैदराबाद और ‘लौह पुरुष’ बनने की पूरी कहानी पढ़िए।", "inLanguage": "hi", "datePublished": "2026-11-06", "keywords": "सरदार पटेल का इतिहास, Sardar Patel history in Hindi, रियासतों का एकीकरण, integration of princely states, जूनागढ़ और हैदराबाद का विलय, राष्ट्रीय एकता दिवस, Iron Man of India, स्टैच्यू ऑफ यूनिटी", "image": "https://gyaanoxa.com/assets/covers/VCwjh0d5IpQ.webp", "url": "https://gyaanoxa.com/blog/sardar-patel-ekta-diwas/", "dateModified": "2026-11-06", "mainEntityOfPage": "https://gyaanoxa.com/blog/sardar-patel-ekta-diwas/", "wordCount": 939, "articleSection": "Indian History", "about": [{"@type": "Person", "name": "सरदार वल्लभभाई पटेल"}, {"@type": "Person", "name": "वी. पी. मेनन"}, {"@type": "Person", "name": "जवाहरलाल नेहरू"}, {"@type": "Person", "name": "लॉर्ड माउंटबेटन"}, {"@type": "Person", "name": "उस्मान अली खान"}, {"@type": "Person", "name": "क़ासिम रज़वी"}], "author": {"@type": "Organization", "name": "Gyaanoxa", "url": "https://gyaanoxa.com"}, "publisher": {"@type": "Organization", "name": "Gyaanoxa", "logo": {"@type": "ImageObject", "url": "https://gyaanoxa.com/assets/icon-512.png"}}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "सरदार पटेल ने कितनी रियासतों को भारत में मिलाया?", "acceptedAnswer": {"@type": "Answer", "text": "भारतीय स्वतंत्रता अधिनियम 1947 के बाद लगभग 565 रियासतें ब्रिटिश अधीनता से मुक्त हुई थीं। नेहरू और माउंटबेटन के साथ मिलकर पटेल ने इनमें से लगभग हर रियासत को भारत में शामिल होने के लिए राज़ी कर लिया। शुरुआत में सिर्फ जम्मू और कश्मीर, जूनागढ़ और हैदराबाद नहीं माने।"}}, {"@type": "Question", "name": "राष्ट्रीय एकता दिवस 31 अक्टूबर को ही क्यों मनाया जाता है?", "acceptedAnswer": {"@type": "Answer", "text": "सरदार पटेल ने मैट्रिक के कागज़ों में अपनी जन्मतिथि 31 अक्टूबर लिखी थी। 2014 में घोषणा हुई कि हर साल इसी दिन राष्ट्रीय एकता दिवस मनाया जाएगा, ताकि देश को जोड़ने में उनका योगदान याद रहे।"}}, {"@type": "Question", "name": "जूनागढ़ भारत का हिस्सा कैसे बना?", "acceptedAnswer": {"@type": "Answer", "text": "जूनागढ़ की करीब 80% आबादी हिंदू थी, फिर भी वहाँ के नवाब ने पाकिस्तान में मिलने का फैसला किया। पटेल ने कूटनीति और ताकत दोनों का सहारा लिया, और नवाब कराची भाग गए। बाद में हुए जनमत संग्रह में 99.5% वोट भारत में विलय के पक्ष में पड़े।"}}, {"@type": "Question", "name": "हैदराबाद का भारत में विलय कैसे हुआ?", "acceptedAnswer": {"@type": "Answer", "text": "निज़ाम उस्मान अली खान हैदराबाद को आज़ाद रखना या पाकिस्तान में मिलाना चाहते थे। उधर क़ासिम रज़वी के रज़ाकार भारतीय ज़मीन पर लोगों पर हमले कर रहे थे। 13 सितंबर को सैन्य कार्रवाई शुरू हुई, और रज़ाकारों की हार के बाद निज़ाम ने विलय-पत्र पर हस्ताक्षर कर दिए।"}}, {"@type": "Question", "name": "सरदार पटेल को ‘लौह पुरुष’ क्यों कहा जाता है?", "acceptedAnswer": {"@type": "Answer", "text": "रियासतों को भारत में मिलाने के काम की वजह से उन्हें ‘भारत का लौह पुरुष’ और ‘भारत का बिस्मार्क’ कहा गया। बातचीत, भरोसे और ज़रूरत पड़ने पर सख्ती के सहारे उन्होंने बिखरी रियासतों को एक देश में जोड़ा।"}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Gyaanoxa", "item": "https://gyaanoxa.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://gyaanoxa.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "565 रियासतें और एक भारत, सरदार पटेल ने देश कैसे जोड़ा", "item": "https://gyaanoxa.com/blog/sardar-patel-ekta-diwas/"}]}]}</script>
 </head>
@@ -105,7 +240,7 @@
       <div class="art-side"><nav class="side-box toc"><p class="eyebrow">इस लेख में</p><ol><li><a href="#s1">नडियाद का लड़का और 31 अक्टूबर</a></li><li><a href="#s2">आज़ादी के साथ आईं 565 रियासतें</a></li><li><a href="#s3">लंच, चाय और एक डेडलाइन</a></li><li><a href="#s4">लगभग सब मान गए, तीन अड़े रहे</a></li><li><a href="#s5">जूनागढ़ के नवाब कराची भागे</a></li><li><a href="#s6">हैदराबाद की सबसे कठिन लड़ाई</a></li><li><a href="#s7">इन बातों का ध्यान रखें</a></li><li><a href="#s8">लौह पुरुष और स्टैच्यू ऑफ यूनिटी</a></li></ol></nav><div class="side-box people"><p class="eyebrow">कहानी के किरदार</p><ul><li><b>सरदार वल्लभभाई पटेल</b><span>देश के पहले गृह मंत्री, जिन्होंने रियासतों को भारत में मिलाने की मुहिम की अगुवाई की</span></li><li><b>वी. पी. मेनन</b><span>इस पूरे काम में पटेल के सबसे भरोसेमंद सहयोगी, जिन्हें उनका ‘दायाँ हाथ’ कहा जाता है</span></li><li><b>जवाहरलाल नेहरू</b><span>पटेल और माउंटबेटन के साथ रियासतों को भारत में शामिल होने के लिए मनाने वाले नेता</span></li><li><b>लॉर्ड माउंटबेटन</b><span>रियासतों को भारत से जोड़ने की कोशिश में पटेल और नेहरू के साथ रहे</span></li><li><b>उस्मान अली खान</b><span>हैदराबाद के निज़ाम, जो रियासत को आज़ाद रखना या पाकिस्तान में मिलाना चाहते थे</span></li><li><b>क़ासिम रज़वी</b><span>रज़ाकारों के नेता, जिनके लोग भारतीय ज़मीन पर लोगों पर हमले कर रहे थे</span></li></ul></div></div>
     </div>
   </section>
-  <section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>आगे पढ़ें</h2></div><a class="more" href="/blog/">सभी लेख</a></div><div class="agrid"><a class="acard wide" href="/blog/kohinoor-curse/"><div class="ac-img"><img loading="lazy" src="/assets/yt/NLngE8kUPeY.webp" alt=""></div><div class="ac-body"><span class="ac-k">लेख · 7 मिनट</span><h3>कोहिनूर का श्राप, मर्द राजाओं पर सच या अफ़वाह</h3><p>कोहिनूर कई राजाओं के हाथ से गुज़रा। कोई गद्दी से हटा, किसी का कत्ल हुआ। श्राप वाली कहानी कहां से आई और उसका सच क्या है, यहां पढ़िए।</p></div></a><a class="acard wide" href="/blog/kalinga-war/"><div class="ac-img"><img loading="lazy" src="/assets/yt/7EpfoUi1pk8.webp" alt=""></div><div class="ac-body"><span class="ac-k">लेख · 7 मिनट</span><h3>सम्राट अशोक की असली कहानी, जिसे इतिहास भूल गया था</h3><p>चंडाशोक से धम्म के सम्राट तक, कलिंग युद्ध, 99 भाइयों की कथा और वो सच जो अशोक के अपने शिलालेख बताते हैं। पढ़िए अशोक की पूरी कहानी।</p></div></a><a class="acard tall" href="/blog/homi-bhabha-death/"><div class="ac-img"><img loading="lazy" src="/assets/covers/FHPSLQK89Tk.webp" alt=""></div><div class="ac-body"><span class="ac-k">लेख · 5 मिनट</span><h3>होमी भाभा की अनकही कहानी, परमाणु भारत के जनक</h3><p>एक बंगले में शुरू हुए संस्थान से अप्सरा रिएक्टर तक, और फिर मॉन्ट ब्लांक के विमान हादसे तक, होमी जहांगीर भाभा की पूरी कहानी।</p></div></a></div></div></section>
+  <section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>आगे पढ़ें</h2></div><a class="more" href="/blog/">सभी लेख</a></div><div class="agrid"><a class="acard wide" href="/blog/kohinoor-curse/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/yt/NLngE8kUPeY.webp" srcset="/assets/s/360/yt/NLngE8kUPeY.webp 360w, /assets/yt/NLngE8kUPeY.webp 960w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">लेख · 7 मिनट</span><h3>कोहिनूर का श्राप, मर्द राजाओं पर सच या अफ़वाह</h3><p>कोहिनूर कई राजाओं के हाथ से गुज़रा। कोई गद्दी से हटा, किसी का कत्ल हुआ। श्राप वाली कहानी कहां से आई और उसका सच क्या है, यहां पढ़िए।</p></div></a><a class="acard wide" href="/blog/kalinga-war/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/yt/7EpfoUi1pk8.webp" srcset="/assets/s/360/yt/7EpfoUi1pk8.webp 360w, /assets/yt/7EpfoUi1pk8.webp 960w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">लेख · 7 मिनट</span><h3>सम्राट अशोक की असली कहानी, जिसे इतिहास भूल गया था</h3><p>चंडाशोक से धम्म के सम्राट तक, कलिंग युद्ध, 99 भाइयों की कथा और वो सच जो अशोक के अपने शिलालेख बताते हैं। पढ़िए अशोक की पूरी कहानी।</p></div></a><a class="acard tall" href="/blog/homi-bhabha-death/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/FHPSLQK89Tk.webp" srcset="/assets/s/360/covers/FHPSLQK89Tk.webp 360w, /assets/covers/FHPSLQK89Tk.webp 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">लेख · 5 मिनट</span><h3>होमी भाभा की अनकही कहानी, परमाणु भारत के जनक</h3><p>एक बंगले में शुरू हुए संस्थान से अप्सरा रिएक्टर तक, और फिर मॉन्ट ब्लांक के विमान हादसे तक, होमी जहांगीर भाभा की पूरी कहानी।</p></div></a></div></div></section>
 </main>
 
 <footer>
@@ -115,13 +250,13 @@
       <p>भारत के अनसुने सच. Indian history, science and mysteries in simple Hindi.</p>
     </div>
     <div class="f-col">
-      <h4>Watch</h4>
+      <h3>Watch</h3>
       <a href="https://www.youtube.com/@Gyaanoxa" target="_blank" rel="noopener">YouTube</a>
       <a href="https://www.youtube.com/@Gyaanoxa/shorts" target="_blank" rel="noopener">Shorts</a>
       <a href="https://www.instagram.com/gyaanoxa" target="_blank" rel="noopener">Instagram</a>
     </div>
     <div class="f-col">
-      <h4>Site</h4>
+      <h3>Site</h3>
       <a href="/#videos">Documentaries</a>
       <a href="/#series">Series</a>
       <a href="/#next">Coming next</a>
@@ -130,7 +265,7 @@
       <a href="/#about">About</a>
     </div>
     <div class="f-col">
-      <h4>Legal</h4>
+      <h3>Legal</h3>
       <a href="/privacy.html">Privacy Policy</a>
       <a href="/terms.html">Terms</a>
       <a href="/data-deletion.html">Data Deletion</a>

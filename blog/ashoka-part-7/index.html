@@ -39,7 +39,142 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="/assets/fonts/Baloo2-800-devanagari.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/fonts.css">
+  <style>@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-500-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-600-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-700-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-700-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 800;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-800-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 800;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-800-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src: url(/assets/fonts/Mukta-400-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src: url(/assets/fonts/Mukta-400-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Mukta-500-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Mukta-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Mukta-600-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Mukta-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Poppins-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Poppins-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Poppins-700-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}</style>
   <link rel="stylesheet" href="/style.css">
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "headline": "अशोक के बेटे-बेटी श्रीलंका क्यों गए?", "description": "60,000 नकली भिक्षु, तीसरी बौद्ध संगीति और 9 मिशन। श्रीलंका की परंपरा महिंद और संघमित्ता के श्रीलंका जाने की क्या वजह बताती है, और इतिहासकार इस पर क्यों बँटे हैं, पढ़िए पूरी कहानी।", "inLanguage": "hi", "datePublished": "2026-11-06", "keywords": "अशोक के बेटे महिंद, संघमित्ता बोधि वृक्ष श्रीलंका, तीसरी बौद्ध संगीति, मोग्गलिपुत्त तिस्स, Mahinda Sanghamitta Sri Lanka in Hindi, Third Buddhist Council Ashoka, Ashoka Buddhist missions history in Hindi", "image": "https://gyaanoxa.com/assets/covers/DjSQ7t_GxQU.webp", "url": "https://gyaanoxa.com/blog/ashoka-part-7/", "dateModified": "2026-11-06", "mainEntityOfPage": "https://gyaanoxa.com/blog/ashoka-part-7/", "wordCount": 945, "articleSection": "Ashoka: From Fierce King to Righteous", "about": [{"@type": "Person", "name": "अशोक (Ashoka)"}, {"@type": "Person", "name": "मोग्गलिपुत्त तिस्स (Moggaliputta Tissa)"}, {"@type": "Person", "name": "महिंद (Mahinda)"}, {"@type": "Person", "name": "संघमित्ता (Sanghamitta)"}, {"@type": "Person", "name": "लामोत (Lamotte)"}], "author": {"@type": "Organization", "name": "Gyaanoxa", "url": "https://gyaanoxa.com"}, "publisher": {"@type": "Organization", "name": "Gyaanoxa", "logo": {"@type": "ImageObject", "url": "https://gyaanoxa.com/assets/icon-512.png"}}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "अशोक के बेटे-बेटी श्रीलंका क्यों गए थे?", "acceptedAnswer": {"@type": "Answer", "text": "श्रीलंका की परंपरा के अनुसार अशोक का बेटा महिंद बौद्ध धर्म का संदेश लेकर श्रीलंका गया था। उसकी बेटी संघमित्ता 19वें राज्य वर्ष में बोधि वृक्ष का पौधा लेकर वहाँ पहुँची। इतिहासकार इस कहानी पर अब भी बहस करते हैं।"}}, {"@type": "Question", "name": "तीसरी बौद्ध संगीति कब और क्यों हुई?", "acceptedAnswer": {"@type": "Answer", "text": "श्रीलंका की परंपरा के अनुसार यह अशोक के 17वें राज्य वर्ष में हुई। उससे पहले अशोक के भारी दान के चलते संघ में नकली भिक्षु घुस आए थे, जिन्हें मोग्गलिपुत्त तिस्स ने बाहर किया।"}}, {"@type": "Question", "name": "क्या सच में 60,000 भिक्षु संघ से निकाले गए थे?", "acceptedAnswer": {"@type": "Answer", "text": "यह संख्या श्रीलंका की किताबों में मिलती है, इसलिए इसे परंपरा का दावा ही मानना चाहिए। उत्तर भारत की परंपरा इन घटनाओं के बारे में कुछ नहीं कहती।"}}, {"@type": "Question", "name": "महिंद और संघमित्ता की कहानी का सबूत क्या है?", "acceptedAnswer": {"@type": "Answer", "text": "उत्तर भारत की किताबें इस पर चुप हैं, और लामोत जैसे विद्वान इस पर शक करते हैं। दूसरी ओर गोम्ब्रिच और फ्राउवाल्नर विदिशा के पास भिलसा में मिले अस्थि कलशों को इन मिशनों का सबूत मानते हैं।"}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Gyaanoxa", "item": "https://gyaanoxa.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://gyaanoxa.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "Ashoka: From Fierce King to Righteous", "item": "https://gyaanoxa.com/ashoka/"}, {"@type": "ListItem", "position": 4, "name": "अशोक के बेटे-बेटी श्रीलंका क्यों गए?", "item": "https://gyaanoxa.com/blog/ashoka-part-7/"}]}, {"@type": "VideoObject", "name": "भाग 7: 60,000 भिक्षु संघ से बाहर क्यों?", "description": "60,000 नकली भिक्षु, तीसरी बौद्ध संगीति और 9 मिशन। श्रीलंका की परंपरा महिंद और संघमित्ता के श्रीलंका जाने की क्या वजह बताती है, और इतिहासकार इस पर क्यों बँटे हैं, पढ़िए पूरी कहानी।", "thumbnailUrl": ["https://i.ytimg.com/vi/DjSQ7t_GxQU/hqdefault.jpg"], "uploadDate": "2026-11-03", "embedUrl": "https://www.youtube-nocookie.com/embed/DjSQ7t_GxQU", "inLanguage": "hi"}]}</script>
 </head>
@@ -104,7 +239,7 @@
       <div class="art-side"><nav class="side-box toc"><p class="eyebrow">इस लेख में</p><ol><li><a href="#s1">कलिंग के बाद का अशोक</a></li><li><a href="#s2">60,000 भिक्षु संघ से बाहर</a></li><li><a href="#s3">9 मिशन और महिंद</a></li><li><a href="#s4">संघमित्ता और बोधि का पौधा</a></li><li><a href="#s5">इतिहासकारों में मतभेद</a></li><li><a href="#s6">दो परंपराएँ, दो आवाज़ें</a></li></ol></nav><aside class="side-box series-nav"><p class="eyebrow">इस सीरीज़ के लेख</p><ol><li><a href="/blog/ashoka-full-story/">पूरी कहानी</a></li><li><a href="/blog/ashoka-part-1/">भाग 1: जिस बेटे से पिता नफरत करते थे</a></li><li><a href="/blog/ashoka-part-2/">भाग 2: गद्दी के लिए भाइयों का कत्ल?</a></li><li><a href="/blog/ashoka-part-3/">भाग 3: चंडाशोक और &#x27;अशोक का नरक&#x27;</a></li><li><a href="/blog/ashoka-part-4/">भाग 4: कलिंग युद्ध: 1 लाख मौतें, फिर पछतावा</a></li><li><a href="/blog/ashoka-part-5/">भाग 5: वो भिक्षु जिसने अशोक को बदला</a></li><li><a href="/blog/ashoka-part-6/">भाग 6: 84,000 स्तूप और धम्म के खंभे</a></li><li class=on><a href="/blog/ashoka-part-7/">भाग 7: अशोक के बेटे-बेटी श्रीलंका क्यों गए?</a></li><li><a href="/blog/ashoka-part-8/">भाग 8: अशोक का काला सच और भुला दी गई विरासत</a></li></ol><a class="more" href="/ashoka/">Series page · Quiz</a></aside><div class="side-box people"><p class="eyebrow">कहानी के किरदार</p><ul><li><b>अशोक (Ashoka)</b><span>तीसरा मौर्य सम्राट, परंपरा के अनुसार जिसके भारी दान से संघ में भीड़ बढ़ गई</span></li><li><b>मोग्गलिपुत्त तिस्स (Moggaliputta Tissa)</b><span>वह भिक्षु जिसने परंपरा के अनुसार नकली भिक्षुओं को संघ से बाहर किया</span></li><li><b>महिंद (Mahinda)</b><span>अशोक का बेटा, जो श्रीलंका की परंपरा के मुताबिक़ बौद्ध धर्म लेकर श्रीलंका गया</span></li><li><b>संघमित्ता (Sanghamitta)</b><span>अशोक की बेटी, जो परंपरा के अनुसार बोधि वृक्ष का पौधा लेकर श्रीलंका गई</span></li><li><b>लामोत (Lamotte)</b><span>वह विद्वान जो इस पूरी कहानी पर शक करते हैं</span></li></ul></div></div>
     </div>
   </section>
-  <section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>आगे पढ़ें</h2></div><a class="more" href="/blog/">सभी लेख</a></div><div class="agrid"><a class="acard tall" href="/blog/ashoka-part-8/"><div class="ac-img"><img loading="lazy" src="/assets/covers/-IBp0JKpMKo.webp" alt=""></div><div class="ac-body"><span class="ac-k">भाग 8/8 · 5 मिनट</span><h3>बौद्ध अशोक और 18,000 मौतें, सच या प्रचार</h3><p>अशोकावदान कहता है कि बौद्ध बनने के बाद भी अशोक ने 18,000 आजीविकों को मरवाया। इस दावे की पड़ताल, विद्वानों की राय और अशोक की भुला दी गई विरासत की पूरी कहानी।</p></div></a><a class="acard wide" href="/blog/ashoka-full-story/"><div class="ac-img"><img loading="lazy" src="/assets/yt/-P0QL2Vdu6g.webp" alt=""></div><div class="ac-body"><span class="ac-k">पूरी कहानी · 12 मिनट</span><h3>चंडाशोक या धम्मशोक, सम्राट अशोक का अनसुना सच</h3><p>कलिंग में 1,00,000 मौतें, 99 भाइयों की कथा और 84,000 स्तूप। सम्राट अशोक के इतिहास में किंवदंती कहाँ खत्म होती है और सच कहाँ से शुरू होता है, पढ़िए।</p></div></a><a class="acard tall" href="/blog/ashoka-part-1/"><div class="ac-img"><img loading="lazy" src="/assets/covers/_gGwBindQmU.webp" alt=""></div><div class="ac-body"><span class="ac-k">भाग 1/8 · 5 मिनट</span><h3>पिता जिस बेटे से नफरत करते थे, वही बना सम्राट</h3><p>अशोक का जन्म, उनके नाम का अर्थ, बिंदुसार की नाराज़गी और साधु पिंगल वत्सजीव की वह भविष्यवाणी जो उन्होंने छुपा ली। अशोक के शुरुआती जीवन की कम सुनी गई कथा।</p></div></a></div></div></section>
+  <section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>आगे पढ़ें</h2></div><a class="more" href="/blog/">सभी लेख</a></div><div class="agrid"><a class="acard tall" href="/blog/ashoka-part-8/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/-IBp0JKpMKo.webp" srcset="/assets/s/360/covers/-IBp0JKpMKo.webp 360w, /assets/covers/-IBp0JKpMKo.webp 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">भाग 8/8 · 5 मिनट</span><h3>बौद्ध अशोक और 18,000 मौतें, सच या प्रचार</h3><p>अशोकावदान कहता है कि बौद्ध बनने के बाद भी अशोक ने 18,000 आजीविकों को मरवाया। इस दावे की पड़ताल, विद्वानों की राय और अशोक की भुला दी गई विरासत की पूरी कहानी।</p></div></a><a class="acard wide" href="/blog/ashoka-full-story/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/yt/-P0QL2Vdu6g.webp" srcset="/assets/s/360/yt/-P0QL2Vdu6g.webp 360w, /assets/yt/-P0QL2Vdu6g.webp 960w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">पूरी कहानी · 12 मिनट</span><h3>चंडाशोक या धम्मशोक, सम्राट अशोक का अनसुना सच</h3><p>कलिंग में 1,00,000 मौतें, 99 भाइयों की कथा और 84,000 स्तूप। सम्राट अशोक के इतिहास में किंवदंती कहाँ खत्म होती है और सच कहाँ से शुरू होता है, पढ़िए।</p></div></a><a class="acard tall" href="/blog/ashoka-part-1/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/_gGwBindQmU.webp" srcset="/assets/s/360/covers/_gGwBindQmU.webp 360w, /assets/covers/_gGwBindQmU.webp 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">भाग 1/8 · 5 मिनट</span><h3>पिता जिस बेटे से नफरत करते थे, वही बना सम्राट</h3><p>अशोक का जन्म, उनके नाम का अर्थ, बिंदुसार की नाराज़गी और साधु पिंगल वत्सजीव की वह भविष्यवाणी जो उन्होंने छुपा ली। अशोक के शुरुआती जीवन की कम सुनी गई कथा।</p></div></a></div></div></section>
 </main>
 
 <footer>
@@ -114,13 +249,13 @@
       <p>भारत के अनसुने सच. Indian history, science and mysteries in simple Hindi.</p>
     </div>
     <div class="f-col">
-      <h4>Watch</h4>
+      <h3>Watch</h3>
       <a href="https://www.youtube.com/@Gyaanoxa" target="_blank" rel="noopener">YouTube</a>
       <a href="https://www.youtube.com/@Gyaanoxa/shorts" target="_blank" rel="noopener">Shorts</a>
       <a href="https://www.instagram.com/gyaanoxa" target="_blank" rel="noopener">Instagram</a>
     </div>
     <div class="f-col">
-      <h4>Site</h4>
+      <h3>Site</h3>
       <a href="/#videos">Documentaries</a>
       <a href="/#series">Series</a>
       <a href="/#next">Coming next</a>
@@ -129,7 +264,7 @@
       <a href="/#about">About</a>
     </div>
     <div class="f-col">
-      <h4>Legal</h4>
+      <h3>Legal</h3>
       <a href="/privacy.html">Privacy Policy</a>
       <a href="/terms.html">Terms</a>
       <a href="/data-deletion.html">Data Deletion</a>

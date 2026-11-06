@@ -206,14 +206,15 @@ def article_page(a, arts, public, series, index):
 def card(a, public):
     img, shape = thumb(a, public)
     label = (f"भाग {a['part']}/{a['of']}" if a.get("part") else "पूरी कहानी") if a.get("series") else "लेख"
-    return (f'<a class="acard {shape}" href="/blog/{e(a["slug"])}/"><div class="ac-img"><img loading="lazy" src="{e(img)}" alt=""></div>'
+    return (f'<a class="acard {shape}" href="/blog/{e(a["slug"])}/"><div class="ac-img"><img loading="lazy" '
+            f'{pages.srcset(img, 360, "(max-width: 760px) 40vw, 360px")} alt=""></div>'
             f'<div class="ac-body"><span class="ac-k">{e(label)} · {max(2, round(words(a) / 180))} मिनट</span>'
             f'<h3>{e(head_title(a["title"]))}</h3><p>{e(a.get("description", ""))}</p></div></a>')
 
 
 def prow(a, public):
     img, _ = thumb(a, public)
-    return (f'<li><a class="prow" href="/blog/{e(a["slug"])}/"><img loading="lazy" src="{e(img)}" alt="" width="540" height="960">'
+    return (f'<li><a class="prow" href="/blog/{e(a["slug"])}/"><img loading="lazy" src="{pages.small(img, 160)}" alt="" width="540" height="960">'
             f'<div><span class="ac-k">भाग {a["part"]} · {max(2, round(words(a) / 180))} मिनट</span>'
             f'<h3>{e(head_title(a["title"]))}</h3></div></a></li>')
 

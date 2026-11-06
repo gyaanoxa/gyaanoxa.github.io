@@ -849,3 +849,15 @@ footer { padding: 28px 0 32px; margin-top: 10px; }
 .rb .sub { margin: 0; }
 .rb .btn { flex: none; }
 @media (max-width: 700px) { .rb { flex-direction: column; align-items: flex-start; padding: 20px; } }
+
+/* ---------- Speed: no endless repaint work (Lighthouse) ---------- */
+.f-col h3 { font-family: var(--display); font-size: 15px; font-weight: 700; color: var(--text); margin: 0 0 10px; letter-spacing: .02em; }
+.sky i { animation: none; opacity: .45; }
+.spark { animation: none; filter: none; }
+body::before { will-change: transform; }
+@media (max-width: 760px) {
+  .fan img { animation: none; }
+  .top { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(11, 18, 56, .96); }
+  .play { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(10, 14, 42, .85); }
+}
+main > section:not(.hero):not(.sp-hero):not(.art-hero) { content-visibility: auto; contain-intrinsic-size: auto 800px; }

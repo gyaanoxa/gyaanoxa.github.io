@@ -18,6 +18,39 @@ def e(s):
     return html.escape(str(s or ""), quote=True)
 
 
+def small(url, width):
+    """A smaller WebP copy of a site picture for cards (assets/s/<width>/...), made once. Returns its URL in the
+    same style as url ('/assets/...' or 'assets/...'); the original when it cannot be made."""
+    rel = url.lstrip("/")
+    src = ROOT / rel
+    if not rel.startswith("assets/") or not src.exists():
+        return url
+    out = ROOT / "assets" / "s" / str(width) / Path(rel).relative_to("assets").with_suffix(".webp")
+    if not out.exists():
+        from PIL import Image
+        im = Image.open(src).convert("RGB")
+        if im.width <= width:
+            return url
+        out.parent.mkdir(parents=True, exist_ok=True)
+        im.resize((width, round(im.height * width / im.width)), Image.LANCZOS).save(out, "WEBP", quality=72, method=6)
+    return ("/" if url.startswith("/") else "") + out.relative_to(ROOT).as_posix()
+
+
+def srcset(url, width, sizes):
+    """src + srcset + sizes for a card picture: the small copy, the original for big / sharp screens."""
+    s = small(url, width)
+    if s == url:
+        return f'src="{url}"'
+    full = Image_width(url)
+    return f'src="{s}" srcset="{s} {width}w, {url} {full}w" sizes="{sizes}"'
+
+
+def Image_width(url):
+    from PIL import Image
+    with Image.open(ROOT / url.lstrip("/")) as im:
+        return im.width
+
+
 def absolute(s):
     s = s.replace('href="./#', 'href="/#').replace('href="#', 'href="/#').replace('href="./"', 'href="/"')
     s = re.sub(r'(src|href)="(assets/|privacy\.html|terms\.html|data-deletion\.html|lang\.js|style\.css|favicon\.ico|site\.webmanifest)',

@@ -40,7 +40,142 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="/assets/fonts/Baloo2-800-devanagari.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/fonts.css">
+  <style>@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-500-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-600-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-700-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-700-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 800;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-800-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 800;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-800-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src: url(/assets/fonts/Mukta-400-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src: url(/assets/fonts/Mukta-400-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Mukta-500-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Mukta-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Mukta-600-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Mukta-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Poppins-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Poppins-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Poppins-700-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}</style>
   <link rel="stylesheet" href="/style.css">
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "headline": "कलिंग युद्ध, 1 लाख मौतें और अशोक का पछतावा", "description": "करीब 260 ईसा पूर्व के कलिंग युद्ध में 1 लाख लोग मारे गए और 1.5 लाख बंदी बने। अशोक के पछतावे की असलियत, और वह शिलालेख जो कलिंग में ही नहीं मिलता।", "inLanguage": "hi", "datePublished": "2026-11-06", "keywords": "कलिंग युद्ध का इतिहास, अशोक और कलिंग युद्ध, Kalinga War in Hindi, Ashoka Kalinga war history, अशोक का 13वाँ शिलालेख, Major Rock Edict 13 Ashoka, अशोक बौद्ध कब बने, Ashoka remorse Kalinga", "image": "https://gyaanoxa.com/assets/covers/4FNJM6KXGOs.webp", "url": "https://gyaanoxa.com/blog/ashoka-part-4/", "dateModified": "2026-11-06", "mainEntityOfPage": "https://gyaanoxa.com/blog/ashoka-part-4/", "wordCount": 920, "articleSection": "Ashoka: From Fierce King to Righteous", "about": [{"@type": "Person", "name": "अशोक"}, {"@type": "Person", "name": "बिन्दुसार"}, {"@type": "Person", "name": "सुसीम"}], "author": {"@type": "Organization", "name": "Gyaanoxa", "url": "https://gyaanoxa.com"}, "publisher": {"@type": "Organization", "name": "Gyaanoxa", "logo": {"@type": "ImageObject", "url": "https://gyaanoxa.com/assets/icon-512.png"}}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "कलिंग युद्ध कब हुआ था?", "acceptedAnswer": {"@type": "Answer", "text": "कलिंग युद्ध अशोक के राज के 8वें साल में हुआ, करीब 260 ईसा पूर्व। इसी युद्ध में अशोक ने कलिंग जीता था।"}}, {"@type": "Question", "name": "कलिंग युद्ध में कितने लोग मारे गए थे?", "acceptedAnswer": {"@type": "Answer", "text": "अशोक के 13वें बड़े शिलालेख के मुताबिक इस युद्ध में 1,00,000 लोग मारे गए और 1,50,000 बंदी बनाए गए। इस गिनती में इंसान और जानवर दोनों शामिल बताए गए हैं।"}}, {"@type": "Question", "name": "अशोक का 13वाँ शिलालेख कलिंग में क्यों नहीं मिलता?", "acceptedAnswer": {"@type": "Answer", "text": "इसका पक्का जवाब किसी के पास नहीं है। एक राय कहती है कि अशोक को उसी इलाके में अपनी गलती कबूल करना ठीक नहीं लगा होगा। दूसरी राय के मुताबिक यह किस्सा असली कम और कल्पना ज़्यादा हो सकता है।"}}, {"@type": "Question", "name": "क्या अशोक कलिंग युद्ध के बाद बौद्ध बने थे?", "acceptedAnswer": {"@type": "Answer", "text": "इस पर मतभेद है। श्रीलंका की परंपरा के मुताबिक वे युद्ध से पहले ही बौद्ध बन चुके थे। पुराने लेखक और अशोक के अपने शिलालेख युद्ध के बाद के सालों में धीरे-धीरे आए बदलाव की ओर इशारा करते हैं।"}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Gyaanoxa", "item": "https://gyaanoxa.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://gyaanoxa.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "Ashoka: From Fierce King to Righteous", "item": "https://gyaanoxa.com/ashoka/"}, {"@type": "ListItem", "position": 4, "name": "कलिंग युद्ध, 1 लाख मौतें और अशोक का पछतावा", "item": "https://gyaanoxa.com/blog/ashoka-part-4/"}]}, {"@type": "VideoObject", "name": "भाग 4: 1 लाख मौतें, अशोक ने खुद लिखवाईं", "description": "करीब 260 ईसा पूर्व के कलिंग युद्ध में 1 लाख लोग मारे गए और 1.5 लाख बंदी बने। अशोक के पछतावे की असलियत, और वह शिलालेख जो कलिंग में ही नहीं मिलता।", "thumbnailUrl": ["https://i.ytimg.com/vi/4FNJM6KXGOs/hqdefault.jpg"], "uploadDate": "2026-11-01", "embedUrl": "https://www.youtube-nocookie.com/embed/4FNJM6KXGOs", "inLanguage": "hi"}]}</script>
 </head>
@@ -105,7 +240,7 @@
       <div class="art-side"><nav class="side-box toc"><p class="eyebrow">इस लेख में</p><ol><li><a href="#s1">&#x27;चंडाशोक&#x27; वाली छवि</a></li><li><a href="#s2">राज का 8वाँ साल</a></li><li><a href="#s3">पत्थर पर लिखा पछतावा</a></li><li><a href="#s4">कलिंग से गायब शिलालेख</a></li><li><a href="#s5">बौद्ध धर्म, युद्ध से पहले या बाद</a></li><li><a href="#s6">इस युद्ध की अहमियत</a></li></ol></nav><aside class="side-box series-nav"><p class="eyebrow">इस सीरीज़ के लेख</p><ol><li><a href="/blog/ashoka-full-story/">पूरी कहानी</a></li><li><a href="/blog/ashoka-part-1/">भाग 1: जिस बेटे से पिता नफरत करते थे</a></li><li><a href="/blog/ashoka-part-2/">भाग 2: गद्दी के लिए भाइयों का कत्ल?</a></li><li><a href="/blog/ashoka-part-3/">भाग 3: चंडाशोक और &#x27;अशोक का नरक&#x27;</a></li><li class=on><a href="/blog/ashoka-part-4/">भाग 4: कलिंग युद्ध: 1 लाख मौतें, फिर पछतावा</a></li><li><a href="/blog/ashoka-part-5/">भाग 5: वो भिक्षु जिसने अशोक को बदला</a></li><li><a href="/blog/ashoka-part-6/">भाग 6: 84,000 स्तूप और धम्म के खंभे</a></li><li><a href="/blog/ashoka-part-7/">भाग 7: अशोक के बेटे-बेटी श्रीलंका क्यों गए?</a></li><li><a href="/blog/ashoka-part-8/">भाग 8: अशोक का काला सच और भुला दी गई विरासत</a></li></ol><a class="more" href="/ashoka/">Series page · Quiz</a></aside><div class="side-box people"><p class="eyebrow">कहानी के किरदार</p><ul><li><b>अशोक</b><span>मौर्य वंश के तीसरे सम्राट, जिन्होंने कलिंग जीता और बाद में उस पर पछतावा लिखवाया</span></li><li><b>बिन्दुसार</b><span>अशोक के पिता, जिनके बाद अशोक गद्दी पर बैठे</span></li><li><b>सुसीम</b><span>अशोक के भाई, जिनकी मौत की किंवदंती से &#x27;चंडाशोक&#x27; वाली छवि बनी</span></li></ul></div></div>
     </div>
   </section>
-  <section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>आगे पढ़ें</h2></div><a class="more" href="/blog/">सभी लेख</a></div><div class="agrid"><a class="acard tall" href="/blog/ashoka-part-5/"><div class="ac-img"><img loading="lazy" src="/assets/covers/SS-VNvAHIf0.webp" alt=""></div><div class="ac-body"><span class="ac-k">भाग 5/8 · 6 मिनट</span><h3>अशोक को किस भिक्षु ने बदला</h3><p>कथा कहती है कि जिस भाई को अशोक ने मरवाया, उसी के बेटे ने उन्हें धर्म की राह दिखाई। निग्रोध, भिक्षु समुद्र और 7 साल के बच्चे की कथाएँ पढ़िए, और यह भी कि शिलालेख इस बारे में क्या कहता है।</p></div></a><a class="acard tall" href="/blog/ashoka-part-6/"><div class="ac-img"><img loading="lazy" src="/assets/covers/ObEch-548w4.webp" alt=""></div><div class="ac-body"><span class="ac-k">भाग 6/8 · 6 मिनट</span><h3>एक दिन में 84,000 स्तूप? अशोक के धम्म का सच</h3><p>एक ही दिन में 84,000 स्तूप बनने की किंवदंती, और उसके पीछे अशोक के धम्म के खंभे, अस्पताल, कुएँ और मौत की सज़ा खत्म करने की कम सुनी गई कहानी।</p></div></a><a class="acard tall" href="/blog/ashoka-part-7/"><div class="ac-img"><img loading="lazy" src="/assets/covers/DjSQ7t_GxQU.webp" alt=""></div><div class="ac-body"><span class="ac-k">भाग 7/8 · 5 मिनट</span><h3>अशोक के बेटे-बेटी श्रीलंका क्यों गए?</h3><p>60,000 नकली भिक्षु, तीसरी बौद्ध संगीति और 9 मिशन। श्रीलंका की परंपरा महिंद और संघमित्ता के श्रीलंका जाने की क्या वजह बताती है, और इतिहासकार इस पर क्यों बँटे हैं, पढ़िए पूरी कहानी।</p></div></a></div></div></section>
+  <section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>आगे पढ़ें</h2></div><a class="more" href="/blog/">सभी लेख</a></div><div class="agrid"><a class="acard tall" href="/blog/ashoka-part-5/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/SS-VNvAHIf0.webp" srcset="/assets/s/360/covers/SS-VNvAHIf0.webp 360w, /assets/covers/SS-VNvAHIf0.webp 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">भाग 5/8 · 6 मिनट</span><h3>अशोक को किस भिक्षु ने बदला</h3><p>कथा कहती है कि जिस भाई को अशोक ने मरवाया, उसी के बेटे ने उन्हें धर्म की राह दिखाई। निग्रोध, भिक्षु समुद्र और 7 साल के बच्चे की कथाएँ पढ़िए, और यह भी कि शिलालेख इस बारे में क्या कहता है।</p></div></a><a class="acard tall" href="/blog/ashoka-part-6/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/ObEch-548w4.webp" srcset="/assets/s/360/covers/ObEch-548w4.webp 360w, /assets/covers/ObEch-548w4.webp 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">भाग 6/8 · 6 मिनट</span><h3>एक दिन में 84,000 स्तूप? अशोक के धम्म का सच</h3><p>एक ही दिन में 84,000 स्तूप बनने की किंवदंती, और उसके पीछे अशोक के धम्म के खंभे, अस्पताल, कुएँ और मौत की सज़ा खत्म करने की कम सुनी गई कहानी।</p></div></a><a class="acard tall" href="/blog/ashoka-part-7/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/DjSQ7t_GxQU.webp" srcset="/assets/s/360/covers/DjSQ7t_GxQU.webp 360w, /assets/covers/DjSQ7t_GxQU.webp 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">भाग 7/8 · 5 मिनट</span><h3>अशोक के बेटे-बेटी श्रीलंका क्यों गए?</h3><p>60,000 नकली भिक्षु, तीसरी बौद्ध संगीति और 9 मिशन। श्रीलंका की परंपरा महिंद और संघमित्ता के श्रीलंका जाने की क्या वजह बताती है, और इतिहासकार इस पर क्यों बँटे हैं, पढ़िए पूरी कहानी।</p></div></a></div></div></section>
 </main>
 
 <footer>
@@ -115,13 +250,13 @@
       <p>भारत के अनसुने सच. Indian history, science and mysteries in simple Hindi.</p>
     </div>
     <div class="f-col">
-      <h4>Watch</h4>
+      <h3>Watch</h3>
       <a href="https://www.youtube.com/@Gyaanoxa" target="_blank" rel="noopener">YouTube</a>
       <a href="https://www.youtube.com/@Gyaanoxa/shorts" target="_blank" rel="noopener">Shorts</a>
       <a href="https://www.instagram.com/gyaanoxa" target="_blank" rel="noopener">Instagram</a>
     </div>
     <div class="f-col">
-      <h4>Site</h4>
+      <h3>Site</h3>
       <a href="/#videos">Documentaries</a>
       <a href="/#series">Series</a>
       <a href="/#next">Coming next</a>
@@ -130,7 +265,7 @@
       <a href="/#about">About</a>
     </div>
     <div class="f-col">
-      <h4>Legal</h4>
+      <h3>Legal</h3>
       <a href="/privacy.html">Privacy Policy</a>
       <a href="/terms.html">Terms</a>
       <a href="/data-deletion.html">Data Deletion</a>

@@ -39,7 +39,142 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="/assets/fonts/Baloo2-800-devanagari.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/fonts.css">
+  <style>@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-500-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-600-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-700-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-700-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 800;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-800-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 800;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-800-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src: url(/assets/fonts/Mukta-400-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src: url(/assets/fonts/Mukta-400-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Mukta-500-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Mukta-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Mukta-600-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Mukta-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Poppins-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Poppins-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Poppins-700-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}</style>
   <link rel="stylesheet" href="/style.css">
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "headline": "पिता को कैद कर गद्दी छीनने वाला अजातशत्रु", "description": "राजा बिम्बिसार ने जिस बेटे की घायल उंगली खुद चूसी, उसी बेटे ने उन्हें कैद करके मगध छीन लिया। अजातशत्रु के जन्म और कुणिक नाम के पीछे की अनसुनी कहानी।", "inLanguage": "hi", "datePublished": "2026-11-06", "keywords": "अजातशत्रु का इतिहास, Ajatashatru history in Hindi, बिम्बिसार और अजातशत्रु, कुणिक नाम का अर्थ, मगध का हर्यंक वंश, Bimbisara imprisoned by Ajatashatru, अजातशत्रु की जन्म कथा", "image": "https://gyaanoxa.com/assets/parts/ajatashatru-part-1.webp", "url": "https://gyaanoxa.com/blog/ajatashatru-part-1/", "dateModified": "2026-11-06", "mainEntityOfPage": "https://gyaanoxa.com/blog/ajatashatru-part-1/", "wordCount": 983, "articleSection": "Ajatashatru: Magadha's Rebel Son", "about": [{"@type": "Person", "name": "अजातशत्रु (Ajatashatru)"}, {"@type": "Person", "name": "बिम्बिसार (Bimbisara)"}, {"@type": "Person", "name": "चेल्लना"}, {"@type": "Person", "name": "कोसल देवी"}], "author": {"@type": "Organization", "name": "Gyaanoxa", "url": "https://gyaanoxa.com"}, "publisher": {"@type": "Organization", "name": "Gyaanoxa", "logo": {"@type": "ImageObject", "url": "https://gyaanoxa.com/assets/icon-512.png"}}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "अजातशत्रु को कुणिक क्यों कहा जाता है?", "acceptedAnswer": {"@type": "Answer", "text": "जैन परंपरा में अजातशत्रु का नाम कुणिक है, जिसका अर्थ है 'दुखती उंगली'। कथा के अनुसार बचपन में उनकी छोटी उंगली घायल हो गई थी और राजा बिम्बिसार उसे तब तक चूसते रहे जब तक वह ठीक नहीं हो गई।"}}, {"@type": "Question", "name": "अजातशत्रु के पिता कौन थे?", "acceptedAnswer": {"@type": "Answer", "text": "अजातशत्रु के पिता राजा बिम्बिसार थे, जिन्हें मगध के हर्यंक वंश के सबसे महत्वपूर्ण राजाओं में गिना जाता है। अजातशत्रु ने उनसे बलपूर्वक राज्य छीना और उन्हें कैद कर लिया।"}}, {"@type": "Question", "name": "अजातशत्रु की माँ कौन थीं?", "acceptedAnswer": {"@type": "Answer", "text": "इस बारे में दोनों परंपराएँ अलग-अलग बात कहती हैं। जैन ग्रंथों में उनकी माँ चेल्लना हैं, जो वैशाली के चेटक की बेटी थीं। बौद्ध ग्रंथ उनकी माँ का नाम कोसल देवी बताते हैं।"}}, {"@type": "Question", "name": "अजातशत्रु का शासनकाल कब था?", "acceptedAnswer": {"@type": "Answer", "text": "इतिहासकार इस पर बँटे हुए हैं। एक मत उनका शासन लगभग 492 से 460 ईसा पूर्व तक मानता है, दूसरा लगभग 405 से 373 ईसा पूर्व तक। उन्हें महावीर और गौतम बुद्ध का समकालीन माना जाता है।"}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Gyaanoxa", "item": "https://gyaanoxa.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://gyaanoxa.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "Ajatashatru: Magadha's Rebel Son", "item": "https://gyaanoxa.com/ajatashatru/"}, {"@type": "ListItem", "position": 4, "name": "पिता को कैद कर गद्दी छीनने वाला अजातशत्रु", "item": "https://gyaanoxa.com/blog/ajatashatru-part-1/"}]}]}</script>
 </head>
@@ -104,7 +239,7 @@
       <div class="art-side"><nav class="side-box toc"><p class="eyebrow">इस लेख में</p><ol><li><a href="#s1">मगध, हर्यंक वंश और राजा बिम्बिसार</a></li><li><a href="#s2">जन्म से पहले के अशुभ संकेत</a></li><li><a href="#s3">कूड़े के ढेर के पास फेंका गया राजकुमार</a></li><li><a href="#s4">वही बेटा, जिसने पिता को कैद किया</a></li><li><a href="#s5">दो परंपराएँ, दो अजातशत्रु</a></li><li><a href="#s6">उत्तर भारत की सबसे बड़ी ताकत</a></li></ol></nav><aside class="side-box series-nav"><p class="eyebrow">इस सीरीज़ के लेख</p><ol><li><a href="/blog/ajatashatru-full-story/">पूरी कहानी</a></li><li class=on><a href="/blog/ajatashatru-part-1/">भाग 1: बाप बिम्बिसार को कैद कर मगध की गद्दी?</a></li><li><a href="/blog/ajatashatru-part-2/">भाग 2: एक हाथी और हार के लिए वैशाली से जंग?</a></li><li><a href="/blog/ajatashatru-part-3/">भाग 3: 8 पत्नियाँ या 500? दो ग्रंथ, दो अजातशत्रु</a></li><li><a href="/blog/ajatashatru-part-4/">भाग 4: 6 गुरुओं के बाद बुद्ध की शरण में अजातशत्रु</a></li></ol><a class="more" href="/ajatashatru/">Series page · Quiz</a></aside><div class="side-box people"><p class="eyebrow">कहानी के किरदार</p><ul><li><b>अजातशत्रु (Ajatashatru)</b><span>बिम्बिसार का बेटा, जैन परंपरा में कुणिक या कूणिय, जिसने पिता से मगध छीना</span></li><li><b>बिम्बिसार (Bimbisara)</b><span>हर्यंक वंश के सबसे महत्वपूर्ण राजाओं में से एक, जिन्हें उनके अपने बेटे ने कैद किया</span></li><li><b>चेल्लना</b><span>जैन ग्रंथों के अनुसार अजातशत्रु की माँ, वैशाली के चेटक की बेटी</span></li><li><b>कोसल देवी</b><span>बौद्ध ग्रंथों के अनुसार अजातशत्रु की माँ</span></li></ul></div></div>
     </div>
   </section>
-  <section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>आगे पढ़ें</h2></div><a class="more" href="/blog/">सभी लेख</a></div><div class="agrid"><a class="acard tall" href="/blog/ajatashatru-part-2/"><div class="ac-img"><img loading="lazy" src="/assets/parts/ajatashatru-part-2.webp" alt=""></div><div class="ac-body"><span class="ac-k">भाग 2/4 · 5 मिनट</span><h3>एक हाथी और एक हार के लिए वैशाली से जंग?</h3><p>जैन ग्रंथों के मुताबिक अजातशत्रु ने वैशाली से जंग एक हाथी और एक दिव्य हार के लिए लड़ी थी। पढ़िए सेचनक हाथी, चेटक के तीरों और रथ-मूसल की पूरी कहानी।</p></div></a><a class="acard tall" href="/blog/ajatashatru-part-3/"><div class="ac-img"><img loading="lazy" src="/assets/parts/ajatashatru-part-3.webp" alt=""></div><div class="ac-body"><span class="ac-k">भाग 3/4 · 5 मिनट</span><h3>8 पत्नियाँ या 500? दो ग्रंथ, दो अजातशत्रु</h3><p>जैन ग्रंथों में अजातशत्रु की 8 पत्नियाँ हैं, बौद्ध ग्रंथों में 500। माँ कौन थी, जंग क्यों हुई और महावीर-बुद्ध से कैसा रिश्ता था, इन पर दोनों परंपराओं की अलग-अलग कहानियाँ।</p></div></a><a class="acard tall" href="/blog/ajatashatru-part-4/"><div class="ac-img"><img loading="lazy" src="/assets/parts/ajatashatru-part-4.webp" alt=""></div><div class="ac-body"><span class="ac-k">भाग 4/4 · 5 मिनट</span><h3>बागी बेटा बुद्ध का भक्त कैसे बना?</h3><p>पिता को कैद करने वाला अजातशत्रु, बौद्ध ग्रंथों के मुताबिक, 6 गुरुओं से मिलने के बाद बुद्ध के पास पहुँचा और उनकी शरण ली। पढ़िए यह कम सुनी कहानी।</p></div></a></div></div></section>
+  <section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>आगे पढ़ें</h2></div><a class="more" href="/blog/">सभी लेख</a></div><div class="agrid"><a class="acard tall" href="/blog/ajatashatru-part-2/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/parts/ajatashatru-part-2.webp" srcset="/assets/s/360/parts/ajatashatru-part-2.webp 360w, /assets/parts/ajatashatru-part-2.webp 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">भाग 2/4 · 5 मिनट</span><h3>एक हाथी और एक हार के लिए वैशाली से जंग?</h3><p>जैन ग्रंथों के मुताबिक अजातशत्रु ने वैशाली से जंग एक हाथी और एक दिव्य हार के लिए लड़ी थी। पढ़िए सेचनक हाथी, चेटक के तीरों और रथ-मूसल की पूरी कहानी।</p></div></a><a class="acard tall" href="/blog/ajatashatru-part-3/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/parts/ajatashatru-part-3.webp" srcset="/assets/s/360/parts/ajatashatru-part-3.webp 360w, /assets/parts/ajatashatru-part-3.webp 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">भाग 3/4 · 5 मिनट</span><h3>8 पत्नियाँ या 500? दो ग्रंथ, दो अजातशत्रु</h3><p>जैन ग्रंथों में अजातशत्रु की 8 पत्नियाँ हैं, बौद्ध ग्रंथों में 500। माँ कौन थी, जंग क्यों हुई और महावीर-बुद्ध से कैसा रिश्ता था, इन पर दोनों परंपराओं की अलग-अलग कहानियाँ।</p></div></a><a class="acard tall" href="/blog/ajatashatru-part-4/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/parts/ajatashatru-part-4.webp" srcset="/assets/s/360/parts/ajatashatru-part-4.webp 360w, /assets/parts/ajatashatru-part-4.webp 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">भाग 4/4 · 5 मिनट</span><h3>बागी बेटा बुद्ध का भक्त कैसे बना?</h3><p>पिता को कैद करने वाला अजातशत्रु, बौद्ध ग्रंथों के मुताबिक, 6 गुरुओं से मिलने के बाद बुद्ध के पास पहुँचा और उनकी शरण ली। पढ़िए यह कम सुनी कहानी।</p></div></a></div></div></section>
 </main>
 
 <footer>
@@ -114,13 +249,13 @@
       <p>भारत के अनसुने सच. Indian history, science and mysteries in simple Hindi.</p>
     </div>
     <div class="f-col">
-      <h4>Watch</h4>
+      <h3>Watch</h3>
       <a href="https://www.youtube.com/@Gyaanoxa" target="_blank" rel="noopener">YouTube</a>
       <a href="https://www.youtube.com/@Gyaanoxa/shorts" target="_blank" rel="noopener">Shorts</a>
       <a href="https://www.instagram.com/gyaanoxa" target="_blank" rel="noopener">Instagram</a>
     </div>
     <div class="f-col">
-      <h4>Site</h4>
+      <h3>Site</h3>
       <a href="/#videos">Documentaries</a>
       <a href="/#series">Series</a>
       <a href="/#next">Coming next</a>
@@ -129,7 +264,7 @@
       <a href="/#about">About</a>
     </div>
     <div class="f-col">
-      <h4>Legal</h4>
+      <h3>Legal</h3>
       <a href="/privacy.html">Privacy Policy</a>
       <a href="/terms.html">Terms</a>
       <a href="/data-deletion.html">Data Deletion</a>

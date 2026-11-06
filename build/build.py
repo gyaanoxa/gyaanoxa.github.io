@@ -19,6 +19,9 @@ from pathlib import Path
 
 from PIL import Image
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from pages import srcset  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 CHANNEL = "UCFHg-SfAo30zWIBugVMwTaw"
 FEED = f"https://www.youtube.com/feeds/videos.xml?channel_id={CHANNEL}"
@@ -100,6 +103,9 @@ def e(s):
 
 
 NEW = '<span class="tag">New</span>'
+SIZES_SHORT = "(max-width: 760px) 42vw, 190px"
+SIZES_DOC = "(max-width: 760px) 92vw, 380px"
+SIZES_FEAT = "(max-width: 760px) 92vw, 760px"
 PLAY = '<span class="play"><svg><use href="#i-play"/></svg></span>'
 
 
@@ -107,7 +113,7 @@ def doc_card(v, featured=False):
     hi, en = split_title(v["title"])
     extra = ('<span class="watch"><svg><use href="#i-play"/></svg>Watch the full story</span>' if featured else "")
     return (f'        <a class="card" href="https://www.youtube.com/watch?v={e(v["id"])}" target="_blank" rel="noopener">\n'
-            f'          <div class="thumb"><img loading="lazy" src="{pic(v)}" alt="" width="960" height="540">'
+            f'          <div class="thumb"><img loading="lazy" {srcset(pic(v), 480, SIZES_DOC if not featured else SIZES_FEAT)} alt="" width="960" height="540">'
             f'{NEW if v.get("new") else ""}{PLAY}</div>\n'
             f'          <div class="meta"><h3>{e(hi)}</h3><span class="en">{e(en or "Full video")}</span>{extra}</div>\n'
             f'        </a>')
@@ -117,7 +123,7 @@ def short_card(v, views=True):
     hi, _ = split_title(v["title"])
     count = f'<span class="views notranslate">{fmt_views(v["views"])} views</span>' if views else ""
     return (f'        <a class="short" href="https://www.youtube.com/shorts/{e(v["id"])}" target="_blank" rel="noopener" '
-            f'aria-label="{e(hi)}"><img loading="lazy" src="{pic(v)}" alt="" width="540" height="960">'
+            f'aria-label="{e(hi)}"><img loading="lazy" {srcset(pic(v), 360, SIZES_SHORT)} alt="" width="540" height="960">'
             f'{PLAY}{count}</a>')
 
 

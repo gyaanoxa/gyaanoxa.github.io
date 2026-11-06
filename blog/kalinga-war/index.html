@@ -40,7 +40,142 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="/assets/fonts/Baloo2-800-devanagari.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/fonts.css">
+  <style>@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-500-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-600-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-700-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-700-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 800;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-800-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Baloo 2';
+font-style: normal;
+font-weight: 800;
+font-display: swap;
+src: url(/assets/fonts/Baloo2-800-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src: url(/assets/fonts/Mukta-400-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src: url(/assets/fonts/Mukta-400-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Mukta-500-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Mukta-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Mukta-600-devanagari.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+@font-face {
+font-family: 'Mukta';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Mukta-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(/assets/fonts/Poppins-500-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(/assets/fonts/Poppins-600-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(/assets/fonts/Poppins-700-latin.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}</style>
   <link rel="stylesheet" href="/style.css">
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "headline": "सम्राट अशोक की असली कहानी, जिसे इतिहास भूल गया था", "description": "चंडाशोक से धम्म के सम्राट तक, कलिंग युद्ध, 99 भाइयों की कथा और वो सच जो अशोक के अपने शिलालेख बताते हैं। पढ़िए अशोक की पूरी कहानी।", "inLanguage": "hi", "datePublished": "2026-11-06", "keywords": "अशोक का इतिहास, सम्राट अशोक की कहानी, Ashoka history in Hindi, कलिंग युद्ध, Kalinga war Ashoka, अशोक का धम्म, चंडाशोक, Ashoka edicts in Hindi", "image": "https://gyaanoxa.com/assets/yt/7EpfoUi1pk8.webp", "url": "https://gyaanoxa.com/blog/kalinga-war/", "dateModified": "2026-11-06", "mainEntityOfPage": "https://gyaanoxa.com/blog/kalinga-war/", "wordCount": 1285, "articleSection": "Indian History", "about": [{"@type": "Person", "name": "अशोक (Ashoka)"}, {"@type": "Person", "name": "बिंदुसार"}, {"@type": "Person", "name": "सुसीम"}, {"@type": "Person", "name": "राधागुप्त"}, {"@type": "Person", "name": "महिंद और संघमित्रा"}, {"@type": "Person", "name": "जेम्स प्रिंसेप (James Prinsep)"}], "author": {"@type": "Organization", "name": "Gyaanoxa", "url": "https://gyaanoxa.com"}, "publisher": {"@type": "Organization", "name": "Gyaanoxa", "logo": {"@type": "ImageObject", "url": "https://gyaanoxa.com/assets/icon-512.png"}}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "सम्राट अशोक कौन थे?", "acceptedAnswer": {"@type": "Answer", "text": "अशोक मौर्य साम्राज्य के तीसरे शासक थे। उनका जन्म लगभग 304 ईसा पूर्व में हुआ और वो लगभग 268 ईसा पूर्व से मगध के सम्राट रहे। राजधानी पाटलिपुत्र थी और साम्राज्य आज के अफ़ग़ानिस्तान से बांग्लादेश तक फैला था।"}}, {"@type": "Question", "name": "कलिंग युद्ध में कितने लोग मारे गए थे?", "acceptedAnswer": {"@type": "Answer", "text": "अशोक के तेरहवें शिलालेख के मुताबिक़ लड़ाई में 1,00,000 लोग और जानवर मारे गए, और बाद में इससे कई गुना ज़्यादा लोग मौत का शिकार हुए। 1,50,000 लोगों को बंदी बनाया गया। कुछ विद्वान मानते हैं कि ये वर्णन असलियत से ज़्यादा काल्पनिक भी हो सकता है।"}}, {"@type": "Question", "name": "क्या अशोक ने सच में अपने 99 भाइयों को मारा था?", "acceptedAnswer": {"@type": "Answer", "text": "महावंश 99 सौतेले भाइयों की और दीपवंश 100 भाइयों की हत्या की बात करता है। इतिहासकार इन आँकड़ों को बढ़ा-चढ़ाकर लिखा गया मानते हैं, ताकि अशोक का बदलाव चमत्कार जैसा लगे। पाँचवें शिलालेख में भाइयों के परिवारों की देखभाल का ज़िक्र है, हालाँकि कुछ विद्वान इस पढ़त पर सवाल उठाते हैं।"}}, {"@type": "Question", "name": "अशोक बौद्ध कब बने?", "acceptedAnswer": {"@type": "Answer", "text": "इस पर स्रोत एक राय नहीं रखते। श्रीलंकाई परंपरा के अनुसार वो कलिंग युद्ध से पहले ही बौद्ध बन चुके थे। शिलालेख बताते हैं कि बदलाव धीरे-धीरे आया और ढाई साल से ज़्यादा समय तक वो एक साधारण उपासक रहे।"}}, {"@type": "Question", "name": "अशोक का भारत के राष्ट्रीय प्रतीकों से क्या संबंध है?", "acceptedAnswer": {"@type": "Answer", "text": "भारत का राजचिह्न अशोक के सिंह शीर्ष से लिया गया है और अशोक चक्र राष्ट्रीय ध्वज के बीच में है। उनके धर्म स्तंभों में से 20 आज भी बचे हुए हैं।"}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Gyaanoxa", "item": "https://gyaanoxa.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://gyaanoxa.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "सम्राट अशोक की असली कहानी, जिसे इतिहास भूल गया था", "item": "https://gyaanoxa.com/blog/kalinga-war/"}]}, {"@type": "VideoObject", "name": "1.5 लाख बंदी और एक सम्राट का पछतावा", "description": "चंडाशोक से धम्म के सम्राट तक, कलिंग युद्ध, 99 भाइयों की कथा और वो सच जो अशोक के अपने शिलालेख बताते हैं। पढ़िए अशोक की पूरी कहानी।", "thumbnailUrl": ["https://i.ytimg.com/vi/7EpfoUi1pk8/hqdefault.jpg"], "uploadDate": "2026-10-23", "embedUrl": "https://www.youtube-nocookie.com/embed/7EpfoUi1pk8", "inLanguage": "hi"}]}</script>
 </head>
@@ -105,7 +240,7 @@
       <div class="art-side"><nav class="side-box toc"><p class="eyebrow">इस लेख में</p><ol><li><a href="#s1">इतिहास से गायब हुआ सम्राट</a></li><li><a href="#s2">कथाओं में अशोक का बचपन</a></li><li><a href="#s3">विदिशा की देवी और अशोक का परिवार</a></li><li><a href="#s4">सुसीम और 99 भाइयों की कथा</a></li><li><a href="#s5">कलिंग का युद्ध</a></li><li><a href="#s6">बौद्ध बनने पर स्रोतों का मतभेद</a></li><li><a href="#s7">अशोक का धम्म</a></li><li><a href="#s8">स्तूप, श्रीलंका और अशोक की विरासत</a></li></ol></nav><div class="side-box people"><p class="eyebrow">कहानी के किरदार</p><ul><li><b>अशोक (Ashoka)</b><span>मौर्य साम्राज्य के तीसरे शासक, जिन्होंने कलिंग जीता और बाद में धम्म का रास्ता अपनाया</span></li><li><b>बिंदुसार</b><span>अशोक के पिता, जिन्होंने कथाओं के मुताबिक़ उन्हें नापसंद करते हुए भी बड़ी ज़िम्मेदारियाँ दीं</span></li><li><b>सुसीम</b><span>अशोक के सबसे बड़े भाई, जिन्हें कथाएँ असली युवराज बताती हैं</span></li><li><b>राधागुप्त</b><span>प्रधानमंत्री, जिन्होंने अशोकावदान के अनुसार सुसीम को धोखे से फँसाया</span></li><li><b>महिंद और संघमित्रा</b><span>अशोक और देवी की संतानें, जिन्हें श्रीलंकाई परंपरा बौद्ध धर्म को श्रीलंका ले जाने का श्रेय देती है</span></li><li><b>जेम्स प्रिंसेप (James Prinsep)</b><span>जिन्होंने 19वीं सदी में ब्राह्मी लिपि पढ़कर अशोक को फिर से इतिहास में लौटाया</span></li></ul></div></div>
     </div>
   </section>
-  <section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>आगे पढ़ें</h2></div><a class="more" href="/blog/">सभी लेख</a></div><div class="agrid"><a class="acard tall" href="/blog/sardar-patel-ekta-diwas/"><div class="ac-img"><img loading="lazy" src="/assets/covers/VCwjh0d5IpQ.webp" alt=""></div><div class="ac-body"><span class="ac-k">लेख · 5 मिनट</span><h3>565 रियासतें और एक भारत, सरदार पटेल ने देश कैसे जोड़ा</h3><p>आज़ादी के बाद 565 रियासतें भारत में कैसे मिलीं? सरदार पटेल, जूनागढ़, हैदराबाद और ‘लौह पुरुष’ बनने की पूरी कहानी पढ़िए।</p></div></a><a class="acard wide" href="/blog/kohinoor-curse/"><div class="ac-img"><img loading="lazy" src="/assets/yt/NLngE8kUPeY.webp" alt=""></div><div class="ac-body"><span class="ac-k">लेख · 7 मिनट</span><h3>कोहिनूर का श्राप, मर्द राजाओं पर सच या अफ़वाह</h3><p>कोहिनूर कई राजाओं के हाथ से गुज़रा। कोई गद्दी से हटा, किसी का कत्ल हुआ। श्राप वाली कहानी कहां से आई और उसका सच क्या है, यहां पढ़िए।</p></div></a><a class="acard tall" href="/blog/homi-bhabha-death/"><div class="ac-img"><img loading="lazy" src="/assets/covers/FHPSLQK89Tk.webp" alt=""></div><div class="ac-body"><span class="ac-k">लेख · 5 मिनट</span><h3>होमी भाभा की अनकही कहानी, परमाणु भारत के जनक</h3><p>एक बंगले में शुरू हुए संस्थान से अप्सरा रिएक्टर तक, और फिर मॉन्ट ब्लांक के विमान हादसे तक, होमी जहांगीर भाभा की पूरी कहानी।</p></div></a></div></div></section>
+  <section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>आगे पढ़ें</h2></div><a class="more" href="/blog/">सभी लेख</a></div><div class="agrid"><a class="acard tall" href="/blog/sardar-patel-ekta-diwas/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/VCwjh0d5IpQ.webp" srcset="/assets/s/360/covers/VCwjh0d5IpQ.webp 360w, /assets/covers/VCwjh0d5IpQ.webp 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">लेख · 5 मिनट</span><h3>565 रियासतें और एक भारत, सरदार पटेल ने देश कैसे जोड़ा</h3><p>आज़ादी के बाद 565 रियासतें भारत में कैसे मिलीं? सरदार पटेल, जूनागढ़, हैदराबाद और ‘लौह पुरुष’ बनने की पूरी कहानी पढ़िए।</p></div></a><a class="acard wide" href="/blog/kohinoor-curse/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/yt/NLngE8kUPeY.webp" srcset="/assets/s/360/yt/NLngE8kUPeY.webp 360w, /assets/yt/NLngE8kUPeY.webp 960w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">लेख · 7 मिनट</span><h3>कोहिनूर का श्राप, मर्द राजाओं पर सच या अफ़वाह</h3><p>कोहिनूर कई राजाओं के हाथ से गुज़रा। कोई गद्दी से हटा, किसी का कत्ल हुआ। श्राप वाली कहानी कहां से आई और उसका सच क्या है, यहां पढ़िए।</p></div></a><a class="acard tall" href="/blog/homi-bhabha-death/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/FHPSLQK89Tk.webp" srcset="/assets/s/360/covers/FHPSLQK89Tk.webp 360w, /assets/covers/FHPSLQK89Tk.webp 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">लेख · 5 मिनट</span><h3>होमी भाभा की अनकही कहानी, परमाणु भारत के जनक</h3><p>एक बंगले में शुरू हुए संस्थान से अप्सरा रिएक्टर तक, और फिर मॉन्ट ब्लांक के विमान हादसे तक, होमी जहांगीर भाभा की पूरी कहानी।</p></div></a></div></div></section>
 </main>
 
 <footer>
@@ -115,13 +250,13 @@
       <p>भारत के अनसुने सच. Indian history, science and mysteries in simple Hindi.</p>
     </div>
     <div class="f-col">
-      <h4>Watch</h4>
+      <h3>Watch</h3>
       <a href="https://www.youtube.com/@Gyaanoxa" target="_blank" rel="noopener">YouTube</a>
       <a href="https://www.youtube.com/@Gyaanoxa/shorts" target="_blank" rel="noopener">Shorts</a>
       <a href="https://www.instagram.com/gyaanoxa" target="_blank" rel="noopener">Instagram</a>
     </div>
     <div class="f-col">
-      <h4>Site</h4>
+      <h3>Site</h3>
       <a href="/#videos">Documentaries</a>
       <a href="/#series">Series</a>
       <a href="/#next">Coming next</a>
@@ -130,7 +265,7 @@
       <a href="/#about">About</a>
     </div>
     <div class="f-col">
-      <h4>Legal</h4>
+      <h3>Legal</h3>
       <a href="/privacy.html">Privacy Policy</a>
       <a href="/terms.html">Terms</a>
       <a href="/data-deletion.html">Data Deletion</a>
