@@ -2,9 +2,17 @@
 
 Run on the owner's PC:  python build/write_articles.py [--redo] [slug ...]   (no slug = every article not written yet;
 --redo writes them again even if they exist - the old file stays when Claude fails)
+
+The studio runs it by itself after writing a script:  write_articles.py --project <project folder> --publish
+- new projects get a slug in data/projects.json (series: first word of the English series title; single video: the
+  English keyword of its title), and <project>/website.json gets the article's link at once (used in descriptions)
+- a series is written when its full video's script exists (the parts use its facts); export_series runs first
+- --publish rebuilds the site and pushes it (commit as Gyaanoxa)
 Output: data/blog/<slug>.json, rendered to /blog/<slug>/ by build/blog.py.
 """
 import json
+import re
+import subprocess
 import sys
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -18,6 +26,8 @@ import core  # noqa: E402
 SER = {"ashoka": "20261030-0121-series-ashoka-from-fierce-king-to-righteous",
        "diwali": "20261103-1436-series-5-days-of-diwali-5-legends",
        "ajatashatru": "20261105-1429-series-ajatashatru-magadha-s-rebel-son"}
+REG = ROOT / "data" / "projects.json"     # projects added by the studio: {"series": {slug: folder}, "singles": {slug: folder}}
+SITE = "https://gyaanoxa.com"
 SINGLES = [
     ("kalinga-war", "20261023-0328-ashoka"),
     ("kohinoor-curse", "20261102-2228-koh-i-noor"),
@@ -29,15 +39,30 @@ SINGLES = [
 ]
 
 
+def registry():
+    try:
+        return json.loads(REG.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {"series": {}, "singles": {}}
+
+
+def all_series():
+    return {**SER, **registry()["series"]}
+
+
+def all_singles():
+    return SINGLES + [(k, v) for k, v in registry()["singles"].items() if k not in dict(SINGLES)]
+
+
 def jobs():
     out = []
-    for s, folder in SER.items():
+    for s, folder in all_series().items():
         d = OUT / folder
         n = len(json.loads((d / "series.json").read_text(encoding="utf-8"))["plan"]["episodes"])
         out.append({"slug": f"{s}-full-story", "dir": d / "full", "series": s, "part": 0, "of": n, "kind": "long"})
         for i in range(1, n + 1):
             out.append({"slug": f"{s}-part-{i}", "dir": d / f"part{i}", "series": s, "part": i, "of": n, "kind": "reel"})
-    for slug, folder in SINGLES:
+    for slug, folder in all_singles():
         out.append({"slug": slug, "dir": OUT / folder, "series": "", "part": 0, "of": 0, "kind": "long"})
     return out
 
@@ -142,12 +167,98 @@ def _run(j):
         return j["slug"], f"FAILED {str(e)[:200]}"
 
 
-REDO = "--redo" in sys.argv
+def slugify(t):
+    return re.sub(r"-+", "-", re.sub(r"[^a-z0-9]+", "-", (t or "").lower())).strip("-")[:60].rstrip("-")
 
-if __name__ == "__main__":
-    want = set(a for a in sys.argv[1:] if a != "--redo")
-    todo = [j for j in jobs() if not want or j["slug"] in want]
+
+def link(job, ok_only=True):
+    """<project>/website.json = the article's address (the studio puts it in descriptions and the pinned comment)."""
+    if ok_only and not (ROOT / "data" / "blog" / f"{job['slug']}.json").exists():
+        return
+    if job["dir"].exists():
+        (job["dir"] / "website.json").write_text(json.dumps({"article": f"{SITE}/blog/{job['slug']}/"}) + "\n",
+                                                 encoding="utf-8")
+
+
+def register(project):
+    """Give a studio project a place on the website; returns the jobs that belong to it."""
+    d = Path(project).resolve()
+    reg = registry()
+    if (d.parent / "series.json").exists():
+        folder = d.parent.name
+        slug = next((k for k, v in all_series().items() if v == folder), None)
+        if not slug:
+            plan = json.loads((d.parent / "series.json").read_text(encoding="utf-8"))["plan"]
+            name = (plan.get("series_title_en") or folder).split(":")[0]
+            slug = slugify(name.split()[0] if len(name.split()) == 1 or name.split()[0].isalpha() else name) or slugify(folder)
+            while slug in all_series():
+                slug += "-2"
+            reg["series"][slug] = folder
+        mine = [j for j in jobs_with(reg) if j["series"] == slug]
+    else:
+        slug = next((k for k, v in all_singles() if v == d.name), None)
+        if not slug:
+            sc = core.load_script(d / "script.json")
+            yt = sc.get("youtube", {})
+            t = yt.get("english_title") or (yt.get("titles") or [""])[0]
+            slug = slugify(t.split("|")[-1]) or slugify(sc.get("source", {}).get("title")) or slugify(d.name)
+            taken = {k for k, _ in all_singles()} | {f"{s}-full-story" for s in all_series()}
+            base, n = slug, 2
+            while slug in taken:
+                slug, n = f"{base}-{n}", n + 1
+            reg["singles"][slug] = d.name
+        mine = [j for j in jobs_with(reg) if j["slug"] == slug]
+    REG.write_text(json.dumps(reg, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    return slug, mine
+
+
+def jobs_with(reg):
+    REG.write_text(json.dumps(reg, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    return jobs()
+
+
+def publish():
+    """Rebuild the site and push it (only the website repo, as Gyaanoxa)."""
+    git = ["git", "-c", "user.name=Gyaanoxa", "-c", "user.email=351388292+gyaanoxa@users.noreply.github.com"]
+    subprocess.run([sys.executable, str(ROOT / "build" / "build.py")], cwd=ROOT, check=True)
+    subprocess.run(git + ["add", "-A"], cwd=ROOT, check=True)
+    if subprocess.run(git + ["diff", "--cached", "--quiet"], cwd=ROOT).returncode == 0:
+        print("publish: nothing changed")
+        return
+    subprocess.run(git + ["commit", "-q", "-m", "New articles from the studio"], cwd=ROOT, check=True)
+    subprocess.run(git + ["pull", "-q", "--rebase"], cwd=ROOT, check=True)
+    subprocess.run(git + ["push", "-q"], cwd=ROOT, check=True)
+    print("publish: pushed - live on gyaanoxa.com in about a minute")
+
+
+def run_all(todo):
     print(len(todo), "articles", flush=True)
     with ThreadPoolExecutor(3) as ex:
         for slug, res in ex.map(_run, todo):
             print(slug, res, flush=True)
+
+
+REDO = "--redo" in sys.argv
+
+if __name__ == "__main__":
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    if "--project" in sys.argv:
+        slug, mine = register(args[0])
+        for j in mine:                                   # the address is known now; the page follows soon
+            if Path(args[0]).resolve() == j["dir"].resolve():
+                link(j, ok_only=False)
+                print("link:", f"{SITE}/blog/{j['slug']}/", flush=True)
+        if mine and mine[0]["series"]:
+            src = mine[0]["dir"].parent
+            if not (src / "full" / "script.json").exists():
+                print("series: waiting for the full video's script")
+                sys.exit(0)
+            import export_series
+            export_series.main(slug, src)
+        run_all([j for j in mine if (j["dir"] / "script.json").exists()])
+    else:
+        run_all([j for j in jobs() if not args or j["slug"] in args])
+    for j in jobs():
+        link(j)
+    if "--publish" in sys.argv:
+        publish()
