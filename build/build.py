@@ -113,11 +113,12 @@ def doc_card(v, featured=False):
             f'        </a>')
 
 
-def short_card(v):
+def short_card(v, views=True):
     hi, _ = split_title(v["title"])
+    count = f'<span class="views notranslate">{fmt_views(v["views"])} views</span>' if views else ""
     return (f'        <a class="short" href="https://www.youtube.com/shorts/{e(v["id"])}" target="_blank" rel="noopener" '
             f'aria-label="{e(hi)}"><img loading="lazy" src="{pic(v)}" alt="" width="540" height="960">'
-            f'{PLAY}<span class="views notranslate">{fmt_views(v["views"])} views</span></a>')
+            f'{PLAY}{count}</a>')
 
 
 def fmt_views(n):
@@ -188,12 +189,18 @@ def main():
         </a>'''
     page = (ROOT / "index.html").read_text(encoding="utf-8")
     page = put(page, "docs", "\n".join(doc_card(v, i == 0) for i, v in enumerate(docs)) + "\n" + tile)
-    page = put(page, "latest", "\n".join(short_card(v) for v in shorts[:6]))
-    page = put(page, "top", "\n".join(short_card(v) for v in sorted(shorts, key=lambda v: -v["views"])[:6]))
+    show = site.get("show_views", False)        # view counts stay hidden until the channel is bigger
+    page = put(page, "latest", "\n".join(short_card(v, show) for v in shorts[:6]))
+    page = put(page, "top", "\n".join(short_card(v, show) for v in sorted(shorts, key=lambda v: -v["views"])[:6]))
     total = sum(v.get("views", 0) for v in allv)
     k = f"{total // 1000}K" if total >= 1000 else str(total)
     count = len(allv)
-    page = put(page, "stats", f'''        <div class="stat"><b>{k}<em>+</em></b><span>views so far</span></div>
+    n_art = len(list((ROOT / "data" / "blog").glob("*.json")))
+    first = (f'<div class="stat"><b>{k}<em>+</em></b><span>views so far</span></div>' if show else
+             f'<div class="stat"><b>{n_art}</b><span>stories to read</span></div>')
+    page = re.sub(r'<span class="visits notranslate"[^>]*>', '<span class="visits notranslate" hidden'
+                  + (' data-on' if show else '') + '>', page)
+    page = put(page, "stats", f'''        {first}
         <div class="stat"><b>{count}</b><span>videos &amp; Shorts</span></div>
         <div class="stat"><b>{site.get("series_count", 3)}</b><span>story series</span></div>
         <div class="stat"><b>7<em> PM</em></b><span>new Short every evening</span></div>''')

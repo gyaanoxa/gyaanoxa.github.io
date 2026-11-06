@@ -117,7 +117,7 @@
 
   // Total site visits from GoatCounter (shown only when the count loads)
   function visits() {
-    var el = document.querySelector(".visits");
+    var el = document.querySelector(".visits[data-on]");   // switched on by "show_views" in data/site.json
     if (!el || !window.fetch) return;
     fetch("https://gyaanoxa.goatcounter.com/counter/TOTAL.json").then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) {

@@ -115,7 +115,7 @@ QUIZ_JS = """
           if (i === a) { right++; b.classList.add('ok'); } else { b.classList.add('no'); item.querySelectorAll('.opt')[a].classList.add('ok'); }
           if (done === total) {
             var s = q.querySelector('.score');
-            s.textContent = right + ' / ' + total + (right === total ? ' — शानदार! 🎉' : right >= total - 1 ? ' — बहुत बढ़िया!' : ' — वीडियो देखकर फिर कोशिश करें');
+            s.textContent = right + ' / ' + total + (right === total ? '. शानदार! 🎉' : right >= total - 1 ? '. बहुत बढ़िया!' : '. वीडियो देखकर एक बार और कोशिश करें');
             s.hidden = false;
           }
         });
@@ -155,7 +155,7 @@ def series_page(d, public, index, all_series):
         watch = f'<a class="btn" href="https://www.youtube.com/watch?v={e(full["id"])}" target="_blank" rel="noopener"><svg><use href="#i-yt"/></svg>पूरी कहानी YouTube पर</a>'
     else:
         player = (f'<div class="player soon-box"><img src="{e(first_cover)}" alt="" width="540" height="960">'
-                  f'<div><b>पूरी कहानी — जल्द</b><span>{e(when(full.get("at"))) or "Coming soon"}</span></div></div>')
+                  f'<div><b>पूरी कहानी जल्द आ रही है</b><span>{e(when(full.get("at"))) or "Coming soon"}</span></div></div>')
         watch = '<a class="btn" href="https://www.youtube.com/@Gyaanoxa?sub_confirmation=1" target="_blank" rel="noopener"><svg><use href="#i-yt"/></svg>Subscribe करें</a>'
 
     chaps = ""
@@ -199,7 +199,7 @@ def series_page(d, public, index, all_series):
         reads = (f'  <section class="read-band">\n    <div class="wrap"><a class="rb" href="/blog/{slug}-full-story/">'
                  f'<div><p class="eyebrow">Read · {max(2, round(n / 180))} मिनट</p>'
                  f'<h2>{e(re.sub(r"[ ]*#[A-Za-z0-9_]+", "", a["title"]).split(" | ")[0])}</h2>'
-                 f'<p class="sub">पूरी कहानी एक लेख में — हर भाग, मुख्य तारीखें, किरदार और सवाल-जवाब। हर भाग का अलग लेख ऊपर कार्ड में।</p></div>'
+                 f'<p class="sub">सारे भाग एक ही लेख में, तारीखों और किरदारों के साथ। हर भाग का अलग लेख ऊपर के कार्ड में है।</p></div>'
                  f'<span class="btn">पूरा लेख पढ़ें →</span></a></div>\n  </section>\n')
     body = f"""  <section class="sp-hero">
     <div class="wrap sp-grid">
@@ -219,7 +219,7 @@ def series_page(d, public, index, all_series):
   <section>
     <div class="wrap">
       <div class="head"><div><p class="eyebrow">Episodes</p><h2>कहानी, भाग-दर-भाग</h2>
-      <p class="sub">One part every evening at 7 PM IST — then the whole story in one video.</p></div></div>
+      <p class="sub">One part every evening at 7 PM IST. After the last part, the whole story as one video.</p></div></div>
       <div class="parts">
 {chr(10).join(cards)}
       </div>
@@ -245,7 +245,7 @@ def series_page(d, public, index, all_series):
     <div class="wrap">
       <div class="quiz">
         <p class="eyebrow">Quiz</p><h2>कितना याद रहा?</h2>
-        <p class="sub">5 सवाल — हर जवाब इसी कहानी से।</p>
+        <p class="sub">5 सवाल। सारे जवाब इसी कहानी में हैं।</p>
         {quiz}
         <p class="score" hidden></p>
       </div>
@@ -308,7 +308,7 @@ def timeline_page(tl, public, index):
       <p class="crumbs"><a href="/">Gyaanoxa</a> › Timeline</p>
       <p class="eyebrow">Indian history timeline</p>
       <h1>इतिहास की टाइमलाइन</h1>
-      <p class="lead">Gyaanoxa की हर कहानी, सही समय पर — मगध के राजाओं से आज़ाद भारत तक। हर नई वीडियो के साथ यह टाइमलाइन बढ़ती है।</p>
+      <p class="lead">Gyaanoxa की हर कहानी अपने समय पर, मगध के राजाओं से आज़ाद भारत तक। हर नई वीडियो के साथ यह टाइमलाइन बढ़ती है।</p>
     </div>
   </section>
   <section>

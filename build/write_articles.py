@@ -67,6 +67,19 @@ def jobs():
     return out
 
 
+STYLE = """WRITE LIKE A HUMAN WRITER, NOT LIKE AN AI
+- Sound like a good Hindi magazine writer or a friend who loves history: plain, warm, specific. Mix short and
+  long sentences. Let paragraphs start in different ways.
+- NEVER use these filler habits: "सोचिए" / "ज़रा सोचिए" / "कल्पना कीजिए", "आइए जानते हैं", "दिलचस्प बात यह है",
+  "सवाल यह है कि", "एक बात साफ है", "यह कहानी हमें सिखाती/याद दिलाती है", "यह सिर्फ ... नहीं, बल्कि ...",
+  "कहानी यहीं खत्म नहीं होती", "असल में" at the start of sentences, "यहीं से" openers.
+- Use "यानी" at most twice in the whole article. No colons in headings; headings are short and plain
+  (like a newspaper), not "X: Y" and not questions every time.
+- No moral lessons or big summaries at the end of paragraphs. End on a concrete detail instead.
+- No rhetorical questions to the reader more than twice in the whole article.
+- No em dashes; use commas or full stops (।).
+"""
+
 PROMPT = """You write a blog article in natural, simple spoken HINDI (Devanagari) for the website of Gyaanoxa, a Hindi
 channel about little-known truths of Indian history. The article goes with one of our videos.
 
@@ -78,6 +91,8 @@ STRICT RULES
 - Names and numbers in digits (260 ईसा पूर्व, 1,00,000). English proper nouns may appear in brackets once, e.g. अशोक (Ashoka).
 - No mention of AI, prompts or "this article was written by". No links inside the text.
 - {length}
+
+{style}
 
 Return ONLY JSON:
 {{
@@ -141,7 +156,7 @@ def write(job):
         context = "THIS ARTICLE: the full story of this single video."
         length = ("1600-2200 words, 6-8 sections (background, the main story step by step, the people, what the sources "
                   "disagree on, legacy), 5 FAQ, 4-8 key dates, 3-6 people.")
-    prompt = PROMPT.format(length=length, context=context, source=source,
+    prompt = PROMPT.format(length=length, context=context, source=source, style=STYLE,
                            summary="\n".join(f"- {s}" for s in summary), narration=narration)
     data = core.ask_claude(prompt, log=lambda m: None,
                            validate=lambda d: isinstance(d, dict) and d.get("sections") and d.get("title"))
@@ -158,6 +173,52 @@ def write(job):
     out.write_text(json.dumps(data, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     words = sum(len(p.split()) for s in data["sections"] for p in s["paras"])
     return job["slug"], f"ok {words} words"
+
+
+HUMANIZE = """Below is a Hindi blog article as JSON. Rewrite ONLY the wording so it reads like a human writer
+wrote it. Keep every fact, name, number and date exactly as it is: do not add, drop or change any fact. Keep the
+same JSON keys and the same number of sections, paragraphs per section (you may merge or split a little), key_dates,
+faq, highlights, people and did_you_know items. key_dates dates stay identical.
+
+{style}
+Return ONLY the JSON with the same keys.
+
+ARTICLE
+{article}
+"""
+TEXT_KEYS = ("title", "description", "intro", "sections", "key_dates", "faq", "takeaway", "highlights", "people",
+             "did_you_know", "keywords")
+
+
+def numbers(x):
+    return set(re.findall(r"\d[\d,.]*", json.dumps(x, ensure_ascii=False)))
+
+
+def humanize(slug):
+    """A style-only rewrite of an existing article (no new facts: every number must already be in the old one)."""
+    f = ROOT / "data" / "blog" / f"{slug}.json"
+    old = json.loads(f.read_text(encoding="utf-8"))
+    part = {k: old[k] for k in TEXT_KEYS if k in old}
+    new = core.ask_claude(HUMANIZE.format(style=STYLE, article=json.dumps(part, ensure_ascii=False, indent=1)),
+                          log=lambda m: None,
+                          validate=lambda d: isinstance(d, dict) and d.get("sections") and d.get("title"))
+    extra = numbers(new) - numbers(part)
+    if extra:
+        return slug, f"KEPT OLD (new numbers {sorted(extra)[:5]})"
+    if len(new.get("key_dates", [])) != len(part.get("key_dates", [])) or \
+            [d[0] for d in new.get("key_dates", [])] != [d[0] for d in part.get("key_dates", [])]:
+        return slug, "KEPT OLD (key dates changed)"
+    old.update({k: new[k] for k in TEXT_KEYS if k in new})
+    f.write_text(json.dumps(old, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    t = json.dumps(new, ensure_ascii=False)
+    return slug, f"ok (सोचिए {t.count('सोचिए')}, यानी {t.count('यानी')})"
+
+
+def _human(slug):
+    try:
+        return humanize(slug)
+    except Exception as e:  # keep going with the others
+        return slug, f"FAILED {str(e)[:200]}"
 
 
 def _run(j):
@@ -242,6 +303,12 @@ REDO = "--redo" in sys.argv
 
 if __name__ == "__main__":
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    if "--humanize" in sys.argv:
+        names = args or sorted(f.stem for f in (ROOT / "data" / "blog").glob("*.json"))
+        with ThreadPoolExecutor(2) as ex:
+            for slug, res in ex.map(_human, names):
+                print(slug, res, flush=True)
+        sys.exit(0)
     if "--project" in sys.argv:
         slug, mine = register(args[0])
         for j in mine:                                   # the address is known now; the page follows soon

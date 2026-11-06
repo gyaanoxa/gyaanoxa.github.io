@@ -89,7 +89,7 @@ def article_page(a, arts, public, series, index):
         elif s:
             at = s["full"].get("at", "")
         player = (f'<div class="player soon-box"><img src="{e(img)}" alt="" width="540" height="960">'
-                  f'<div><b>वीडियो — जल्द</b><span>{e(when(at)) or "Coming soon"}</span></div></div>') if at or s else ""
+                  f'<div><b>वीडियो जल्द आ रहा है</b><span>{e(when(at)) or "Coming soon"}</span></div></div>') if at or s else ""
 
     crumbs = '<a href="/">Gyaanoxa</a> › <a href="/blog/">Blog</a>'
     badge = ""
@@ -164,7 +164,7 @@ def article_page(a, arts, public, series, index):
         {f'<div class="kd"><h2>मुख्य तारीखें</h2><ol class="vt">{dates}</ol></div>' if dates else ''}
         {f'<h2>अक्सर पूछे जाने वाले सवाल</h2><div class="faq">{faq}</div>' if faq else ''}
         <div class="takeaway"><b>आख़िर में</b><p>{e(a.get("takeaway", ""))}</p></div>
-        <p class="src">Source: <a href="{e(src.get("url", ""))}" target="_blank" rel="noopener">{e(src.get("title", ""))}</a> (Wikipedia) and the texts it cites, as researched for our video. Legends are told as legends.</p>
+        <p class="src">Source: <a href="{e(src.get("url", ""))}" target="_blank" rel="noopener">{e(src.get("title", ""))}</a> (Wikipedia) and the books it cites. Where a story is a legend, we say so.</p>
         {f'<div class="tags"><span>Tags</span>{tags}</div>' if tags else ''}
         <div class="actions">{yt}<a class="btn ghost" href="/blog/">सभी लेख</a></div>
         {pnav}
@@ -249,14 +249,14 @@ def index_page(arts, public, series, index):
     <div class="wrap">
       <p class="crumbs"><a href="/">Gyaanoxa</a> › Blog</p>
       <h1>पढ़िए पूरी कहानी</h1>
-      <p class="lead">हर वीडियो की कहानी, विस्तार से — वही तथ्य, वही स्रोत, साथ में मुख्य तारीखें, किरदार और सवाल-जवाब। सीरीज़ भाग-दर-भाग।</p>
+      <p class="lead">हर वीडियो की कहानी, थोड़ा और खुलकर। वही तथ्य और वही स्रोत, साथ में तारीखें, किरदार और लोगों के सवाल। सीरीज़ के लेख भाग के हिसाब से।</p>
       <div class="bstats"><span><b>{len(arts)}</b> लेख</span><span><b>{len(series)}</b> सीरीज़</span><span><b>{total}</b> मिनट पढ़ने को</span></div>
       <nav class="bjump">{jump}</nav>
     </div>
   </section>
   <section class="blog-list"><div class="wrap">{"".join(groups)}</div></section>"""
     ld = {"@context": "https://schema.org", "@type": "Blog", "name": "Gyaanoxa Blog", "url": f"{SITE}/blog/", "inLanguage": "hi"}
-    return page("Blog — पढ़िए पूरी कहानी | Gyaanoxa", "Gyaanoxa के हर वीडियो की कहानी विस्तार से: अशोक, अजातशत्रु, दिवाली, कोहिनूर और भारत के इतिहास के अनसुने सच।",
+    return page("Blog — पढ़िए पूरी कहानी | Gyaanoxa", "Gyaanoxa के हर वीडियो की कहानी विस्तार से। अशोक, अजातशत्रु, दिवाली, कोहिनूर और भारत के इतिहास के अनसुने सच।",
                 "/blog/", f"{SITE}/assets/og.jpg", body, ld, index)
 
 
