@@ -55,7 +55,7 @@ def main(slug, src):
         if vid:
             cover(d, vid)
         parts.append({"n": i, "title": clean(sc["shorts"].get("title")), "topic": ep.get("title") or ep.get("topic", ""),
-                      "hook": sc["reel_scenes"][0]["narration"], "short": vid, "at": when.get(i, "")})
+                      "hook": re.sub(r"^(सोचो|सोचिए|ज़रा सोचिए),\s*", "", sc["reel_scenes"][0]["narration"]), "short": vid, "at": when.get(i, "")})
     full = load(src / "full" / "script.json")
     yt = full["youtube"]
     meta = src / "full" / "render_meta.json"

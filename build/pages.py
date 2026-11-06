@@ -36,13 +36,19 @@ def small(url, width):
     return ("/" if url.startswith("/") else "") + out.relative_to(ROOT).as_posix()
 
 
+def ver(url):
+    """url?v=<file time>: a changed picture gets a new address, so browsers never show their old copy."""
+    f = ROOT / url.lstrip("/").split("?")[0]
+    return f"{url}?v={int(f.stat().st_mtime) % 10 ** 6}" if "?" not in url and f.exists() else url
+
+
 def srcset(url, width, sizes):
     """src + srcset + sizes for a card picture: the small copy, the original for big / sharp screens."""
     s = small(url, width)
     if s == url:
-        return f'src="{url}"'
+        return f'src="{ver(url)}"'
     full = Image_width(url)
-    return f'src="{s}" srcset="{s} {width}w, {url} {full}w" sizes="{sizes}"'
+    return f'src="{ver(s)}" srcset="{ver(s)} {width}w, {ver(url)} {full}w" sizes="{sizes}"'
 
 
 def Image_width(url):
@@ -308,7 +314,7 @@ def series_page(d, public, index, all_series):
     kw = [d["title_hi"], d["title_en"], f"{d['title_en']} in Hindi", f"{slug} history in Hindi", "भारत का इतिहास",
           "Indian history in Hindi", "Gyaanoxa"]
     head = f'  <meta name="keywords" content="{e(", ".join(kw))}">' + chr(10)
-    return page(f"{d['title_hi']} | {d['title_en']} — Gyaanoxa", desc, f"/{slug}/", image, body, ld, index, QUIZ_JS, head)
+    return page(f"{d['title_hi']} | {d['title_en']} | Gyaanoxa", desc, f"/{slug}/", image, body, ld, index, QUIZ_JS, head)
 
 
 def timeline_page(tl, public, index):
@@ -350,9 +356,9 @@ def timeline_page(tl, public, index):
   <section>
     <div class="wrap"><p class="eyebrow">Festivals</p><h2>त्योहारों की कहानियाँ</h2><div class="others">{"".join(fest)}</div></div>
   </section>"""
-    ld = {"@context": "https://schema.org", "@type": "ItemList", "name": "Indian history timeline — Gyaanoxa",
+    ld = {"@context": "https://schema.org", "@type": "ItemList", "name": "Indian history timeline | Gyaanoxa",
           "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": x["en"]} for i, x in enumerate(sorted(tl["events"], key=lambda v: v["year"]))]}
-    return page("इतिहास की टाइमलाइन | Indian History Timeline — Gyaanoxa",
+    return page("इतिहास की टाइमलाइन | Indian History Timeline | Gyaanoxa",
                 "Gyaanoxa's stories of Indian history on one timeline: Magadha, the Mauryas, Ashoka, the Koh-i-Noor, Sardar Patel and more.",
                 "/timeline/", f"{SITE}/assets/og.jpg", body, ld, index)
 

@@ -200,7 +200,7 @@ def article_page(a, arts, public, series, index):
             f'  <meta property="article:modified_time" content="{e(d0)}">\n'
             f'  <meta property="article:section" content="{e(s["title_en"] if s else "Indian History")}">\n'
             + "".join(f'  <meta property="article:tag" content="{e(k)}">\n' for k in a.get("keywords", [])))
-    return page(f"{a['title']} — Gyaanoxa", a.get("description", ""), f"/blog/{slug}/", SITE + img, body, ld, index, READ_JS, head, "article")
+    return page(f"{a['title']} | Gyaanoxa", a.get("description", ""), f"/blog/{slug}/", SITE + img, body, ld, index, READ_JS, head, "article")
 
 
 def card(a, public):
@@ -214,7 +214,7 @@ def card(a, public):
 
 def prow(a, public):
     img, _ = thumb(a, public)
-    return (f'<li><a class="prow" href="/blog/{e(a["slug"])}/"><img loading="lazy" src="{pages.small(img, 160)}" alt="" width="540" height="960">'
+    return (f'<li><a class="prow" href="/blog/{e(a["slug"])}/"><img loading="lazy" src="{pages.ver(pages.small(img, 160))}" alt="" width="540" height="960">'
             f'<div><span class="ac-k">भाग {a["part"]} · {max(2, round(words(a) / 180))} मिनट</span>'
             f'<h3>{e(head_title(a["title"]))}</h3></div></a></li>')
 
@@ -257,7 +257,7 @@ def index_page(arts, public, series, index):
   </section>
   <section class="blog-list"><div class="wrap">{"".join(groups)}</div></section>"""
     ld = {"@context": "https://schema.org", "@type": "Blog", "name": "Gyaanoxa Blog", "url": f"{SITE}/blog/", "inLanguage": "hi"}
-    return page("Blog — पढ़िए पूरी कहानी | Gyaanoxa", "Gyaanoxa के हर वीडियो की कहानी विस्तार से। अशोक, अजातशत्रु, दिवाली, कोहिनूर और भारत के इतिहास के अनसुने सच।",
+    return page("Blog: पढ़िए पूरी कहानी | Gyaanoxa", "Gyaanoxa के हर वीडियो की कहानी विस्तार से। अशोक, अजातशत्रु, दिवाली, कोहिनूर और भारत के इतिहास के अनसुने सच।",
                 "/blog/", f"{SITE}/assets/og.jpg", body, ld, index)
 
 

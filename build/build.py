@@ -20,7 +20,7 @@ from pathlib import Path
 from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from pages import srcset  # noqa: E402
+from pages import srcset, ver  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 CHANNEL = "UCFHg-SfAo30zWIBugVMwTaw"
@@ -190,10 +190,12 @@ def main():
     tile = '''        <a class="sub-tile" href="https://www.youtube.com/@Gyaanoxa?sub_confirmation=1" target="_blank" rel="noopener">
           <img src="assets/logo.webp" alt="" width="256" height="256">
           <h3>नई कहानी मिस न करें</h3>
-          <p>Subscribe on YouTube and get every new story — a Short every evening, a documentary every week.</p>
+          <p>Subscribe on YouTube for every new story. A Short every evening, a longer video every week.</p>
           <span class="btn sm"><svg><use href="#i-yt"/></svg>Subscribe</span>
         </a>'''
     page = (ROOT / "index.html").read_text(encoding="utf-8")
+    page = re.sub(r'src="(assets/s/\d+/covers/[\w-]+\.webp)(\?v=\d+)?"',   # the hero covers: newest picture
+                  lambda m: f'src="{ver(m.group(1))}"', page)
     page = put(page, "docs", "\n".join(doc_card(v, i == 0) for i, v in enumerate(docs)) + "\n" + tile)
     show = site.get("show_views", False)        # view counts stay hidden until the channel is bigger
     page = put(page, "latest", "\n".join(short_card(v, show) for v in shorts[:6]))
