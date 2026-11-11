@@ -90,6 +90,13 @@
    "label": "Rani Lakshmibai Jayanti",
    "title": "झांसी की रानी",
    "festival": true
+  },
+  {
+   "at": "2026-11-23T19:00:00+05:30",
+   "kind": "Special day",
+   "label": "Guru Nanak Jayanti",
+   "title": "गुरु नानक और बाबर",
+   "festival": true
   }
  ]
 }
