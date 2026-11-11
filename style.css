@@ -581,8 +581,7 @@ a.pcard:hover { color: var(--text); transform: translateY(-3px); border-color: r
 .art-grid { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 48px; align-items: start; max-width: 1180px; }
 .art { max-width: 760px; }
 .art .player { margin-bottom: 26px; }
-.art .player.tall { aspect-ratio: auto; max-width: 340px; }
-.art .player.tall .yt-facade img { aspect-ratio: 9 / 16; }
+.art .player.tall { aspect-ratio: 9 / 16; max-width: 340px; }
 .art-intro { font-size: 20px; line-height: 1.7; color: var(--text); margin-bottom: 8px; }
 .art h2 { font-family: "Baloo 2", var(--display); font-size: 28px; font-weight: 700; margin: 34px 0 10px; }
 .art p { font-size: 18px; line-height: 1.85; color: #dde0f4; margin: 0 0 16px; }
@@ -736,7 +735,7 @@ footer { padding: 28px 0 32px; margin-top: 10px; }
 .hl li { position: relative; padding-left: 26px; color: #e4e7f8; font-size: 16px; line-height: 1.5; }
 .hl li::before { content: ""; position: absolute; left: 4px; top: .55em; width: 9px; height: 9px; border-radius: 3px; background: var(--gold); transform: rotate(45deg); }
 .art-media .player { margin: 0; }
-.art-media .player.tall { max-width: 300px; margin-left: auto; aspect-ratio: auto; }
+.art-media .player.tall { max-width: 300px; margin-left: auto; aspect-ratio: 9 / 16; }
 .art-media .soon-box { grid-template-columns: 1fr; max-width: 300px; margin-left: auto; min-height: 0; }
 .art-media .soon-box img { aspect-ratio: 4 / 5; }
 .art-media .soon-box div { padding: 14px 18px; }

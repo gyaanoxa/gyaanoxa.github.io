@@ -3,6 +3,7 @@ name: Update videos from YouTube
 on:
   schedule:
     - cron: "17 */3 * * *"      # every 3 hours
+    - cron: "40 7,12,13 * * *"  # right after the 1 PM, 6 PM and 7 PM IST releases
   workflow_dispatch:            # "Run workflow" button
   push:
     paths: ["data/site.json", "build/**"]
