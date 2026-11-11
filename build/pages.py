@@ -42,13 +42,15 @@ def ver(url):
     return f"{url}?v={int(f.stat().st_mtime) % 10 ** 6}" if "?" not in url and f.exists() else url
 
 
-def srcset(url, width, sizes):
-    """src + srcset + sizes for a card picture: the small copy, the original for big / sharp screens."""
+def srcset(url, width, sizes, more=()):
+    """src + srcset + sizes for a card picture: the small copy, extra in-between widths (`more`, for phones with
+    sharp screens), the original for big screens."""
     s = small(url, width)
     if s == url:
         return f'src="{ver(url)}"'
     full = Image_width(url)
-    return f'src="{ver(s)}" srcset="{ver(s)} {width}w, {ver(url)} {full}w" sizes="{sizes}"'
+    mid = "".join(f"{ver(m)} {w}w, " for w in more if w < full and (m := small(url, w)) != url)
+    return f'src="{ver(s)}" srcset="{ver(s)} {width}w, {mid}{ver(url)} {full}w" sizes="{sizes}"'
 
 
 def Image_width(url):

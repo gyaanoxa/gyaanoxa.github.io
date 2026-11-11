@@ -20,7 +20,7 @@ from pathlib import Path
 from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from pages import no_dashes, srcset, ver  # noqa: E402
+from pages import no_dashes, small, srcset, ver  # noqa: E402
 import links  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -170,7 +170,7 @@ def doc_card(v, featured=False):
              if featured else "")
     return (f'        <div class="card">\n'
             f'          <a class="thumb" href="{yt}" target="_blank" rel="noopener" aria-label="{e(hi)}"><img loading="lazy" '
-            f'{srcset(pic(v), 480, SIZES_DOC if not featured else SIZES_FEAT)} alt="" width="960" height="540">'
+            f'{srcset(pic(v), 480, SIZES_DOC if not featured else SIZES_FEAT, (720,) if featured else ())} alt="" width="960" height="540">'
             f'{NEW if v.get("new") else ""}{PLAY}</a>\n'
             f'          <div class="meta"><h3><a href="{yt}" target="_blank" rel="noopener">{e(hi)}</a></h3>'
             f'<span class="en">{e(en or "Full video")}</span>'
@@ -327,8 +327,12 @@ def main():
           <span class="btn sm"><svg><use href="#i-yt"/></svg>Subscribe</span>
         </a>'''
     page = (ROOT / "index.html").read_text(encoding="utf-8")
-    page = re.sub(r'src="(assets/s/\d+/covers/[\w-]+\.webp)(\?v=\d+)?"',   # the hero covers: newest picture
-                  lambda m: f'src="{ver(m.group(1))}"', page)
+    def hero_cover(m):                            # the hero covers: newest picture, a 240 px copy for phones
+        big = f"assets/s/360/covers/{m.group(1)}.webp"
+        sm = small(f"assets/covers/{m.group(1)}.webp", 240)
+        return (f'src="{ver(big)}" srcset="{ver(sm)} 240w, {ver(big)} 360w" '
+                f'sizes="(max-width: 760px) 160px, 262px"')
+    page = re.sub(r'src="assets/s/360/covers/([\w-]+)\.webp(\?v=\d+)?"( srcset="[^"]*" sizes="[^"]*")?', hero_cover, page)
     page = put(page, "docs", "\n".join(doc_card(v, i == 0) for i, v in enumerate(docs)) + "\n" + tile)
     show = site.get("show_views", False)        # view counts stay hidden until the channel is bigger
     page = put(page, "latest", "\n".join(short_card(v, show) for v in shorts[:5]))
