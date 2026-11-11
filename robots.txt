@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /build/
+Disallow: /data/
+
+Sitemap: https://gyaanoxa.com/sitemap.xml

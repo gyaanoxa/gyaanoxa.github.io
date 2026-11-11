@@ -1,0 +1,102 @@
+{
+ "show_views": false,
+ "_help": "hide: video ids never shown on the site. featured: the big documentary card (default: the newest video). upcoming: the Coming next cards; past ones drop off by themselves.",
+ "hide": [
+  "xyRO3PPT9FM",
+  "Lv1F7E8bwps",
+  "Ek6L6iGcaAg",
+  "dwZHcxnd15Y"
+ ],
+ "featured": "-P0QL2Vdu6g",
+ "series_count": 3,
+ "upcoming": [
+  {
+   "at": "2026-11-06T19:00:00+05:30",
+   "kind": "Short",
+   "label": "Diwali · Part 3",
+   "title": "छोटी दिवाली: 16,000 कैदी राजकुमारियाँ?"
+  },
+  {
+   "at": "2026-11-07T18:00:00+05:30",
+   "kind": "Full video",
+   "label": "Diwali",
+   "title": "धनतेरस से भाई दूज तक: दिवाली के 5 दिन की कथा"
+  },
+  {
+   "at": "2026-11-07T19:00:00+05:30",
+   "kind": "Short",
+   "label": "Diwali · Part 4",
+   "title": "दिवाली की रात, 3 धर्मों की 3 कहानियाँ"
+  },
+  {
+   "at": "2026-11-08T19:00:00+05:30",
+   "kind": "Short",
+   "label": "Diwali · Part 5",
+   "title": "गोवर्धन पूजा: 7 दिन छोटी उंगली पर पहाड़?"
+  },
+  {
+   "at": "2026-11-09T19:00:00+05:30",
+   "kind": "Short",
+   "label": "Diwali · Part 6",
+   "title": "भाई दूज का यमराज से क्या रिश्ता?"
+  },
+  {
+   "at": "2026-11-10T19:00:00+05:30",
+   "kind": "Short",
+   "label": "Ajatashatru · Part 1",
+   "title": "पिता को कैद कर मगध की गद्दी?"
+  },
+  {
+   "at": "2026-11-11T19:00:00+05:30",
+   "kind": "Short",
+   "label": "Ajatashatru · Part 2",
+   "title": "एक हाथी और हार के लिए जंग?"
+  },
+  {
+   "at": "2026-11-12T13:00:00+05:30",
+   "kind": "Festival",
+   "label": "Chhath Puja",
+   "title": "छठ पूजा की कहानी",
+   "festival": true
+  },
+  {
+   "at": "2026-11-12T19:00:00+05:30",
+   "kind": "Short",
+   "label": "Ajatashatru · Part 3",
+   "title": "दो ग्रंथ, दो अजातशत्रु"
+  },
+  {
+   "at": "2026-11-13T19:00:00+05:30",
+   "kind": "Short",
+   "label": "Ajatashatru · Part 4",
+   "title": "बुद्ध की शरण में अजातशत्रु"
+  },
+  {
+   "at": "2026-11-14T13:00:00+05:30",
+   "kind": "Special day",
+   "label": "Birsa Munda Jayanti",
+   "title": "धरती आबा बिरसा मुंडा",
+   "festival": true
+  },
+  {
+   "at": "2026-11-14T18:00:00+05:30",
+   "kind": "Full video",
+   "label": "Ajatashatru",
+   "title": "पिता को कैद कर राजा बना, फिर बुद्ध की शरण?"
+  },
+  {
+   "at": "2026-11-18T13:00:00+05:30",
+   "kind": "Special day",
+   "label": "Rani Lakshmibai Jayanti",
+   "title": "झांसी की रानी",
+   "festival": true
+  },
+  {
+   "at": "2026-11-23T13:00:00+05:30",
+   "kind": "Festival",
+   "label": "Guru Nanak Jayanti",
+   "title": "गुरु नानक देव जी और देव दीपावली",
+   "festival": true
+  }
+ ]
+}
