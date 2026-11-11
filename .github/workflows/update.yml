@@ -18,8 +18,8 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - run: pip install pillow==11.0.0
@@ -31,4 +31,13 @@ jobs:
           git add -A
           if git diff --cached --quiet; then echo "no changes"; exit 0; fi
           git commit -m "Update videos from YouTube"
-          git push
+          for i in 1 2 3 4; do
+            git push && exit 0
+            echo "push failed, retry $i"; sleep $((i * 15))
+            git fetch origin main && git reset --hard origin/main   # someone else pushed: start from the newest site
+            python build/build.py
+            git add -A
+            git diff --cached --quiet && exit 0
+            git commit -m "Update videos from YouTube"
+          done
+          exit 1
