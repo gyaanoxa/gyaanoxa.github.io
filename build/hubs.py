@@ -8,7 +8,7 @@ import re
 from datetime import datetime, timezone
 from email.utils import format_datetime
 
-from pages import SITE, ROOT, e, page
+from pages import SITE, ROOT, art_url, e, page
 
 FB = "https://www.facebook.com/gyaanoxa"
 YT = "https://www.youtube.com/@Gyaanoxa"
@@ -344,7 +344,7 @@ def clean(t):
 def footer_lists(all_series):
     series = "\n".join(f'      <a href="/{e(s["slug"])}/">{e(s["title_en"])}</a>' for s in all_series)
     series += '\n      <a href="/series/">All series →</a>'
-    reads = "\n".join(f'      <a href="/blog/{e(a["slug"])}/">{e(clean(a["title"]))}</a>' for a in articles()[:5])
+    reads = "\n".join(f'      <a href="{art_url(a["slug"])}">{e(clean(a["title"]))}</a>' for a in articles()[:5])
     reads += '\n      <a href="/blog/">All articles →</a>'
     return series, reads
 
@@ -356,7 +356,7 @@ def feed():
             when = datetime.fromisoformat((a.get("written") or "")[:10]).replace(tzinfo=timezone.utc)
         except ValueError:
             when = datetime.now(timezone.utc)
-        url = f"{SITE}/blog/{a['slug']}/"
+        url = f"{SITE}{art_url(a['slug'])}"
         items.append(f"<item><title>{e(clean(a['title']))}</title><link>{url}</link><guid>{url}</guid>"
                      f"<pubDate>{format_datetime(when)}</pubDate><description>{e(a.get('description', ''))}</description></item>")
     (ROOT / "feed.xml").write_text(

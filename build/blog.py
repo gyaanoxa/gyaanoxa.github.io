@@ -9,7 +9,7 @@ from pathlib import Path
 
 import links
 import pages
-from pages import SITE, e, page, when
+from pages import SITE, art_path, art_url, e, page, redirect_page, when
 
 ROOT = Path(__file__).resolve().parent.parent
 SERIES_ORDER = {"ajatashatru": 0, "ashoka": 1, "diwali": 2}
@@ -72,6 +72,23 @@ def thumb(a, public):
     return (f"/assets/{a['series']}-art.webp", "tall") if a.get("series") and art.exists() else ("/assets/og.jpg", "wide")
 
 
+def upcoming_at(slug):
+    """When a single story's video goes live, from site.json "upcoming" ("article" given, or the label's first word
+    starts the slug, e.g. "Chhath Puja" -> chhath-puja-ki-kahani). Past times are ignored."""
+    from datetime import datetime, timezone
+    site = json.loads((ROOT / "data" / "site.json").read_text(encoding="utf-8"))
+    now = datetime.now(timezone.utc)
+    for u in site.get("upcoming", []):
+        name = u.get("label", "").split("·")[0].strip().lower().split(" ")[0]
+        if (u.get("article") == slug or (name and slug.startswith(name + "-"))) and "Part" not in u.get("label", ""):
+            try:
+                if datetime.fromisoformat(u["at"]) > now:
+                    return u["at"]
+            except (KeyError, ValueError):
+                pass
+    return ""
+
+
 def article_page(a, arts, public, series, index):
     slug = a["slug"]
     s = series.get(a.get("series") or "")
@@ -90,8 +107,15 @@ def article_page(a, arts, public, series, index):
             at = next((p.get("at") for p in s["parts"] if p["n"] == a["part"]), "")
         elif s:
             at = s["full"].get("at", "")
-        player = (f'<div class="player soon-box"><img src="{e(img)}" alt="" width="540" height="960">'
-                  f'<div><b>Video coming soon</b><span>{e(when(at)) or "Coming soon"}</span></div></div>') if at or s else ""
+        else:                   # a single story: its release time from "Coming next" (data/site.json upcoming)
+            at = upcoming_at(slug)
+        if at or s:
+            player = (f'<div class="player soon-box"><img src="{e(img)}" alt="" width="540" height="960">'
+                      f'<div><b>Video coming soon</b><span>{e(when(at)) or "Coming soon"}</span></div></div>')
+        else:                   # no video planned: the story's own picture, never an empty space
+            player = (f'<div class="player {"tall" if shape == "tall" else ""} still"><img src="{e(img)}" alt="'
+                      f'{e(head_title(a["title"]))}" width="{540 if shape == "tall" else 960}" '
+                      f'height="{960 if shape == "tall" else 540}"></div>')
 
     crumbs = '<a href="/">Gyaanoxa</a> › <a href="/blog/">Blog</a>'
     badge = ""
@@ -118,7 +142,7 @@ def article_page(a, arts, public, series, index):
     if s:
         base = s["slug"]
         items = [(f"{base}-full-story", "Full story")] + [(f"{base}-part-{p['n']}", f"Part {p['n']}: {p['topic']}") for p in s["parts"]]
-        nav = "".join(f'<li{" class=on" if k == slug else ""}><a href="/blog/{e(k)}/">{e(t)}</a></li>'
+        nav = "".join(f'<li{" class=on" if k == slug else ""}><a href="{art_url(k)}">{e(t)}</a></li>'
                       for k, t in items if k in arts)
         nav = f'<aside class="side-box series-nav"><p class="eyebrow">Articles in this series</p><ol>{nav}</ol><a class="more" href="/{e(base)}/">Series page · Quiz</a></aside>'
         keys = [k for k, _ in items if k in arts]
@@ -128,9 +152,9 @@ def article_page(a, arts, public, series, index):
             prev_k, next_k = f"{base}-part-{a['part'] - 1}", f"{base}-part-{a['part'] + 1}"
             pn = ""
             if prev_k in arts:
-                pn += f'<a class="pn" href="/blog/{e(prev_k)}/"><small>← Previous part</small><b>{e(head_title(arts[prev_k]["title"]))}</b></a>'
+                pn += f'<a class="pn" href="{art_url(prev_k)}"><small>← Previous part</small><b>{e(head_title(arts[prev_k]["title"]))}</b></a>'
             if next_k in arts:
-                pn += f'<a class="pn next" href="/blog/{e(next_k)}/"><small>Next part →</small><b>{e(head_title(arts[next_k]["title"]))}</b></a>'
+                pn += f'<a class="pn next" href="{art_url(next_k)}"><small>Next part →</small><b>{e(head_title(arts[next_k]["title"]))}</b></a>'
             pnav = f'<div class="prevnext">{pn}</div>' if pn else ""
     if not related:
         others = [x for x in arts.values() if x["slug"] != slug and (x.get("part") or 0) == 0]
@@ -177,15 +201,15 @@ def article_page(a, arts, public, series, index):
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "BlogPosting", "headline": head_title(a["title"])[:110], "description": a.get("description", ""),
          "inLanguage": "hi", "datePublished": a.get("written", ""), "keywords": ", ".join(a.get("keywords", [])),
-         "image": SITE + img, "url": f"{SITE}/blog/{slug}/",
-         "dateModified": a.get("written", ""), "mainEntityOfPage": f"{SITE}/blog/{slug}/", "wordCount": words(a),
+         "image": SITE + img, "url": f"{SITE}{art_url(slug)}",
+         "dateModified": a.get("written", ""), "mainEntityOfPage": f"{SITE}{art_url(slug)}", "wordCount": words(a),
          "articleSection": s["title_en"] if s else "Indian History",
          "about": [{"@type": "Person", "name": n} for n, _ in a.get("people", [])][:6] or None,
          "author": {"@type": "Organization", "name": "Gyaanoxa", "url": SITE},
          "publisher": {"@type": "Organization", "name": "Gyaanoxa", "logo": {"@type": "ImageObject", "url": SITE + "/assets/icon-512.png"}}},
         {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q["q"], "acceptedAnswer": {"@type": "Answer", "text": q["a"]}}
                                             for q in a.get("faq", [])]}]}
-    trail = [("Gyaanoxa", "/"), ("Blog", "/blog/")] + ([(s["title_en"], f"/{s['slug']}/")] if s else []) +         [(head_title(a["title"]), f"/blog/{slug}/")]
+    trail = [("Gyaanoxa", "/"), ("Blog", "/blog/")] + ([(s["title_en"], f"/{s['slug']}/")] if s else []) +         [(head_title(a["title"]), art_url(slug))]
     ld["@graph"].append({"@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": i, "name": n, "item": SITE + u} for i, (n, u) in enumerate(trail, 1)]})
     if not ld["@graph"][0]["about"]:
@@ -201,13 +225,13 @@ def article_page(a, arts, public, series, index):
             f'  <meta property="article:modified_time" content="{e(d0)}">\n'
             f'  <meta property="article:section" content="{e(s["title_en"] if s else "Indian History")}">\n'
             + "".join(f'  <meta property="article:tag" content="{e(k)}">\n' for k in a.get("keywords", [])))
-    return page(f"{a['title']} | Gyaanoxa", a.get("description", ""), f"/blog/{slug}/", SITE + img, body, ld, index, READ_JS, head, "article")
+    return page(f"{a['title']} | Gyaanoxa", a.get("description", ""), art_url(slug), SITE + img, body, ld, index, READ_JS, head, "article")
 
 
 def card(a, public):
     img, shape = thumb(a, public)
     label = (f"Part {a['part']} of {a['of']}" if a.get("part") else "Full story") if a.get("series") else "Article"
-    return (f'<a class="acard {shape}" href="/blog/{e(a["slug"])}/"><div class="ac-img"><img loading="lazy" '
+    return (f'<a class="acard {shape}" href="{art_url(a["slug"])}"><div class="ac-img"><img loading="lazy" '
             f'{pages.srcset(img, 360, "(max-width: 760px) 40vw, 360px")} alt=""></div>'
             f'<div class="ac-body"><span class="ac-k">{e(label)} · {max(2, round(words(a) / 180))} min read</span>'
             f'<h3>{e(head_title(a["title"]))}</h3><p>{e(a.get("description", ""))}</p></div></a>')
@@ -215,14 +239,14 @@ def card(a, public):
 
 def prow(a, public):
     img, _ = thumb(a, public)
-    return (f'<li><a class="prow" href="/blog/{e(a["slug"])}/"><img loading="lazy" src="{pages.ver(pages.small(img, 160))}" alt="" width="540" height="960">'
+    return (f'<li><a class="prow" href="{art_url(a["slug"])}"><img loading="lazy" src="{pages.ver(pages.small(img, 160))}" alt="" width="540" height="960">'
             f'<div><span class="ac-k">Part {a["part"]} · {max(2, round(words(a) / 180))} min read</span>'
             f'<h3>{e(head_title(a["title"]))}</h3></div></a></li>')
 
 
 def feature(a, public, s):
     img, _ = thumb(a, public)
-    return (f'<a class="bfeat-card" href="/blog/{e(a["slug"])}/"><img loading="lazy" src="{e(img)}" alt="">'
+    return (f'<a class="bfeat-card" href="{art_url(a["slug"])}"><img loading="lazy" src="{e(img)}" alt="">'
             f'<div class="bf-body"><span class="chip">Full story · {max(2, round(words(a) / 180))} min read</span>'
             f'<h3>{e(head_title(a["title"]))}</h3><p>{e(a.get("description", ""))}</p>'
             f'<span class="bf-go">Read the full story →</span></div></a>')
@@ -278,9 +302,13 @@ def build(public):
     series = series_info()
     urls = []
     for a in arts.values():
-        out = ROOT / "blog" / a["slug"] / "index.html"
+        out = ROOT / "blog" / art_path(a["slug"]) / "index.html"
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(article_page(a, arts, public, series, index), encoding="utf-8", newline="\n")
-        urls.append(f"/blog/{a['slug']}/")
+        urls.append(art_url(a["slug"]))
+        if art_path(a["slug"]) != a["slug"]:        # the old address (already in video descriptions) redirects
+            old = ROOT / "blog" / a["slug"] / "index.html"
+            old.parent.mkdir(parents=True, exist_ok=True)
+            old.write_text(redirect_page(art_url(a["slug"])), encoding="utf-8", newline="\n")
     (ROOT / "blog" / "index.html").write_text(index_page(arts, public, series, index), encoding="utf-8", newline="\n")
     return ["/blog/"] + urls

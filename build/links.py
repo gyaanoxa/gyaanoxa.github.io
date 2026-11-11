@@ -44,8 +44,9 @@ def articles_by_video():
 
 
 def article(vid):
+    from pages import art_url
     slug = articles_by_video().get(vid or "")
-    return f"/blog/{slug}/" if slug else ""
+    return art_url(slug) if slug else ""
 
 
 def yt_url(vid, short):

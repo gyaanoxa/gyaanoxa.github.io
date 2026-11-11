@@ -74,6 +74,31 @@ def shell(index):
     return svg, header, footer, head_links
 
 
+_PATHS = {}
+
+
+def art_path(key):
+    """The public address of an article: its "path" (descriptive, for search) or, for older data, its key."""
+    if key not in _PATHS:
+        f = ROOT / "data" / "blog" / f"{key}.json"
+        _PATHS[key] = (json.loads(f.read_text(encoding="utf-8")).get("path") or key) if f.exists() else key
+    return _PATHS[key]
+
+
+def art_url(key):
+    return f"/blog/{art_path(key)}/"
+
+
+def redirect_page(new_url):
+    """A tiny page at an article's old address that sends visitors and Google to the new one."""
+    full = SITE + new_url
+    return (f'<!doctype html>\n<html lang="hi"><head><meta charset="utf-8"><title>Gyaanoxa</title>'
+            f'<link rel="canonical" href="{full}"><meta name="robots" content="noindex, follow">'
+            f'<meta http-equiv="refresh" content="0; url={new_url}">'
+            f'<script>location.replace("{new_url}" + location.hash)</script></head>'
+            f'<body><p>This story has moved: <a href="{new_url}">{full}</a></p></body></html>\n')
+
+
 def no_dashes(s):
     """The site never shows long dashes (they read like machine writing): "a — b" -> "a, b", "300–250" -> "300-250"."""
     s = re.sub(r"(\d)\s*[–—]\s*(\d)", r"\1-\2", s)
@@ -227,7 +252,7 @@ def series_page(d, public, index, all_series):
             cov = f"/assets/parts/{slug}-part-{p['n']}.webp"
         img = (f'<img loading="lazy" src="{cov}" alt="" width="540" height="960">' if cov else f'<span class="pc-n">{p["n"]}</span>') +             ('<span class="play"><svg><use href="#i-play"/></svg></span>' if live else "")
         short_url = f"https://www.youtube.com/shorts/{e(p['short'])}"
-        art = f"/blog/{slug}-part-{p['n']}/" if (bdir / f"{slug}-part-{p['n']}.json").exists() else ""
+        art = art_url(f"{slug}-part-{p['n']}") if (bdir / f"{slug}-part-{p['n']}.json").exists() else ""
         import links as L
         links = (f'<a class="pc-s live" href="{short_url}" target="_blank" rel="noopener">▶ Watch</a>' if live
                  else f'<span class="pc-s">🕒 {e(when(p.get("at")) or "Soon")}</span>') + \
@@ -252,7 +277,7 @@ def series_page(d, public, index, all_series):
     if fs.exists():
         a = json.loads(fs.read_text(encoding="utf-8"))
         n = len(" ".join([a.get("intro", "")] + [x for sec in a["sections"] for x in sec["paras"]]).split())
-        reads = (f'  <section class="read-band">\n    <div class="wrap"><a class="rb" href="/blog/{slug}-full-story/">'
+        reads = (f'  <section class="read-band">\n    <div class="wrap"><a class="rb" href="{art_url(slug + '-full-story')}">'
                  f'<div><p class="eyebrow">Read · {max(2, round(n / 180))} min</p>'
                  f'<h2>{e(re.sub(r"[ ]*#[A-Za-z0-9_]+", "", a["title"]).split(" | ")[0])}</h2>'
                  f'<p class="sub">Every part in one article, with dates and the people in the story. Each part also has its own article in the cards above.</p></div>'

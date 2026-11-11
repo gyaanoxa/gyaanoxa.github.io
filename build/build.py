@@ -20,7 +20,7 @@ from pathlib import Path
 from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from pages import no_dashes, small, srcset, ver  # noqa: E402
+from pages import art_url, no_dashes, small, srcset, ver  # noqa: E402
 import links  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -205,7 +205,7 @@ def upcoming_article(u):
     ("Ajatashatru · Part 2" -> ajatashatru-part-2, a full video -> <series>-full-story, "Chhath Puja" -> chhath-*)."""
     blog = ROOT / "data" / "blog"
     if u.get("article"):
-        return f"/blog/{u['article']}/" if (blog / f"{u['article']}.json").exists() else ""
+        return art_url(u["article"]) if (blog / f"{u['article']}.json").exists() else ""
     name = u.get("label", "").split("·")[0].strip().lower().split(" ")[0]
     part = re.search(r"Part (\d+)", u.get("label", ""))
     if part:
@@ -214,7 +214,7 @@ def upcoming_article(u):
         slug = f"{name}-full-story"
     else:
         slug = next((f.stem for f in sorted(blog.glob(f"{name}*.json"))), "")
-    return f"/blog/{slug}/" if slug and (blog / f"{slug}.json").exists() else ""
+    return art_url(slug) if slug and (blog / f"{slug}.json").exists() else ""
 
 
 def upcoming_cards(items, now, limit=8):
@@ -248,7 +248,7 @@ def page_videos(public):
         a = json.loads(f.read_text(encoding="utf-8"))
         v = public.get(a.get("video") or "")
         if v:
-            out[f"/blog/{a['slug']}/"] = (v, a.get("description", ""))
+            out[art_url(a["slug"])] = (v, a.get("description", ""))
     return out
 
 
