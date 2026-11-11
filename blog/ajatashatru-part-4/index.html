@@ -40,24 +40,9 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="alternate" type="application/rss+xml" title="Gyaanoxa" href="/feed.xml">
+  <link rel="preload" href="/assets/lockup-300.webp" as="image" fetchpriority="high">
   <link rel="preload" href="/assets/fonts/Baloo2-800-devanagari.woff2" as="font" type="font/woff2" crossorigin>
   <style>@font-face {
-font-family: 'Baloo 2';
-font-style: normal;
-font-weight: 500;
-font-display: swap;
-src: url(/assets/fonts/Baloo2-500-devanagari.woff2) format('woff2');
-unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
-}
-@font-face {
-font-family: 'Baloo 2';
-font-style: normal;
-font-weight: 500;
-font-display: swap;
-src: url(/assets/fonts/Baloo2-500-latin.woff2) format('woff2');
-unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
 font-family: 'Baloo 2';
 font-style: normal;
 font-weight: 600;
@@ -71,22 +56,6 @@ font-style: normal;
 font-weight: 600;
 font-display: swap;
 src: url(/assets/fonts/Baloo2-600-latin.woff2) format('woff2');
-unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-font-family: 'Baloo 2';
-font-style: normal;
-font-weight: 700;
-font-display: swap;
-src: url(/assets/fonts/Baloo2-700-devanagari.woff2) format('woff2');
-unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
-}
-@font-face {
-font-family: 'Baloo 2';
-font-style: normal;
-font-weight: 700;
-font-display: swap;
-src: url(/assets/fonts/Baloo2-700-latin.woff2) format('woff2');
 unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
@@ -119,22 +88,6 @@ font-style: normal;
 font-weight: 400;
 font-display: swap;
 src: url(/assets/fonts/Mukta-400-latin.woff2) format('woff2');
-unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-font-family: 'Mukta';
-font-style: normal;
-font-weight: 500;
-font-display: swap;
-src: url(/assets/fonts/Mukta-500-devanagari.woff2) format('woff2');
-unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
-}
-@font-face {
-font-family: 'Mukta';
-font-style: normal;
-font-weight: 500;
-font-display: swap;
-src: url(/assets/fonts/Mukta-500-latin.woff2) format('woff2');
 unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
@@ -195,7 +148,7 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
 
 <header class="top">
   <div class="wrap">
-    <a class="brand notranslate" translate="no" href="/" aria-label="Gyaanoxa home"><img src="/assets/lockup-small.webp" alt="Gyaanoxa" width="440" height="130"></a>
+    <a class="brand notranslate" translate="no" href="/" aria-label="Gyaanoxa home"><img src="/assets/lockup-300.webp" alt="Gyaanoxa" width="300" height="89" fetchpriority="high"></a>
     <nav class="nav">
       <a href="/videos/">Videos</a>
       <a href="/shorts/">Shorts</a>
@@ -253,13 +206,13 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
       <div class="art-side"><nav class="side-box toc"><p class="eyebrow">In this article</p><ol><li><a href="#s1">पिता की कैद से शुरुआत</a></li><li><a href="#s2">6 गुरु और एक बेचैन राजा</a></li><li><a href="#s3">बुद्ध के सामने बैठा राजा</a></li><li><a href="#s4">शरण, स्तूप और पहली बौद्ध सभा</a></li><li><a href="#s5">जैन और बौद्ध ग्रंथों के दो अजातशत्रु</a></li><li><a href="#s6">यह बदलाव क्यों मायने रखता है</a></li></ol></nav><aside class="side-box series-nav"><p class="eyebrow">Articles in this series</p><ol><li><a href="/blog/ajatashatru-full-story/">Full story</a></li><li><a href="/blog/ajatashatru-part-1/">Part 1: बाप बिम्बिसार को कैद कर मगध की गद्दी?</a></li><li><a href="/blog/ajatashatru-part-2/">Part 2: एक हाथी और हार के लिए वैशाली से जंग?</a></li><li><a href="/blog/ajatashatru-part-3/">Part 3: 8 पत्नियाँ या 500? दो ग्रंथ, दो अजातशत्रु</a></li><li class=on><a href="/blog/ajatashatru-part-4/">Part 4: 6 गुरुओं के बाद बुद्ध की शरण में अजातशत्रु</a></li></ol><a class="more" href="/ajatashatru/">Series page · Quiz</a></aside><div class="side-box people"><p class="eyebrow">People in this story</p><ul><li><b>अजातशत्रु</b><span>मगध का राजा, जिसने पिता को कैद किया और बाद में, बौद्ध ग्रंथों के अनुसार, बुद्ध की शरण में गया</span></li><li><b>बिंबिसार</b><span>हर्यंक वंश के राजा और अजातशत्रु के पिता, जिन्हें उनके बेटे ने कैद कर लिया</span></li><li><b>गौतम बुद्ध</b><span>वे गुरु जिनसे मिलकर, बौद्ध ग्रंथों के अनुसार, अजातशत्रु को अपनी गलतियों का एहसास हुआ</span></li><li><b>देवदत्त</b><span>जिससे अजातशत्रु की नज़दीकी को बौद्ध ग्रंथ उसकी एक बड़ी गलती मानते हैं</span></li><li><b>महावीर</b><span>अजातशत्रु के समकालीन, जिन्हें जैन ग्रंथों के अनुसार वह सबसे ऊँचा सम्मान देता था</span></li></ul></div></div>
     </div>
   </section>
-  <section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>More stories</h2></div><a class="more" href="/blog/">All articles</a></div><div class="agrid"><a class="acard tall" href="/blog/ajatashatru-full-story/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/4oD8PRXpxCc.webp?v=380929" srcset="/assets/s/360/covers/4oD8PRXpxCc.webp?v=380929 360w, /assets/covers/4oD8PRXpxCc.webp?v=380929 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">Full story · 11 min read</span><h3>पिता को कैद करने वाला राजा बुद्ध के आगे क्यों झुका?</h3><p>मगध के बागी बेटे अजातशत्रु की कहानी। पिता बिम्बिसार की कैद, वैशाली का युद्ध, जैन और बौद्ध ग्रंथों के दो अलग रूप और बुद्ध के सामने पछतावा।</p></div></a><a class="acard tall" href="/blog/ajatashatru-part-1/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/4oD8PRXpxCc.webp?v=380929" srcset="/assets/s/360/covers/4oD8PRXpxCc.webp?v=380929 360w, /assets/covers/4oD8PRXpxCc.webp?v=380929 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">Part 1 of 4 · 5 min read</span><h3>पिता को कैद कर गद्दी छीनने वाला अजातशत्रु</h3><p>राजा बिम्बिसार ने जिस बेटे की घायल उंगली खुद चूसी, उसी बेटे ने उन्हें कैद करके मगध छीन लिया। अजातशत्रु के जन्म और कुणिक नाम के पीछे की अनसुनी कहानी।</p></div></a><a class="acard tall" href="/blog/ajatashatru-part-2/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/226GpmdlGW4.webp?v=380929" srcset="/assets/s/360/covers/226GpmdlGW4.webp?v=380929 360w, /assets/covers/226GpmdlGW4.webp?v=380929 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">Part 2 of 4 · 5 min read</span><h3>एक हाथी और एक हार के लिए वैशाली से जंग?</h3><p>जैन ग्रंथों के मुताबिक अजातशत्रु ने वैशाली से जंग एक हाथी और एक दिव्य हार के लिए लड़ी थी। पढ़िए सेचनक हाथी, चेटक के तीरों और रथ-मूसल की पूरी कहानी।</p></div></a></div></div></section>
+  <section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>More stories</h2></div><a class="more" href="/blog/">All articles</a></div><div class="agrid"><a class="acard tall" href="/blog/ajatashatru-full-story/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/4oD8PRXpxCc.webp?v=377147" srcset="/assets/s/360/covers/4oD8PRXpxCc.webp?v=377147 360w, /assets/covers/4oD8PRXpxCc.webp?v=377147 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">Full story · 11 min read</span><h3>पिता को कैद करने वाला राजा बुद्ध के आगे क्यों झुका?</h3><p>मगध के बागी बेटे अजातशत्रु की कहानी। पिता बिम्बिसार की कैद, वैशाली का युद्ध, जैन और बौद्ध ग्रंथों के दो अलग रूप और बुद्ध के सामने पछतावा।</p></div></a><a class="acard tall" href="/blog/ajatashatru-part-1/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/4oD8PRXpxCc.webp?v=377147" srcset="/assets/s/360/covers/4oD8PRXpxCc.webp?v=377147 360w, /assets/covers/4oD8PRXpxCc.webp?v=377147 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">Part 1 of 4 · 5 min read</span><h3>पिता को कैद कर गद्दी छीनने वाला अजातशत्रु</h3><p>राजा बिम्बिसार ने जिस बेटे की घायल उंगली खुद चूसी, उसी बेटे ने उन्हें कैद करके मगध छीन लिया। अजातशत्रु के जन्म और कुणिक नाम के पीछे की अनसुनी कहानी।</p></div></a><a class="acard tall" href="/blog/ajatashatru-part-2/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/226GpmdlGW4.webp?v=377147" srcset="/assets/s/360/covers/226GpmdlGW4.webp?v=377147 360w, /assets/covers/226GpmdlGW4.webp?v=377147 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">Part 2 of 4 · 5 min read</span><h3>एक हाथी और एक हार के लिए वैशाली से जंग?</h3><p>जैन ग्रंथों के मुताबिक अजातशत्रु ने वैशाली से जंग एक हाथी और एक दिव्य हार के लिए लड़ी थी। पढ़िए सेचनक हाथी, चेटक के तीरों और रथ-मूसल की पूरी कहानी।</p></div></a></div></div></section>
 </main>
 
 <footer>
   <div class="wrap">
     <div class="f-brand">
-      <a class="brand notranslate" translate="no" href="/"><img src="/assets/lockup-small.webp" alt="Gyaanoxa" width="440" height="130"></a>
+      <a class="brand notranslate" translate="no" href="/"><img src="/assets/lockup-300.webp" alt="Gyaanoxa" width="300" height="89" loading="lazy"></a>
       <p>भारत के अनसुने सच. True stories from Indian history, festivals and old mysteries, told in simple Hindi with the sources named.</p>
       <p class="f-when">New Short every evening at 7 PM IST. Festival stories a day before the festival.</p>
       <div class="f-social">

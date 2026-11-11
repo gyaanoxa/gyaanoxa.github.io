@@ -39,24 +39,9 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="alternate" type="application/rss+xml" title="Gyaanoxa" href="/feed.xml">
+  <link rel="preload" href="/assets/lockup-300.webp" as="image" fetchpriority="high">
   <link rel="preload" href="/assets/fonts/Baloo2-800-devanagari.woff2" as="font" type="font/woff2" crossorigin>
   <style>@font-face {
-font-family: 'Baloo 2';
-font-style: normal;
-font-weight: 500;
-font-display: swap;
-src: url(/assets/fonts/Baloo2-500-devanagari.woff2) format('woff2');
-unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
-}
-@font-face {
-font-family: 'Baloo 2';
-font-style: normal;
-font-weight: 500;
-font-display: swap;
-src: url(/assets/fonts/Baloo2-500-latin.woff2) format('woff2');
-unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
 font-family: 'Baloo 2';
 font-style: normal;
 font-weight: 600;
@@ -70,22 +55,6 @@ font-style: normal;
 font-weight: 600;
 font-display: swap;
 src: url(/assets/fonts/Baloo2-600-latin.woff2) format('woff2');
-unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-font-family: 'Baloo 2';
-font-style: normal;
-font-weight: 700;
-font-display: swap;
-src: url(/assets/fonts/Baloo2-700-devanagari.woff2) format('woff2');
-unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
-}
-@font-face {
-font-family: 'Baloo 2';
-font-style: normal;
-font-weight: 700;
-font-display: swap;
-src: url(/assets/fonts/Baloo2-700-latin.woff2) format('woff2');
 unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
@@ -118,22 +87,6 @@ font-style: normal;
 font-weight: 400;
 font-display: swap;
 src: url(/assets/fonts/Mukta-400-latin.woff2) format('woff2');
-unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-font-family: 'Mukta';
-font-style: normal;
-font-weight: 500;
-font-display: swap;
-src: url(/assets/fonts/Mukta-500-devanagari.woff2) format('woff2');
-unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
-}
-@font-face {
-font-family: 'Mukta';
-font-style: normal;
-font-weight: 500;
-font-display: swap;
-src: url(/assets/fonts/Mukta-500-latin.woff2) format('woff2');
 unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
@@ -194,7 +147,7 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
 
 <header class="top">
   <div class="wrap">
-    <a class="brand notranslate" translate="no" href="/" aria-label="Gyaanoxa home"><img src="/assets/lockup-small.webp" alt="Gyaanoxa" width="440" height="130"></a>
+    <a class="brand notranslate" translate="no" href="/" aria-label="Gyaanoxa home"><img src="/assets/lockup-300.webp" alt="Gyaanoxa" width="300" height="89" fetchpriority="high"></a>
     <nav class="nav">
       <a href="/videos/">Videos</a>
       <a href="/shorts/">Shorts</a>
@@ -252,13 +205,13 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
       <div class="art-side"><nav class="side-box toc"><p class="eyebrow">In this article</p><ol><li><a href="#s1">पूरब का प्राचीन पर्व</a></li><li><a href="#s2">सूर्य देव और छठी मैया</a></li><li><a href="#s3">चार दिन, तीन रातें</a></li><li><a href="#s4">महाभारत में कुंती की पूजा</a></li><li><a href="#s5">द्रौपदी और नगड़ी का झरना</a></li><li><a href="#s6">सीता, लव-कुश और राजा प्रियव्रत</a></li><li><a href="#s7">ठेकुआ और सात्विक प्रसाद</a></li><li><a href="#s8">कई कहानियाँ, एक पर्व</a></li></ol></nav><div class="side-box people"><p class="eyebrow">People in this story</p><ul><li><b>छठी मैया</b><span>प्रकृति का छठा रूप और सूर्य की बहन मानी जाने वाली देवी, जिनकी पूजा छठ में होती है</span></li><li><b>कुंती</b><span>महाभारत परंपरा के अनुसार लाक्षागृह से बचने के बाद छठ पूजा करने वाली पांडवों की माँ</span></li><li><b>कर्ण</b><span>सूर्य और कुंती के पुत्र, जिनके जन्म को कुंती की छठ पूजा से जोड़ा जाता है</span></li><li><b>द्रौपदी</b><span>कहा जाता है कि उन्होंने कुरुक्षेत्र युद्ध में पांडवों की जीत के लिए यह पूजा की</span></li><li><b>माता सीता</b><span>रामायण परंपरा के अनुसार छठ पूजा के बाद लव और कुश की माँ बनीं</span></li><li><b>राजा प्रियव्रत</b><span>किंवदंती के अनुसार छठी मैया ने इनके मृत जन्मे पुत्र को जीवन लौटाया</span></li></ul></div></div>
     </div>
   </section>
-  <section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>More stories</h2></div><a class="more" href="/blog/">All articles</a></div><div class="agrid"><a class="acard tall" href="/blog/sardar-patel-ekta-diwas/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/VCwjh0d5IpQ.webp?v=380929" srcset="/assets/s/360/covers/VCwjh0d5IpQ.webp?v=380929 360w, /assets/covers/VCwjh0d5IpQ.webp?v=380929 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">Article · 5 min read</span><h3>565 रियासतें और एक भारत, सरदार पटेल ने देश कैसे जोड़ा</h3><p>आज़ादी के बाद 565 रियासतें भारत में कैसे मिलीं? सरदार पटेल, जूनागढ़, हैदराबाद और ‘लौह पुरुष’ बनने की पूरी कहानी पढ़िए।</p></div></a><a class="acard wide" href="/blog/kohinoor-curse/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/yt/NLngE8kUPeY.webp?v=380929" srcset="/assets/s/360/yt/NLngE8kUPeY.webp?v=380929 360w, /assets/yt/NLngE8kUPeY.webp?v=380929 960w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">Article · 7 min read</span><h3>कोहिनूर का श्राप, मर्द राजाओं पर सच या अफ़वाह</h3><p>कोहिनूर कई राजाओं के हाथ से गुज़रा। कोई गद्दी से हटा, किसी का कत्ल हुआ। श्राप वाली कहानी कहां से आई और उसका सच क्या है, यहां पढ़िए।</p></div></a><a class="acard wide" href="/blog/kalinga-war/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/yt/7EpfoUi1pk8.webp?v=380929" srcset="/assets/s/360/yt/7EpfoUi1pk8.webp?v=380929 360w, /assets/yt/7EpfoUi1pk8.webp?v=380929 960w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">Article · 7 min read</span><h3>सम्राट अशोक की असली कहानी, जिसे इतिहास भूल गया था</h3><p>चंडाशोक से धम्म के सम्राट तक, कलिंग युद्ध, 99 भाइयों की कथा और वो सच जो अशोक के अपने शिलालेख बताते हैं। पढ़िए अशोक की पूरी कहानी।</p></div></a></div></div></section>
+  <section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>More stories</h2></div><a class="more" href="/blog/">All articles</a></div><div class="agrid"><a class="acard tall" href="/blog/sardar-patel-ekta-diwas/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/VCwjh0d5IpQ.webp?v=982184" srcset="/assets/s/360/covers/VCwjh0d5IpQ.webp?v=982184 360w, /assets/covers/VCwjh0d5IpQ.webp?v=906738 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">Article · 5 min read</span><h3>565 रियासतें और एक भारत, सरदार पटेल ने देश कैसे जोड़ा</h3><p>आज़ादी के बाद 565 रियासतें भारत में कैसे मिलीं? सरदार पटेल, जूनागढ़, हैदराबाद और ‘लौह पुरुष’ बनने की पूरी कहानी पढ़िए।</p></div></a><a class="acard wide" href="/blog/kohinoor-curse/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/yt/NLngE8kUPeY.webp?v=982184" srcset="/assets/s/360/yt/NLngE8kUPeY.webp?v=982184 360w, /assets/yt/NLngE8kUPeY.webp?v=906754 960w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">Article · 7 min read</span><h3>कोहिनूर का श्राप, मर्द राजाओं पर सच या अफ़वाह</h3><p>कोहिनूर कई राजाओं के हाथ से गुज़रा। कोई गद्दी से हटा, किसी का कत्ल हुआ। श्राप वाली कहानी कहां से आई और उसका सच क्या है, यहां पढ़िए।</p></div></a><a class="acard wide" href="/blog/kalinga-war/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/yt/7EpfoUi1pk8.webp?v=982184" srcset="/assets/s/360/yt/7EpfoUi1pk8.webp?v=982184 360w, /assets/yt/7EpfoUi1pk8.webp?v=906755 960w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">Article · 7 min read</span><h3>सम्राट अशोक की असली कहानी, जिसे इतिहास भूल गया था</h3><p>चंडाशोक से धम्म के सम्राट तक, कलिंग युद्ध, 99 भाइयों की कथा और वो सच जो अशोक के अपने शिलालेख बताते हैं। पढ़िए अशोक की पूरी कहानी।</p></div></a></div></div></section>
 </main>
 
 <footer>
   <div class="wrap">
     <div class="f-brand">
-      <a class="brand notranslate" translate="no" href="/"><img src="/assets/lockup-small.webp" alt="Gyaanoxa" width="440" height="130"></a>
+      <a class="brand notranslate" translate="no" href="/"><img src="/assets/lockup-300.webp" alt="Gyaanoxa" width="300" height="89" loading="lazy"></a>
       <p>भारत के अनसुने सच. True stories from Indian history, festivals and old mysteries, told in simple Hindi with the sources named.</p>
       <p class="f-when">New Short every evening at 7 PM IST. Festival stories a day before the festival.</p>
       <div class="f-social">

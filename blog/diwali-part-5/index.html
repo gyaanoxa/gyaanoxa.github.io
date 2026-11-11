@@ -46,24 +46,9 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="alternate" type="application/rss+xml" title="Gyaanoxa" href="/feed.xml">
+  <link rel="preload" href="/assets/lockup-300.webp" as="image" fetchpriority="high">
   <link rel="preload" href="/assets/fonts/Baloo2-800-devanagari.woff2" as="font" type="font/woff2" crossorigin>
   <style>@font-face {
-font-family: 'Baloo 2';
-font-style: normal;
-font-weight: 500;
-font-display: swap;
-src: url(/assets/fonts/Baloo2-500-devanagari.woff2) format('woff2');
-unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
-}
-@font-face {
-font-family: 'Baloo 2';
-font-style: normal;
-font-weight: 500;
-font-display: swap;
-src: url(/assets/fonts/Baloo2-500-latin.woff2) format('woff2');
-unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
 font-family: 'Baloo 2';
 font-style: normal;
 font-weight: 600;
@@ -77,22 +62,6 @@ font-style: normal;
 font-weight: 600;
 font-display: swap;
 src: url(/assets/fonts/Baloo2-600-latin.woff2) format('woff2');
-unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-font-family: 'Baloo 2';
-font-style: normal;
-font-weight: 700;
-font-display: swap;
-src: url(/assets/fonts/Baloo2-700-devanagari.woff2) format('woff2');
-unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
-}
-@font-face {
-font-family: 'Baloo 2';
-font-style: normal;
-font-weight: 700;
-font-display: swap;
-src: url(/assets/fonts/Baloo2-700-latin.woff2) format('woff2');
 unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
@@ -125,22 +94,6 @@ font-style: normal;
 font-weight: 400;
 font-display: swap;
 src: url(/assets/fonts/Mukta-400-latin.woff2) format('woff2');
-unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-font-family: 'Mukta';
-font-style: normal;
-font-weight: 500;
-font-display: swap;
-src: url(/assets/fonts/Mukta-500-devanagari.woff2) format('woff2');
-unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
-}
-@font-face {
-font-family: 'Mukta';
-font-style: normal;
-font-weight: 500;
-font-display: swap;
-src: url(/assets/fonts/Mukta-500-latin.woff2) format('woff2');
 unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
@@ -201,7 +154,7 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
 
 <header class="top">
   <div class="wrap">
-    <a class="brand notranslate" translate="no" href="/" aria-label="Gyaanoxa home"><img src="/assets/lockup-small.webp" alt="Gyaanoxa" width="440" height="130"></a>
+    <a class="brand notranslate" translate="no" href="/" aria-label="Gyaanoxa home"><img src="/assets/lockup-300.webp" alt="Gyaanoxa" width="300" height="89" fetchpriority="high"></a>
     <nav class="nav">
       <a href="/videos/">Videos</a>
       <a href="/shorts/">Shorts</a>
@@ -259,13 +212,13 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
       <div class="art-side"><nav class="side-box toc"><p class="eyebrow">In this article</p><ol><li><a href="#s1">दीयों की कतार का चौथा दिन</a></li><li><a href="#s2">जब कृष्ण ने इंद्र की पूजा रुकवा दी</a></li><li><a href="#s3">सात दिन का तूफ़ान और एक छोटी उंगली</a></li><li><a href="#s4">अन्नकूट और छप्पन भोग</a></li><li><a href="#s5">कथा और इतिहास को कैसे पढ़ें</a></li><li><a href="#s6">3500 से ज़्यादा पकवानों वाला गिनीज़ रिकॉर्ड</a></li></ol></nav><aside class="side-box series-nav"><p class="eyebrow">Articles in this series</p><ol><li><a href="/blog/diwali-full-story/">Full story</a></li><li><a href="/blog/diwali-part-1/">Part 1: दिवाली 1 रात की नहीं, 5 दिन की क्यों?</a></li><li><a href="/blog/diwali-part-2/">Part 2: धनतेरस: जब यमराज सोने के ढेर पर बैठे रहे</a></li><li><a href="/blog/diwali-part-3/">Part 3: 16,000 राजकुमारियों को किसने छुड़ाया?</a></li><li><a href="/blog/diwali-part-4/">Part 4: एक रात, 3 धर्म: दिवाली की असली कहानियाँ</a></li><li class=on><a href="/blog/diwali-part-5/">Part 5: 7 दिन तक छोटी उंगली पर पूरा पहाड़?</a></li><li><a href="/blog/diwali-part-6/">Part 6: यमराज और उनकी बहन से जुड़ा है भाई दूज?</a></li></ol><a class="more" href="/diwali/">Series page · Quiz</a></aside><div class="side-box people"><p class="eyebrow">People in this story</p><ul><li><b>कृष्ण (Krishna)</b><span>जिन्होंने ब्रजवासियों से इंद्र की पूजा रुकवाई और कथा के अनुसार गोवर्धन पहाड़ उठाया</span></li><li><b>इंद्र (Indra)</b><span>देवताओं के राजा, जिन्होंने ग़ुस्से में सात दिन तक तूफ़ान भेजा और आख़िर में हार मान ली</span></li><li><b>ब्रज के लोग</b><span>जो पहले इंद्र को पूजते थे और जिनके लिए ये पूरी कथा घटी</span></li></ul></div></div>
     </div>
   </section>
-  <section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>More stories</h2></div><a class="more" href="/blog/">All articles</a></div><div class="agrid"><a class="acard tall" href="/blog/diwali-part-6/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/QdVTF5TYX7M.webp?v=380929" srcset="/assets/s/360/covers/QdVTF5TYX7M.webp?v=380929 360w, /assets/covers/QdVTF5TYX7M.webp?v=380929 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">Part 6 of 6 · 4 min read</span><h3>यमराज की बहन से जुड़ा है भाई दूज</h3><p>भाई दूज को यम द्वितीया क्यों कहा जाता है? यमराज-यमुना और कृष्ण-सुभद्रा की कथाएँ, चंदामामा वाली रस्म और 1905 में टैगोर के लाल धागे की कहानी।</p></div></a><a class="acard wide" href="/blog/diwali-full-story/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/yt/BH2EUKl7P4U.webp?v=380929" srcset="/assets/s/360/yt/BH2EUKl7P4U.webp?v=380929 360w, /assets/yt/BH2EUKl7P4U.webp?v=380929 960w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">Full story · 11 min read</span><h3>दिवाली के 5 दिन, 5 कहानियाँ</h3><p>दिवाली पूरे 5 दिन चलती है। धनतेरस से भाई दूज तक हर दिन की अपनी कहानी है, जिसमें यमराज, कृष्ण, महावीर और टैगोर तक आते हैं।</p></div></a><a class="acard tall" href="/blog/diwali-part-1/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/F3zm63ftvVE.webp?v=380929" srcset="/assets/s/360/covers/F3zm63ftvVE.webp?v=380929 360w, /assets/covers/F3zm63ftvVE.webp?v=380929 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">Part 1 of 6 · 5 min read</span><h3>दिवाली एक रात की नहीं, 5 दिन की क्यों</h3><p>कहते हैं दिवाली एक रात का त्योहार है, फिर भी ये 5 दिन चलता है। धनतेरस से भाई दूज तक का पूरा हिसाब, और सम्राट हर्ष के नाटक में मिला दिवाली का पुराना नाम।</p></div></a></div></div></section>
+  <section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>More stories</h2></div><a class="more" href="/blog/">All articles</a></div><div class="agrid"><a class="acard tall" href="/blog/diwali-part-6/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/QdVTF5TYX7M.webp?v=986963" srcset="/assets/s/360/covers/QdVTF5TYX7M.webp?v=986963 360w, /assets/covers/QdVTF5TYX7M.webp?v=986940 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">Part 6 of 6 · 4 min read</span><h3>यमराज की बहन से जुड़ा है भाई दूज</h3><p>भाई दूज को यम द्वितीया क्यों कहा जाता है? यमराज-यमुना और कृष्ण-सुभद्रा की कथाएँ, चंदामामा वाली रस्म और 1905 में टैगोर के लाल धागे की कहानी।</p></div></a><a class="acard wide" href="/blog/diwali-full-story/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/yt/BH2EUKl7P4U.webp?v=217907" srcset="/assets/s/360/yt/BH2EUKl7P4U.webp?v=217907 360w, /assets/yt/BH2EUKl7P4U.webp?v=217907 960w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">Full story · 11 min read</span><h3>दिवाली के 5 दिन, 5 कहानियाँ</h3><p>दिवाली पूरे 5 दिन चलती है। धनतेरस से भाई दूज तक हर दिन की अपनी कहानी है, जिसमें यमराज, कृष्ण, महावीर और टैगोर तक आते हैं।</p></div></a><a class="acard tall" href="/blog/diwali-part-1/"><div class="ac-img"><img loading="lazy" src="/assets/s/360/covers/F3zm63ftvVE.webp?v=986962" srcset="/assets/s/360/covers/F3zm63ftvVE.webp?v=986962 360w, /assets/covers/F3zm63ftvVE.webp?v=986939 540w" sizes="(max-width: 760px) 40vw, 360px" alt=""></div><div class="ac-body"><span class="ac-k">Part 1 of 6 · 5 min read</span><h3>दिवाली एक रात की नहीं, 5 दिन की क्यों</h3><p>कहते हैं दिवाली एक रात का त्योहार है, फिर भी ये 5 दिन चलता है। धनतेरस से भाई दूज तक का पूरा हिसाब, और सम्राट हर्ष के नाटक में मिला दिवाली का पुराना नाम।</p></div></a></div></div></section>
 </main>
 
 <footer>
   <div class="wrap">
     <div class="f-brand">
-      <a class="brand notranslate" translate="no" href="/"><img src="/assets/lockup-small.webp" alt="Gyaanoxa" width="440" height="130"></a>
+      <a class="brand notranslate" translate="no" href="/"><img src="/assets/lockup-300.webp" alt="Gyaanoxa" width="300" height="89" loading="lazy"></a>
       <p>भारत के अनसुने सच. True stories from Indian history, festivals and old mysteries, told in simple Hindi with the sources named.</p>
       <p class="f-when">New Short every evening at 7 PM IST. Festival stories a day before the festival.</p>
       <div class="f-social">

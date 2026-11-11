@@ -321,7 +321,7 @@ def main():
     feat = next((v for v in longs if v["id"] == site.get("featured")), None) or (longs[0] if longs else None)
     docs = ([feat] if feat else []) + [v for v in longs if v is not feat][:4]
     tile = '''        <a class="sub-tile" href="https://www.youtube.com/@Gyaanoxa?sub_confirmation=1" target="_blank" rel="noopener">
-          <img src="assets/logo.webp" alt="" width="256" height="256">
+          <img src="assets/logo-128.webp" alt="" width="128" height="128" loading="lazy">
           <h3>Never miss a story</h3>
           <p>Subscribe on YouTube for every new story. A Short every evening, a longer video every week.</p>
           <span class="btn sm"><svg><use href="#i-yt"/></svg>Subscribe</span>
