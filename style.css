@@ -181,7 +181,7 @@ h2 { font-size: clamp(30px, 3.6vw, 42px); }
 .card .en { color: var(--dim); font-size: 15px; }
 
 /* ---------- series ---------- */
-.series { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.series { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
 .s-card {
   position: relative; display: flex; flex-direction: column; overflow: hidden;
   border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); color: var(--text);

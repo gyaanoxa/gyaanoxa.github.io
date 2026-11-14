@@ -368,7 +368,7 @@ def feed():
 def build(longs, shorts, upcoming, doc_card, short_card, show, counts):
     index = (ROOT / "index.html").read_text(encoding="utf-8")
     all_series = [json.loads(f.read_text(encoding="utf-8")) for f in sorted((ROOT / "data" / "series").glob("*.json"))]
-    order = {"ajatashatru": 0, "ashoka": 1, "diwali": 2}
+    order = {"bindusara": 0, "ajatashatru": 1, "ashoka": 2, "diwali": 3}
     all_series.sort(key=lambda s: order.get(s["slug"], 9))
     pages = {"videos": videos_page(longs, doc_card, index), "shorts": shorts_page(shorts, short_card, show, index),
              "series": series_page(index, all_series), "coming-next": next_page(upcoming, index),
