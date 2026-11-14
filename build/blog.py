@@ -252,9 +252,26 @@ def feature(a, public, s):
             f'<span class="bf-go">Read the full story →</span></div></a>')
 
 
+def series_date(s):
+    """When a series started (its Part 1), for newest-first lists."""
+    return min((p.get("at") or "" for p in s.get("parts", [])), default="") or (s.get("full") or {}).get("at", "")
+
+
+def story_date(a, public):
+    """When a single story came out (or comes out): its video's YouTube date, else its release time, else written."""
+    for vid in (a.get("short"), a.get("video")):
+        if vid and vid in public and public[vid].get("published"):
+            return public[vid]["published"]
+    return upcoming_at(a["slug"])[:10] or a.get("written", "")
+
+
+def newest_series(series):
+    return sorted(series, key=lambda k: series_date(series[k]), reverse=True)
+
+
 def index_page(arts, public, series, index):
     groups = []
-    for sl in sorted(series, key=lambda k: SERIES_ORDER.get(k, 9)):
+    for sl in newest_series(series):
         s = series[sl]
         full = arts.get(f"{sl}-full-story")
         parts = [arts[k] for k in [f"{sl}-part-{p['n']}" for p in s["parts"]] if k in arts]
@@ -264,13 +281,13 @@ def index_page(arts, public, series, index):
         groups.append(f'<div class="bgroup" id="{e(sl)}"><div class="head"><div><p class="eyebrow">Series · {len(s["parts"])} parts</p>'
                       f'<h2>{e(s["title_hi"])}</h2></div><a class="more" href="/{e(sl)}/">Series page · Quiz</a></div>'
                       f'<div class="bfeat">{feature(full, public, s) if full else ""}{lst}</div></div>')
-    singles = [a for a in arts.values() if not a.get("series")]
+    singles = sorted((a for a in arts.values() if not a.get("series")), key=lambda a: story_date(a, public), reverse=True)
     if singles:
         groups.append('<div class="bgroup" id="stories"><div class="head"><div><p class="eyebrow">Stories</p><h2>Single stories</h2></div></div>'
                       f'<div class="agrid singles">{"".join(card(a, public) for a in singles)}</div></div>')
     total = sum(max(2, round(words(a) / 180)) for a in arts.values())
     jump = "".join(f'<a href="#{e(sl)}">{e(series[sl]["title_hi"].split(":")[0])}</a>'
-                   for sl in sorted(series, key=lambda k: SERIES_ORDER.get(k, 9))) + '<a href="#stories">Single stories</a>'
+                   for sl in newest_series(series)) + '<a href="#stories">Single stories</a>'
     body = f"""  <section class="sp-hero blog-hero">
     <div class="wrap">
       <p class="crumbs"><a href="/">Gyaanoxa</a> › Blog</p>
