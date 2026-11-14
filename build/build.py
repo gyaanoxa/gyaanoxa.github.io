@@ -363,7 +363,8 @@ def main():
     public = {v["id"]: v for v in allv}
     hub_urls = hubs.build(longs, shorts, upcoming_cards(site.get("upcoming", []), now, 40), doc_card, short_card, show,
                           (count, site.get("series_count", 3), n_art))
-    urls = (["/"] + hub_urls + pages.build(public) + blog.build(public)
+    import search                                 # search.json + /search/
+    urls = (["/"] + hub_urls + pages.build(public) + blog.build(public) + search.build(public)
             + ["/privacy.html", "/terms.html"])
     cards = blog.home_cards(public)
     if cards:   # newest series stories + single stories on the home page
