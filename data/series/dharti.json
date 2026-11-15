@@ -1,0 +1,61 @@
+{
+ "slug": "dharti",
+ "title_hi": "धरती आबा: बिरसा मुंडा की कहानी",
+ "title_en": "Dharti Aaba: The Birsa Munda Story",
+ "full": {
+  "id": null,
+  "title": "मिशन स्कूल का लड़का कैसे बना 'धरती आबा'? बिरसा मुंडा की पूरी कहानी | Birsa Munda Full Story",
+  "at": "2026-11-27T18:00:00+05:30",
+  "chapters": []
+ },
+ "about_en": "The full story of Birsa Munda, the Munda tribal leader known as Dharti Aaba. It goes from his mission-school years as Birsa David, through the Ulgulan (Munda Rebellion) of 1899-1900 and his death in jail, to the Chotanagpur Tenancy Act of 1908.",
+ "about_hi": "मिशन स्कूल में पढ़ा बिरसा मुंडा, अंग्रेज़ों के लिए इतना बड़ा खतरा कैसे बन गया कि उसकी गिरफ्तारी की खबर लंदन तक भेजी गई?\nयह धरती आबा बिरसा मुंडा की पूरी कहानी है। इसमें वे बातें भी हैं जो शॉर्ट्स में नहीं आ पाईं।\nजन्म की तारीख पर विवाद, जंगल के कानून, उलगुलान के उलटे दावे और उनकी मौत के आठ साल बाद आया ज़मीन का कानून।\nइस सीरीज़ के सारे शॉर्ट्स प्लेलिस्ट \"बिरसा मुंडा: मिशन स्कूल से उलगुलान तक | Birsa Munda: From Mission School to Ulgulan\" में हैं।",
+ "facts": [
+  "Birsa Munda was born in Ulihatu (now in Khunti district, Jharkhand). The date is disputed: most accounts give 15 November 1875, while some sources say 18 July 1872. Folk songs name either Ulihatu or Chalkad as his birthplace.",
+  "He was a poor Munda boy who grazed sheep and was an expert flute player. He studied at Salga under Jaipal Nag, converted to Christianity to join the German Mission School, and was renamed Birsa David, which later became Birsa Daud.",
+  "He lived at Chaibasa from 1886 to 1890. His father Sugana Munda withdrew him from school. In 1890 the family gave up the German mission and returned to their traditional tribal religion.",
+  "The forest rules of 1893-94 and the long loss of tribal land to outside farmers and Thikadars drew him into protest. He joined the forest agitation led by Gideon of Piring.",
+  "In 1895 he is said to have seen a vision of a supreme God. He became known as a preacher, healer and miracle-worker, and was called Dharti Aaba. He told farmers to pay no rent and was arrested on 24 August 1895. He was jailed for two years and released on 28 January 1898.",
+  "Around Christmas 1899, about 7,000 people are said to have launched the Ulgulan. Missions, police stations and constables were attacked. He allegedly promised that guns and bullets would turn to water. Police fired at Sail Rakab Hill on 9 January 1900, and the death toll is unknown.",
+  "With a Rs 500 reward on his head, he was arrested in the Jamkopai forest on 3 February 1900, and the news reached London. 460 tribals were accused in 15 cases, 63 were convicted, and 6 people died in prison, including Birsa, who died on 9 June 1900.",
+  "The movement faded after his death. In 1908 the colonial government brought in the Chotanagpur Tenancy Act, which bars the transfer of tribal land to non-tribals."
+ ],
+ "source": {
+  "title": "Birsa Munda",
+  "url": "https://en.wikipedia.org/wiki/Birsa_Munda"
+ },
+ "parts": [
+  {
+   "n": 1,
+   "title": "भाग 1: बिरसा मुंडा 'बिरसा डेविड' क्यों बने? | Birsa Munda",
+   "topic": "बिरसा मुंडा का नाम 'बिरसा डेविड' क्यों पड़ा?",
+   "hook": "गरीबी में मामा के गाँव भेजा गया बिरसा मुंडा, बन गया बिरसा डेविड। वह गाँव था अयुभातु।",
+   "short": null,
+   "at": "2026-11-22T19:00:00+05:30"
+  },
+  {
+   "n": 2,
+   "title": "भाग 2: दर्शन, इलाज और फिर 2 साल की जेल | Birsa Munda",
+   "topic": "दर्शन, इलाज और फिर 2 साल की जेल",
+   "hook": "जिसे लोग धरती आबा कहते थे, उसी बिरसा मुंडा को अफ़वाह ने जेल पहुँचाया।",
+   "short": null,
+   "at": "2026-11-24T19:00:00+05:30"
+  },
+  {
+   "n": 3,
+   "title": "भाग 3: 7,000 लोग और 'गोलियाँ पानी बन जाएँगी' | Birsa Munda",
+   "topic": "7,000 लोग और 'गोलियाँ पानी बन जाएँगी'",
+   "hook": "कहा जाता है, करीब सात हज़ार मर्द और औरतें, बिरसा मुंडा की पुकार पर जुटे। मकसद, अंग्रेज़ों से सीधी टक्कर।",
+   "short": null,
+   "at": "2026-11-25T19:00:00+05:30"
+  },
+  {
+   "n": 4,
+   "title": "भाग 4: बिरसा के बाद 460 आदिवासियों का क्या हुआ? | Birsa Munda",
+   "topic": "बिरसा के बाद 460 आदिवासियों का क्या हुआ?",
+   "hook": "बिरसा मुंडा के पकड़े जाने पर, चार सौ साठ आदिवासियों पर मुक़दमे ठोके गए। बिरसा के सिर पर पाँच सौ रुपये का इनाम था।",
+   "short": null,
+   "at": "2026-11-26T19:00:00+05:30"
+  }
+ ]
+}
