@@ -145,6 +145,9 @@ def article_page(a, arts, public, series, index):
         nav = "".join(f'<li{" class=on" if k == slug else ""}><a href="{art_url(k)}">{e(t)}</a></li>'
                       for k, t in items if k in arts)
         nav = f'<aside class="side-box series-nav"><p class="eyebrow">Articles in this series</p><ol>{nav}</ol><a class="more" href="/{e(base)}/">Series page · Quiz</a></aside>'
+        if (ROOT / "assets" / "posters" / f"{base}.webp").exists():
+            nav = (f'<a class="side-poster" href="/{e(base)}/"><img src="/assets/posters/{e(base)}.webp" '
+                   f'alt="{e(s["title_en"])} series poster with the release dates" width="920" height="1150" loading="lazy"></a>') + nav
         keys = [k for k, _ in items if k in arts]
         at = keys.index(slug) if slug in keys else 0
         related = [arts[k] for k in keys[at + 1:] + keys[:at]][:3]

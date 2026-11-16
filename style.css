@@ -1017,3 +1017,11 @@ footer .f-reads a { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-ori
 .sp section.srch-hero { padding-bottom: 6px; }
 .sp section.srch-list { padding-top: 10px; }
 .sr { align-self: start; }
+
+/* series release poster */
+.poster-band { padding: 8px 0 4px; }
+.poster-fig { margin: 0 auto; max-width: 460px; }
+.poster-fig img { width: 100%; height: auto; border-radius: 18px; border: 1px solid var(--line); }
+.poster-fig figcaption { color: var(--muted); font-size: 14px; text-align: center; margin-top: 10px; }
+.side-poster { display: block; margin-bottom: 14px; }
+.side-poster img { width: 100%; height: auto; border-radius: 16px; border: 1px solid var(--line); }

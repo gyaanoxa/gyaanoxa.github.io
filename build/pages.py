@@ -282,6 +282,11 @@ def series_page(d, public, index, all_series):
                  f'<h2>{e(re.sub(r"[ ]*#[A-Za-z0-9_]+", "", a["title"]).split(" | ")[0])}</h2>'
                  f'<p class="sub">Every part in one article, with dates and the people in the story. Each part also has its own article in the cards above.</p></div>'
                  f'<span class="btn">Read the full story →</span></a></div>\n  </section>\n')
+    poster = ""
+    if (ROOT / "assets" / "posters" / f"{slug}.webp").exists():       # the series' release poster
+        poster = (f'  <section class="poster-band"><div class="wrap"><figure class="poster-fig"><img src="/assets/posters/{slug}.webp" '
+                  f'alt="{e(d["title_en"])} series poster with the release dates" width="920" height="1150" loading="lazy">'
+                  f'<figcaption>The release poster: a new part every evening at 7 PM IST, then the full story.</figcaption></figure></div></section>\n\n')
     body = f"""  <section class="sp-hero">
     <div class="wrap sp-grid">
       <div>
@@ -297,7 +302,7 @@ def series_page(d, public, index, all_series):
     </div>
   </section>
 
-  <section>
+{poster}  <section>
     <div class="wrap">
       <div class="head"><div><p class="eyebrow">Episodes</p><h2>The story, part by part</h2>
       <p class="sub">One part every evening at 7 PM IST. After the last part, the whole story as one video.</p></div></div>
