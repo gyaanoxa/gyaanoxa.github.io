@@ -1,0 +1,61 @@
+{
+ "slug": "dharti",
+ "title_hi": "धरती आबा बिरसा मुंडा",
+ "title_en": "Dharti Aaba Birsa Munda",
+ "full": {
+  "id": null,
+  "title": "बिरसा मुंडा: स्कूल से उलगुलान तक की पूरी कहानी | Birsa Munda Full Story",
+  "at": "2026-11-26T18:00:00+05:30",
+  "chapters": []
+ },
+ "about_en": "The full story of Birsa Munda, the Munda leader known as Dharti Aaba, from his mission school days to the Ulgulan uprising and his death in jail in 1900. Learn how the Chotanagpur Tenancy Act of 1908 followed.",
+ "about_hi": "बिरसा मुंडा की पूरी कहानी: जेल में मरने वाले धरती आबा को आज भी इतना सम्मान क्यों मिलता है?\nएक गरीब मुंडा बच्चे के स्कूल से लेकर उलगुलान तक का पूरा सफ़र इस वीडियो में है।\nजानिए ज़मीन छिनने का दर्द, धरती आबा नाम और अंग्रेज़ों से टकराव।",
+ "facts": [
+  "Birsa Munda was born on 15 November 1875 in Ulihatu, into a poor Munda family that kept moving in search of work.",
+  "He studied at Salga under Jaipal Nag, then joined the German Mission School and was renamed Birsa David. Later he left school, and in 1890 his family returned to the traditional tribal religion.",
+  "Thikadars and the forest laws were taking away the land and rights of the Mundas, and Birsa saw this closely.",
+  "In 1895 he had a vision of a supreme God and became a healer and preacher. People began calling him Dharti Aaba.",
+  "He declared that Queen Victoria's rule was over and the Munda Raj had begun, and he told tenants to pay no rent. He was arrested on 24 August 1895 and sentenced to two years in jail.",
+  "After his release on 28 January 1898 he went underground. Around Christmas 1899 about 7000 people gathered and the Ulgulan began.",
+  "In January 1900 there were attacks, a reward of Rs 500 was set on him, and police fired at Sail Rakab Hill. The Dumbari Hill fight was lost, and Birsa was arrested on 3 February 1900 at Jamkopai forest.",
+  "Birsa died in jail on 9 June 1900. In 1908 the Chotanagpur Tenancy Act stopped the transfer of tribal land to non-tribals, and today 15 November is Janjatiya Gaurav Divas."
+ ],
+ "source": {
+  "title": "Birsa Munda",
+  "url": "https://en.wikipedia.org/wiki/Birsa_Munda"
+ },
+ "parts": [
+  {
+   "n": 1,
+   "title": "स्कूल से निकाले गए बिरसा | Birsa Munda Story",
+   "topic": "स्कूल से निकाले गए बिरसा",
+   "hook": "सुगना मुंडा ने अपने बेटे बिरसा को स्कूल से निकाल लिया। इसी स्कूल में बिरसा का नाम बिरसा डेविड रखा गया था।",
+   "short": null,
+   "at": "2026-11-22T19:00:00+05:30"
+  },
+  {
+   "n": 2,
+   "title": "बिरसा मुंडा को दो साल की कैद क्यों? | Birsa Munda",
+   "topic": "धरती आबा और दो साल की जेल",
+   "hook": "बिरसा मुंडा गिरफ़्तार हुए, और उन्हें दो साल की कैद मिली।",
+   "short": null,
+   "at": "2026-11-23T19:00:00+05:30"
+  },
+  {
+   "n": 3,
+   "title": "सैल रकब की गोली: बिरसा का उलगुलान | Birsa Munda",
+   "topic": "उलगुलान और सैल रकब की गोली",
+   "hook": "सैल रकब की पहाड़ी पर पुलिस ने बिरसा मुंडा के साथियों पर गोली चला दी। कितनी जानें गईं, आज तक पता नहीं।",
+   "short": null,
+   "at": "2026-11-24T19:00:00+05:30"
+  },
+  {
+   "n": 4,
+   "title": "बिरसा की गिरफ़्तारी और 1908 का कानून | Birsa Munda",
+   "topic": "बिरसा की गिरफ़्तारी और 1908 का कानून",
+   "hook": "जामकोपाई के जंगल में बिरसा मुंडा गिरफ़्तार हो गए। तारीख़ थी तीन फ़रवरी उन्नीस सौ।",
+   "short": null,
+   "at": "2026-11-25T19:00:00+05:30"
+  }
+ ]
+}
