@@ -192,7 +192,7 @@ def article_page(a, arts, public, series, index):
         {f'<div class="kd"><h2>Key dates</h2><ol class="vt">{dates}</ol></div>' if dates else ''}
         {f'<h2>Questions people ask</h2><div class="faq">{faq}</div>' if faq else ''}
         <div class="takeaway"><b>In short</b><p>{e(a.get("takeaway", ""))}</p></div>
-        <p class="src">Source: <a href="{e(src.get("url", ""))}" target="_blank" rel="noopener">{e(src.get("title", ""))}</a> (Wikipedia) and the books it cites. Where a story is a legend, we say so.</p>
+        <p class="src">Source: <a href="{e(src.get("url", ""))}" target="_blank" rel="noopener">{e(src.get("title", ""))}</a> (Wikipedia) and the books it cites.</p>
         {f'<div class="tags"><span>Tags</span>{tags}</div>' if tags else ''}
         <div class="actions">{yt}<a class="btn ghost" href="/blog/">All articles</a></div>
         {pnav}
