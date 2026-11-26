@@ -1,25 +1,166 @@
 {
  "_help": "Indian history timeline. year: negative = BCE. link: a series slug (/ashoka) or a YouTube id. Facts come from the videos' scripts.",
  "eras": [
-  {"name": "प्राचीन भारत", "en": "Ancient India", "from": -3000, "to": 600},
-  {"name": "मध्यकालीन भारत", "en": "Medieval India", "from": 600, "to": 1700},
-  {"name": "आधुनिक भारत", "en": "Modern India", "from": 1700, "to": 1947},
-  {"name": "स्वतंत्र भारत", "en": "Independent India", "from": 1947, "to": 2100}
+  {
+   "name": "प्राचीन भारत",
+   "en": "Ancient India",
+   "from": -3000,
+   "to": 600
+  },
+  {
+   "name": "मध्यकालीन भारत",
+   "en": "Medieval India",
+   "from": 600,
+   "to": 1700
+  },
+  {
+   "name": "आधुनिक भारत",
+   "en": "Modern India",
+   "from": 1700,
+   "to": 1947
+  },
+  {
+   "name": "स्वतंत्र भारत",
+   "en": "Independent India",
+   "from": 1947,
+   "to": 2100
+  }
  ],
  "events": [
-  {"year": -527, "label": "527 BCE", "title": "महावीर का निर्वाण, जैन परंपरा में पहली दीपावली", "en": "Mahavira's nirvana; Jain tradition says lamps were first lit", "link": "/diwali"},
-  {"year": -492, "label": "c. 492 BCE", "title": "अजातशत्रु ने पिता बिम्बिसार को कैद कर मगध की गद्दी ली", "en": "Ajatashatru takes Magadha from his father Bimbisara", "link": "/ajatashatru"},
-  {"year": -320, "label": "c. 320 BCE", "title": "चंद्रगुप्त मौर्य ने मौर्य साम्राज्य की नींव रखी", "en": "Chandragupta Maurya founds the Maurya Empire", "link": "rUOUSBxvqHw", "kind": "short"},
-  {"year": -268, "label": "c. 268 BCE", "title": "अशोक का शासन शुरू, चंडाशोक से धम्मशोक तक", "en": "Ashoka's reign begins", "link": "/ashoka"},
-  {"year": -260, "label": "c. 260 BCE", "title": "कलिंग युद्ध, 1 लाख मौतें, फिर पछतावा", "en": "The Kalinga War and Rock Edict 13", "link": "7EpfoUi1pk8", "kind": "video"},
-  {"year": 1526, "label": "1526", "title": "पानीपत के बाद कोहिनूर हुमायूँ के पास, 'श्राप' की कहानी शुरू", "en": "After Panipat the Koh-i-Noor reaches Humayun", "link": "NLngE8kUPeY", "kind": "video"},
-  {"year": 1665, "label": "1665", "title": "औरंगज़ेब ने दिवाली पर रोक लगाई?", "en": "Aurangzeb's restrictions on Diwali", "link": "N7btkhzTQqE", "kind": "video"},
-  {"year": 1813, "label": "1813", "title": "महाराजा रणजीत सिंह के हाथ आया कोहिनूर", "en": "Ranjit Singh takes the Koh-i-Noor", "link": "NLngE8kUPeY", "kind": "video"},
-  {"year": 1947, "label": "1947", "title": "सरदार पटेल ने ~565 रियासतों को भारत से जोड़ा", "en": "Sardar Patel unites the princely states", "link": "VCwjh0d5IpQ", "kind": "short"},
-  {"year": 1966, "label": "1966", "title": "होमी भाभा की मौत, हादसा या साज़िश?", "en": "The death of Homi J. Bhabha", "link": "FHPSLQK89Tk", "kind": "short"}
+  {
+   "year": -527,
+   "label": "527 BCE",
+   "title": "महावीर का निर्वाण, जैन परंपरा में पहली दीपावली",
+   "en": "Mahavira's nirvana; Jain tradition says lamps were first lit",
+   "link": "/diwali"
+  },
+  {
+   "year": -492,
+   "label": "c. 492 BCE",
+   "title": "अजातशत्रु ने पिता बिम्बिसार को कैद कर मगध की गद्दी ली",
+   "en": "Ajatashatru takes Magadha from his father Bimbisara",
+   "link": "/ajatashatru"
+  },
+  {
+   "year": -320,
+   "label": "c. 320 BCE",
+   "title": "चंद्रगुप्त मौर्य ने मौर्य साम्राज्य की नींव रखी",
+   "en": "Chandragupta Maurya founds the Maurya Empire",
+   "link": "rUOUSBxvqHw",
+   "kind": "short"
+  },
+  {
+   "year": -297,
+   "label": "c. 297 BCE",
+   "title": "बिंदुसार दूसरा मौर्य सम्राट बना",
+   "en": "Bindusara becomes the second Mauryan emperor",
+   "link": "/bindusara"
+  },
+  {
+   "year": -268,
+   "label": "c. 268 BCE",
+   "title": "अशोक का शासन शुरू, चंडाशोक से धम्मशोक तक",
+   "en": "Ashoka's reign begins",
+   "link": "/ashoka"
+  },
+  {
+   "year": -260,
+   "label": "c. 260 BCE",
+   "title": "कलिंग युद्ध, 1 लाख मौतें, फिर पछतावा",
+   "en": "The Kalinga War and Rock Edict 13",
+   "link": "7EpfoUi1pk8",
+   "kind": "video"
+  },
+  {
+   "year": 1526,
+   "label": "1526",
+   "title": "पानीपत के बाद कोहिनूर हुमायूँ के पास, 'श्राप' की कहानी शुरू",
+   "en": "After Panipat the Koh-i-Noor reaches Humayun",
+   "link": "NLngE8kUPeY",
+   "kind": "video"
+  },
+  {
+   "year": 1665,
+   "label": "1665",
+   "title": "औरंगज़ेब ने दिवाली पर रोक लगाई?",
+   "en": "Aurangzeb's restrictions on Diwali",
+   "link": "N7btkhzTQqE",
+   "kind": "video"
+  },
+  {
+   "year": 1675,
+   "label": "नवंबर 1675",
+   "title": "चाँदनी चौक में गुरु तेग बहादुर की शहादत",
+   "en": "Guru Tegh Bahadur is executed in Delhi",
+   "link": "_gZl-J2POcs",
+   "kind": "short"
+  },
+  {
+   "year": 1813,
+   "label": "1813",
+   "title": "महाराजा रणजीत सिंह के हाथ आया कोहिनूर",
+   "en": "Ranjit Singh takes the Koh-i-Noor",
+   "link": "NLngE8kUPeY",
+   "kind": "video"
+  },
+  {
+   "year": 1858,
+   "label": "1858",
+   "title": "झाँसी की रानी लक्ष्मीबाई की आख़िरी लड़ाई",
+   "en": "Rani Lakshmibai and the fight for Jhansi",
+   "link": "iNbz7Mvxp-I",
+   "kind": "short"
+  },
+  {
+   "year": 1875,
+   "label": "15 नवंबर 1875",
+   "title": "उलिहातू में बिरसा मुंडा का जन्म",
+   "en": "Birsa Munda is born in Ulihatu",
+   "link": "/dharti"
+  },
+  {
+   "year": 1900,
+   "label": "9 जून 1900",
+   "title": "जेल में धरती आबा बिरसा की मौत",
+   "en": "Birsa Munda dies in jail",
+   "link": "/dharti"
+  },
+  {
+   "year": 1947,
+   "label": "1947",
+   "title": "सरदार पटेल ने ~565 रियासतों को भारत से जोड़ा",
+   "en": "Sardar Patel unites the princely states",
+   "link": "VCwjh0d5IpQ",
+   "kind": "short"
+  },
+  {
+   "year": 1966,
+   "label": "1966",
+   "title": "होमी भाभा की मौत, हादसा या साज़िश?",
+   "en": "The death of Homi J. Bhabha",
+   "link": "FHPSLQK89Tk",
+   "kind": "short"
+  },
+  {
+   "year": 2008,
+   "label": "26 नवंबर 2008",
+   "title": "26/11: साठ घंटे, दस हमलावर",
+   "en": "The 26/11 Mumbai attacks",
+   "link": "Ehulk7UJeto",
+   "kind": "short"
+  }
  ],
  "festivals": [
-  {"title": "दिवाली के 5 दिन", "en": "Diwali", "link": "/diwali"},
-  {"title": "दशहरा, रावण को देवता मानने वाले कौन?", "en": "Dussehra", "link": "JpfQCWBwB60", "kind": "video"}
+  {
+   "title": "दिवाली के 5 दिन",
+   "en": "Diwali",
+   "link": "/diwali"
+  },
+  {
+   "title": "दशहरा, रावण को देवता मानने वाले कौन?",
+   "en": "Dussehra",
+   "link": "JpfQCWBwB60",
+   "kind": "video"
+  }
  ]
 }

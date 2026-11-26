@@ -89,7 +89,7 @@ p { margin: 0; }
   -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
 }
-.top .wrap { display: flex; align-items: center; gap: 24px; height: 70px; }
+.top .wrap { display: flex; align-items: center; gap: 24px; height: 78px; }
 .brand img { height: 30px; width: auto; }
 .nav { display: flex; gap: 26px; margin-left: auto; font-size: 16px; font-weight: 500; }
 .nav a { color: var(--muted); }
@@ -441,8 +441,9 @@ font { background: transparent !important; box-shadow: none !important; }
 .shorts + .row-title { margin-top: 34px; }
 
 /* ---------- brand 2026 ---------- */
-.brand img { height: 42px; }
-footer .brand img { height: 38px; }
+.brand img { height: 54px; }
+footer .brand img { height: 44px; }
+@media (max-width: 760px) { .top .wrap { height: 66px; } .brand img { height: 42px; } footer .brand img { height: 38px; } }
 .hero h1 { font-family: "Baloo 2", var(--display); }
 .logo-box { background: radial-gradient(circle at 50% 35%, var(--bg-3), var(--bg-2) 70%); display: grid; place-items: center; padding: 34px; }
 .logo-box img { width: 100%; height: auto; object-fit: contain; }
