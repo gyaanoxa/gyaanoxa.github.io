@@ -20,7 +20,7 @@ from pathlib import Path
 from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from pages import art_url, no_dashes, series_url, small, srcset, ver  # noqa: E402
+from pages import art_url, no_dashes, series_url, srcset  # noqa: E402
 import links  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -176,7 +176,7 @@ def doc_card(v, featured=False):
             f'<span class="en">{e(en or "Full video")}</span>'
             f'{f"<p class=desc>{e(links.desc(v["id"], 220 if featured else 140))}</p>" if links.desc(v["id"]) else ""}'
             f'{"<ul class=hl-mini>" + "".join(f"<li>{e(h)}</li>" for h in links.highlights(v["id"])) + "</ul>" if featured and links.highlights(v["id"]) else ""}\n'
-            f'          <div class="card-foot">{watch}{links.read_link(v["id"])}{links.icons(v["id"], False)}</div></div>\n'
+            f'          {links.by(v.get("published", ""))}<div class="card-foot">{watch}{links.read_link(v["id"])}{links.icons(v["id"], False)}</div></div>\n'
             f'        </div>')
 
 
@@ -193,11 +193,23 @@ def short_card(v, views=True):
             f'<div class="s-foot">{f"<span class=s-k>Part {part.group(1)}</span>" if part else ""}'
             f'<a class="s-t" href="{art or "https://www.youtube.com/shorts/" + e(v["id"])}"{"" if art else " target=_blank rel=noopener"}>{e(title)}</a>'
             f'{f"<p class=s-d>{e(links.desc(v["id"], 110))}</p>" if links.desc(v["id"]) else ""}'
-            f'<div class="s-links">{links.read_link(v["id"], "Read")}{links.icons(v["id"], True)}</div></div></div>')
+            f'{links.by(v.get("published", ""))}<div class="s-links">{links.read_link(v["id"], "Read")}{links.icons(v["id"], True)}</div></div></div>')
 
 
 def fmt_views(n):
     return f"{n / 1000:.1f}K".replace(".0K", "K") if n >= 1000 else str(n)
+
+
+def best_story(label, blog):
+    """The single story whose address and key words contain every word of the label ("Maurya Spy Network" -> maurya-spy-network)."""
+    want = {w for w in re.findall(r"[a-z0-9]+", label.lower()) if w not in ("and", "part", "the")}
+    best, extra = "", 99
+    for f in sorted(blog.glob("*.json")):
+        a = json.loads(f.read_text(encoding="utf-8"))
+        have = set(re.findall(r"[a-z0-9]+", (f.stem + " " + (a.get("path") or "")).lower()))
+        if want and want <= have and len(have) - len(want) < extra:
+            best, extra = f.stem, len(have) - len(want)
+    return best
 
 
 def upcoming_article(u):
@@ -213,7 +225,7 @@ def upcoming_article(u):
     elif u.get("kind") == "Full video":
         slug = f"{name}-full-story"
     else:
-        slug = next((f.stem for f in sorted(blog.glob(f"{name}*.json"))), "")
+        slug = best_story(u.get("label", ""), blog) or next((f.stem for f in sorted(blog.glob(f"{name}*.json"))), "")
     return art_url(slug) if slug and (blog / f"{slug}.json").exists() else ""
 
 
@@ -230,7 +242,7 @@ def upcoming_cards(items, now, limit=8):
         read = f'<a class="read-a" href="{art}"><svg><use href="#i-book"/></svg>Read the story now</a>' if art else ""
         cards.append(f'''        <div class="up" data-at="{e(u["at"])}">
           <div class="date"><b>{at.day}</b><small>{MONTHS[at.month - 1]}</small></div>
-          <div class="what"><div class="kind{cls}">{e(u["kind"])}</div><h3>{e(u["title"])}</h3><div class="time">{e(u["label"])} · {tm}</div>{read}</div>
+          <div class="what"><div class="kind{cls}">{e(u["kind"])}</div><h3>{f'<a href="{art}">{e(u["title"])}</a>' if art else e(u["title"])}</h3><div class="time">{e(u["label"])} · {tm}</div>{read}</div>
         </div>''')
     return "\n".join(cards[:limit])
 
@@ -380,10 +392,20 @@ def quiz_cards():
     return "".join(out)
 
 
+def nav_series():
+    """The Series dropdown in the header: one entry per series."""
+    order = {"dharti": 0, "bindusara": 1, "ajatashatru": 2, "ashoka": 3, "diwali": 4}
+    out = []
+    for f in sorted((ROOT / "data" / "series").glob("*.json"), key=lambda p: order.get(p.stem, 9)):
+        d = json.loads(f.read_text(encoding="utf-8"))
+        out.append(f'<a href="{series_url(d["slug"])}"><b>{e(d["title_hi"])}</b><small>{e(d["title_en"])}</small></a>')
+    return "".join(out)
+
+
 def put(page, name, body):
     pat = re.compile(rf"(<!-- AUTO:{name} -->).*?(<!-- /AUTO:{name} -->)", re.S)
     if not pat.search(page):
-        sys.exit(f"marker AUTO:{name} missing in index.html")
+        sys.exit(f"marker AUTO:{name} missing in build/shell.html")
     return pat.sub(lambda m: m.group(1) + "\n" + body + "\n        " + m.group(2), page)
 
 
@@ -432,45 +454,19 @@ def main():
     for v in longs + shorts:
         v["new"] = (datetime.fromisoformat(today) - datetime.fromisoformat(v["published"])).days <= 3
 
-    feat = next((v for v in longs if v["id"] == site.get("featured")), None) or (longs[0] if longs else None)
-    docs = ([feat] if feat else []) + [v for v in longs if v is not feat][:4]
-    tile = '''        <a class="sub-tile" href="https://www.youtube.com/@Gyaanoxa?sub_confirmation=1" target="_blank" rel="noopener">
-          <img src="assets/logo-128.webp" alt="" width="128" height="128" loading="lazy">
-          <h3>Never miss a story</h3>
-          <p>Subscribe on YouTube for every new story. A Short every evening, a longer video every week.</p>
-          <span class="btn sm"><svg><use href="#i-yt"/></svg>Subscribe</span>
-        </a>'''
-    page = (ROOT / "index.html").read_text(encoding="utf-8")
-    def hero_cover(m):                            # the hero covers: newest picture, a 240 px copy for phones
-        big = f"assets/s/360/covers/{m.group(1)}.webp"
-        sm = small(f"assets/covers/{m.group(1)}.webp", 240)
-        return (f'src="{ver(big)}" srcset="{ver(sm)} 240w, {ver(big)} 360w" '
-                f'sizes="(max-width: 760px) 160px, 262px"')
-    page = re.sub(r'src="assets/s/360/covers/([\w-]+)\.webp(\?v=\d+)?"( srcset="[^"]*" sizes="[^"]*")?', hero_cover, page)
-    page = put(page, "docs", "\n".join(doc_card(v, i == 0) for i, v in enumerate(docs)) + "\n" + tile)
     show = site.get("show_views", False)        # view counts stay hidden until the channel is bigger
-    page = put(page, "latest", "\n".join(short_card(v, show) for v in shorts[:7]))
-    page = put(page, "popular", "\n".join(short_card(v, show) for v in sorted(shorts, key=lambda v: v.get("views", 0), reverse=True)[:7]))
-    page = put(page, "eras", era_cards({v["id"]: v for v in allv}))
-    page = put(page, "quizzes", quiz_cards())
     total = sum(v.get("views", 0) for v in allv)
-    k = f"{total // 1000}K" if total >= 1000 else str(total)
-    count = len(allv)
-    n_art = len(list((ROOT / "data" / "blog").glob("*.json")))
-    first = (f'<div class="stat"><b>{k}<em>+</em></b><span>views so far</span></div>' if show else
-             f'<div class="stat"><b>{n_art}</b><span>stories to read</span></div>')
-    page = re.sub(r'<span class="visits notranslate"[^>]*>', '<span class="visits notranslate" hidden'
-                  + (' data-on' if show else '') + '>', page)
-    page = put(page, "stats", f'''        {first}
-        <div class="stat"><b>{count}</b><span>videos &amp; Shorts</span></div>
-        <div class="stat"><b>{site.get("series_count", 3)}</b><span>story series</span></div>
-        <div class="stat"><b>7<em> PM</em></b><span>new Short every evening</span></div>''')
+    count = len(longs) + len(shorts)          # only the videos the site shows (not the hidden ones)
+    import blog as _blog
+    n_art = len(_blog.load_all())               # real articles (redirect stubs are not counted)
+    SHELL = ROOT / "build" / "shell.html"        # header, footer and head shared by every page
+    page = SHELL.read_text(encoding="utf-8")
     now = datetime.now(timezone.utc)
-    page = put(page, "next", upcoming_cards(site.get("upcoming", []), now))
     import hubs                                   # section pages (videos, shorts, series, ...) + footer lists
     series_links, reads = hubs.footer_lists(sorted(
         (json.loads(f.read_text(encoding="utf-8")) for f in (ROOT / "data" / "series").glob("*.json")),
         key=lambda d: {"ajatashatru": 0, "ashoka": 1, "diwali": 2}.get(d["slug"], 9)))
+    page = put(page, "navseries", nav_series())
     page = put(page, "fseries", series_links)
     page = put(page, "freads", reads)
     (ROOT / "index.html").write_text(no_dashes(page), encoding="utf-8", newline="\n")
@@ -479,16 +475,12 @@ def main():
     import blog
     public = {v["id"]: v for v in allv}
     hub_urls = hubs.build(longs, shorts, upcoming_cards(site.get("upcoming", []), now, 40), doc_card, short_card, show,
-                          (count, site.get("series_count", 3), n_art))
-    import home2                                  # preview of the new home page (not linked, noindex)
-    home2.build(longs, shorts, allv, site, now, show)
+                          (count, len(list((ROOT / "data" / "series").glob("*.json"))), n_art))
+    import portal                                 # preview of the new home page (not linked, noindex)
+    portal.build(longs, shorts, allv, site, now, show, upcoming_cards, upcoming_article)
     import search                                 # search.json + /search/
     urls = (["/"] + hub_urls + pages.build(public) + blog.build(public) + search.build(public)
             + ["/privacy.html", "/terms.html"])
-    cards = blog.home_cards(public)
-    if cards:   # newest series stories + single stories on the home page
-        home = (ROOT / "index.html").read_text(encoding="utf-8")
-        (ROOT / "index.html").write_text(no_dashes(put(home, "blog", cards)), encoding="utf-8", newline="\n")
     vids = page_videos(public)
     lm = lastmods(allv, today)
     has_next = any(x.get("at", "") > now.astimezone().isoformat() for x in site.get("upcoming", []))
@@ -500,6 +492,8 @@ def main():
                                       'xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">\n'
                                       + sm + "</urlset>\n", encoding="utf-8", newline="\n")
     ET.parse(ROOT / "sitemap.xml")                # the sitemap must be valid XML
+    import css as _css                              # one trimmed stylesheet (site.min.css) for every page
+    _css.apply(_css.build())
     print(f"ok: {len(longs)} videos, {len(shorts)} shorts, {total} views, feed {len(feed)}, pages {len(urls)}")
 
 

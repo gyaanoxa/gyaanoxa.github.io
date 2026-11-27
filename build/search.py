@@ -142,10 +142,21 @@ SEARCH_JS = r"""
     }
     function flat(s) { return s.toLowerCase().replace(/़/g, '').replace(/ँ/g, 'ं').replace(/\s+/g, ' ').trim(); }
     var KIND = {article: 'Article', series: 'Series', video: 'Full video', short: 'Short'};
+    var SV = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">';
+    var ICO = {
+      article: SV + '<path d="M2 4h7a3 3 0 0 1 3 3v14a2 2 0 0 0-2-2H2z"/><path d="M22 4h-7a3 3 0 0 0-3 3v14a2 2 0 0 1 2-2h8z"/></svg>',
+      short: SV + '<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>',
+      video: SV + '<rect x="2" y="3" width="20" height="18" rx="3"/><path d="M10 9l5 3-5 3z"/></svg>',
+      series: SV + '<path d="m12 2 10 5-10 5L2 7l10-5z"/><path d="m2 12 10 5 10-5"/><path d="m2 17 10 5 10-5"/></svg>'};
     var box = document.getElementById('q'), list = document.getElementById('results'), info = document.getElementById('count');
     var sortSel = document.getElementById('sort'), data = [], kind = 'all', topic = '';
     var p = new URLSearchParams(location.search);
     box.value = p.get('q') || ''; kind = p.get('type') || 'all'; topic = p.get('topic') || '';
+    function mark(text, q) {
+      var out = esc(text); if (!q || q.length < 2) return out;
+      var safe = esc(q).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      try { return out.replace(new RegExp('(' + safe + ')', 'ig'), '<mark>$1</mark>'); } catch (e) { return out; }
+    }
     function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
     function score(it, q, words) {
       if (!q) return 1;
@@ -177,18 +188,31 @@ SEARCH_JS = r"""
         b.querySelector('em').textContent = n; b.classList.toggle('on', b.dataset.kind === kind);
       });
       document.querySelectorAll('[data-topic]').forEach(function (b) { b.classList.toggle('on', b.dataset.topic === topic); });
-      info.textContent = rows.length ? rows.length + (rows.length === 1 ? ' result' : ' results') : 'Nothing found. Try another word, in Hindi or English.';
-      list.innerHTML = rows.slice(0, 120).map(function (r) {
+      var sg = document.getElementById('sugg'), cl = document.getElementById('qclear');
+      if (sg) sg.hidden = !!box.value; if (cl) cl.hidden = !box.value;
+      info.textContent = rows.length ? rows.length + (rows.length === 1 ? ' result' : ' results') + (box.value.trim() ? ' for "' + box.value.trim() + '"' : '') : 'Nothing found. Try another word, in Hindi or English.';
+      list.className = 'sresults' + (kind === 'short' ? ' only-short' : '');
+      list.innerHTML = rows.length ? rows.slice(0, 120).map(function (r) {
         var it = r[1], ext = it.u.indexOf('http') === 0;
         return '<a class="sr sr-' + it.k + '" href="' + esc(it.u) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>'
-          + (it.i ? '<img loading="lazy" src="' + esc(it.i) + '" alt="">' : '<span class="sr-noimg"></span>')
-          + '<div><span class="sr-k">' + KIND[it.k] + (it.dt ? ' · ' + esc(it.dt.split('-').reverse().join('.')) : '') + '</span>'
-          + '<h3>' + esc(it.t) + '</h3>' + (it.d ? '<p>' + esc(it.d) + '</p>' : '') + '</div></a>';
-      }).join('');
+          + '<span class="sr-ic">' + ICO[it.k] + '</span>'
+          + '<span class="sr-main"><span class="sr-top"><span class="sr-kind">' + KIND[it.k] + '</span>' + (it.dt ? '<small>' + esc(it.dt.split('-').reverse().join('.')) + '</small>' : '') + '</span>'
+          + '<h3>' + mark(it.t, box.value.trim()) + '</h3>' + (it.d ? '<p>' + mark(it.d, box.value.trim()) + '</p>' : '')
+          + '<span class="sr-go">' + (ext ? 'Watch on YouTube' : 'Read more') + ' &rarr;</span></span></a>';
+      }).join('') : '<div class="sr-empty"><b>Nothing found</b><p>Try another word, in Hindi or English. Or browse every story on the <a href="/blog/">Blog</a>, the <a href="/series/">series page</a> or the <a href="/timeline/">timeline</a>.</p></div>';
       var u = new URLSearchParams();
       if (box.value) u.set('q', box.value); if (kind !== 'all') u.set('type', kind); if (topic) u.set('topic', topic);
       history.replaceState(null, '', location.pathname + (u.toString() ? '?' + u : ''));
     }
+    var clr = document.getElementById('qclear');
+    if (clr) clr.addEventListener('click', function () { box.value = ''; sortSel.value = 'new'; render(); box.focus(); });
+    document.querySelectorAll('[data-try]').forEach(function (b) { b.addEventListener('click', function () {
+      box.value = b.dataset.try; sortSel.value = 'best'; render(); box.focus(); }); });
+    document.addEventListener('keydown', function (ev) {
+      var tag = (document.activeElement && document.activeElement.tagName) || '';
+      if (ev.key === '/' && tag !== 'INPUT' && tag !== 'SELECT' && tag !== 'TEXTAREA') { ev.preventDefault(); box.focus(); }
+      if (ev.key === 'Escape' && document.activeElement === box && box.value) { box.value = ''; render(); }
+    });
     box.addEventListener('input', function () { sortSel.value = box.value ? 'best' : 'new'; render(); });
     sortSel.addEventListener('change', render);
     document.querySelectorAll('[data-kind]').forEach(function (b) { b.addEventListener('click', function () { kind = b.dataset.kind; render(); }); });
@@ -201,25 +225,26 @@ SEARCH_JS = r"""
 
 
 def search_page(index, n):
-    kinds = "".join(f'<button type="button" class="sf" data-kind="{k}">{e(lbl)} <em></em></button>'
+    from portal import icon as _ic
+    _ik = {"all": "compass", "article": "book", "short": "zap", "video": "film", "series": "layers"}
+    kinds = "".join(f'<button type="button" class="sf" data-kind="{k}">{_ic(_ik[k])}{e(lbl)} <em></em></button>'
                     for k, lbl in (("all", "All"), ("article", "Articles"), ("short", "Shorts"), ("video", "Full videos"),
                                    ("series", "Series")))
     tops = "".join(f'<button type="button" class="sf tp" data-topic="{e(t)}">{e(t)}</button>' for t, _ in TOPICS)
-    body = f"""  <section class="sp-hero srch-hero">
-    <div class="wrap">
-      <p class="crumbs"><a href="/">Gyaanoxa</a> › Search</p>
-      <h1>Search</h1>
-      <p class="lead">Every story, Short, full video and series on Gyaanoxa ({n} in all). Type in Hindi, Hinglish or English: अशोक, ashok and Ashoka all work.</p>
-      <form class="srch" role="search" onsubmit="return false">
-        <svg aria-hidden="true"><use href="#i-search"/></svg>
-        <input id="q" type="search" placeholder="अशोक, Diwali, Rani Lakshmibai..." aria-label="Search Gyaanoxa" autocomplete="off">
-        <select id="sort" aria-label="Sort"><option value="new">Newest first</option><option value="best">Best match</option><option value="views">Most viewed</option></select>
-      </form>
-      <div class="sfilters" role="group" aria-label="Type">{kinds}</div>
-      <div class="sfilters topics" role="group" aria-label="Topic">{tops}</div>
-    </div>
-  </section>
-  <section class="srch-list"><div class="wrap"><p id="count" class="srch-count">Loading...</p><div id="results" class="sresults"></div></div></section>"""
+    import inner
+    from portal import icon
+    form = ('<form class="srch2" role="search" onsubmit="return false">' + icon("search") + '<input id="q" type="search" placeholder="अशोक, Diwali, Rani Lakshmibai..." aria-label="Search Gyaanoxa" autocomplete="off">'
+            '<button type="button" id="qclear" class="qclear" aria-label="Clear" hidden>&times;</button><kbd class="qkey" title="Press / to search">/</kbd>'
+            '<select id="sort" aria-label="Sort"><option value="new">Newest first</option><option value="best">Best match</option><option value="views">Most viewed</option></select></form>')
+    hero = inner.banner("Search", "Search", "Search Gyaanoxa",
+                        f"Every story, Short, full video and series on Gyaanoxa ({n} in all). Type in Hindi, Hinglish or English: अशोक, ashok and Ashoka all work.",
+                        [("search", str(n), "Items you can search"), ("book", "3", "Languages: Hindi, Hinglish, English")], extra=form)
+    filters = ('<div class="sfbar"><div class="sfilters" role="group" aria-label="Type">' + kinds + '</div>'
+               '<div class="sfilters topics" role="group" aria-label="Topic">' + tops + "</div></div>")
+    tries = ["Ashoka", "Diwali", "Chanakya", "Kalinga", "Birsa Munda", "26/11", "Koh-i-Noor", "Rani Lakshmibai"]
+    sugg = ('<div id="sugg" class="sugg"><span>' + icon("spark") + " Try</span>" + "".join('<button type="button" class="sf" data-try="' + e(x) + '">' + e(x) + "</button>" for x in tries) + "</div>")
+    results = ('<section class="ps"><div class="pw">' + sugg + filters + '<p id="count" class="srch-count">Loading...</p><div id="results" class="sresults"></div></div></section>')
+    body = inner.wrap(hero + results)
     ld = {"@context": "https://schema.org", "@type": "WebPage", "name": "Search Gyaanoxa", "url": "https://gyaanoxa.com/search/"}
     return page("खोजें | Search Gyaanoxa", "Search every Gyaanoxa story, Short, video and series in Hindi or English.",
                 "/search/", "https://gyaanoxa.com/assets/og.jpg", body, ld, index, SEARCH_JS,
@@ -230,7 +255,7 @@ def build(public):
     items = index_items(public)
     (ROOT / "search.json").write_text(json.dumps(items, ensure_ascii=False, separators=(",", ":")), encoding="utf-8",
                                       newline="\n")
-    index = (ROOT / "index.html").read_text(encoding="utf-8")
+    index = (ROOT / "build" / "shell.html").read_text(encoding="utf-8")
     out = ROOT / "search" / "index.html"
     out.parent.mkdir(exist_ok=True)
     out.write_text(search_page(index, len(items)), encoding="utf-8", newline="\n")

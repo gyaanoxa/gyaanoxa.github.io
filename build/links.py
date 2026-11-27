@@ -123,3 +123,52 @@ def highlights(vid, n=3):
         return []
     a = json.loads((ROOT / "data" / "blog" / f"{slug}.json").read_text(encoding="utf-8"))
     return a.get("highlights", [])[:n]
+
+
+def fmt_day(day):
+    """'2026-11-24' -> '24 Nov 2026' (empty when the day is not a date)."""
+    import datetime as _dt
+    try:
+        return _dt.datetime.strptime(str(day)[:10], "%Y-%m-%d").strftime("%d %b %Y").lstrip("0")
+    except ValueError:
+        return ""
+
+
+def fmt_range(a, b):
+    """Two days -> '22 to 27 Nov 2026' (one day when they are the same)."""
+    import datetime as _dt
+    try:
+        da, db = _dt.datetime.strptime(str(a)[:10], "%Y-%m-%d"), _dt.datetime.strptime(str(b)[:10], "%Y-%m-%d")
+    except ValueError:
+        return ""
+    if da == db:
+        return fmt_day(a)
+    if (da.month, da.year) == (db.month, db.year):
+        return str(da.day) + " to " + fmt_day(b)
+    return fmt_day(a) + " to " + fmt_day(b)
+
+
+DOT = '<svg class="dt-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>'
+
+
+USER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg>'
+
+
+def by(day="", author=True):
+    """A small author mark for cards: an author icon, the name Gyaanoxa and the day it was published (when given)."""
+    when = fmt_range(*day) if isinstance(day, tuple) else fmt_day(day)
+    who = '<span class="by-i">' + USER + '</span><span class="by-n">Gyaanoxa</span>' if author else ""
+    return ('<span class="by notranslate' + ("" if author else " by-solo") + '" translate="no">' + who + ('<i class="dt"><span class="dt-c">' + DOT + "</span>" + when + "</i>" if when else "") + "</span>")
+
+
+def byline(a):
+    """The author line under an article's title: logo, name and the day the article was written or last updated."""
+    import datetime as _dt
+    day = a.get("updated") or a.get("written") or ""
+    try:
+        txt = _dt.datetime.strptime(day, "%Y-%m-%d").strftime("%d %b %Y").lstrip("0")
+    except ValueError:
+        txt = ""
+    word = "Updated" if a.get("updated") else "Published"
+    return ('<div class="byline"><span class="bl-i">' + USER + '</span>'
+            '<span><b class="notranslate" translate="no">Gyaanoxa</b><small>Indian history in Hindi' + (" · " + word + " " + txt if txt else "") + "</small></span></div>")

@@ -32,3 +32,12 @@
   if (mq && mq.addEventListener) mq.addEventListener("change", function () { if (get(KM, "system") === "system") apply(); });
   apply();
 })();
+
+/* Footer "back to top": scroll the page the visitor is on, never leave it */
+document.addEventListener("click", function (e) {
+  var t = e.target.closest && e.target.closest(".to-top");
+  if (!t) return;
+  e.preventDefault();
+  var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.scrollTo({ top: 0, behavior: calm ? "auto" : "smooth" });
+});

@@ -147,7 +147,8 @@ def page(title, desc, url, image, body, ld, index, extra_js="", head="", og_type
   <meta name="twitter:title" content="{e(title)}">
   <meta name="twitter:description" content="{e(desc)}">
   <meta name="twitter:image" content="{e(image)}">
-{head}{head_links}  <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
+{head}{head_links.replace('<link rel="stylesheet" href="/style.css">', '<link rel="stylesheet" href="/site.min.css?v=0">')}
+  <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 </head>
 <body>
 
@@ -229,6 +230,10 @@ def facade(vid, title, img):
 
 
 def series_page(d, public, index, all_series):
+    from portal import icon as _icon
+
+    def pi(name):       # icon with its own size and colour, so no page style can hide it
+        return _icon(name).replace('class="ic-svg"', 'class="ic-svg" width="18" height="18" style="width:18px;height:18px;display:block;color:#17120A;stroke:#17120A;fill:none;stroke-width:2.4"')
     slug = d["slug"]
     full = d["full"]
     full_live = full.get("id") in public
@@ -270,12 +275,12 @@ def series_page(d, public, index, all_series):
         short_url = f"https://www.youtube.com/shorts/{e(p['short'])}"
         art = art_url(f"{slug}-part-{p['n']}") if (bdir / f"{slug}-part-{p['n']}.json").exists() else ""
         import links as L
-        links = (f'<a class="pc-s live" href="{short_url}" target="_blank" rel="noopener">▶ Watch</a>' if live
-                 else f'<span class="pc-s">🕒 {e(when(p.get("at")) or "Soon")}</span>') + \
-            (f'<a class="pc-s read" href="{art}">📖 Read article</a>' if art else "") + (L.icons(p["short"], True) if live else "")
+        links = (f'<a class="pc-s live" href="{short_url}" target="_blank" rel="noopener">{pi("play")}Watch</a>' if live
+                 else f'<span class="pc-s soon">{pi("clock")}{e(when(p.get("at")) or "Soon")}</span>') + \
+            (f'<a class="pc-s read" href="{art}">{pi("book")}Read article</a>' if art else "") + (L.icons(p["short"], True) if live else "")
         pic = f'<a class="pc-img" href="{short_url}" target="_blank" rel="noopener" aria-label="{e(p["topic"])}">{img}</a>' if live             else f'<a class="pc-img" href="{art}" aria-label="{e(p["topic"])}">{img}</a>' if art else f'<div class="pc-img">{img}</div>'
         title = f'<a href="{art}">{e(p["topic"])}</a>' if art else e(p["topic"])
-        cards.append(f'<div class="pcard">{pic}<div class="pc-body"><div class="pc-k">Part {p["n"]} of {len(d["parts"])}</div>'
+        cards.append(f'<div class="pcard">{pic}<div class="pc-body"><div class="pc-k">Part {p["n"]} of {len(d["parts"])}{" · Live" if live else " · Soon"}</div>'
                      f'<h3>{title}</h3><p>{e(p["hook"])}</p><div class="pc-links">{links}</div></div></div>')
 
     tl = "".join(f'<li><b>{e(a)}</b><span>{e(b)}</span></li>' for a, b in d.get("timeline", []))
@@ -284,9 +289,11 @@ def series_page(d, public, index, all_series):
         f'<div class="qq" data-a="{q["a"]}"><p class="qt">{i}. {e(q["q"])}</p><div class="opts">'
         + "".join(f'<button class="opt" type="button">{e(o)}</button>' for o in q["o"])
         + f'</div><p class="why">{e(q["why"])}</p></div>' for i, q in enumerate(d.get("quiz", []), 1))
-    others = "".join(
-        f'<a class="other" href="{series_url(o["slug"])}"><b>{e(o["title_hi"])}</b><span>{e(o["title_en"])}</span></a>'
-        for o in all_series if o["slug"] != slug)
+    from portal import icard
+    rest = [o for o in all_series if o["slug"] != slug]
+    others = ('<div class="ixg ixg-keep">' + "".join(icard("layers", o["title_hi"], f'{o["title_en"]}, {len(o["parts"])} parts', series_url(o["slug"])) for o in rest) 
+        + icard("clock", "History timeline", "All stories on one timeline.", "/timeline/") + "</div>" if rest else "")
+    ot = ''
 
     reads = ""
     fs = bdir / f"{slug}-full-story.json"
@@ -298,11 +305,7 @@ def series_page(d, public, index, all_series):
                  f'<h2>{e(re.sub(r"[ ]*#[A-Za-z0-9_]+", "", a["title"]).split(" | ")[0])}</h2>'
                  f'<p class="sub">Every part in one article, with dates and the people in the story. Each part also has its own article in the cards above.</p></div>'
                  f'<span class="btn">Read the full story →</span></a></div>\n  </section>\n')
-    poster = ""
-    if (ROOT / "assets" / "posters" / f"{slug}.webp").exists():       # the series' release poster
-        poster = (f'  <section class="poster-band"><div class="wrap"><figure class="poster-fig"><img src="/assets/posters/{slug}.webp" '
-                  f'alt="{e(d["title_en"])} series poster with the release dates" width="920" height="1150" loading="lazy">'
-                  f'<figcaption>The release poster: a new part every evening at 7 PM IST, then the full story.</figcaption></figure></div></section>\n\n')
+    poster = ""   # the release poster band was removed from the series pages
     body = f"""  <section class="sp-hero">
     <div class="wrap sp-grid">
       <div>
@@ -312,13 +315,21 @@ def series_page(d, public, index, all_series):
         <p class="sp-en">{e(d["title_en"])} · {len(d["parts"])} parts + full video</p>
         <p class="lead">{e(d.get("intro_hi", ""))}</p>
         <div class="actions">{watch}<a class="btn ghost" href="#quiz">Play the quiz</a></div>
-        <p class="place">📍 {e(d.get("place", ""))}</p>
+        <div class="cb">
+          <span><i class="cb-i">{pi("play")}</i><em><b>{len(d["parts"])}</b><small>Short parts</small></em></span>
+          <span><i class="cb-i">{pi("film")}</i><em><b>1</b><small>Full video</small></em></span>
+          <span><i class="cb-i">{pi("help")}</i><em><b>{len(d.get("quiz", []))}</b><small>Quiz questions</small></em></span>
+          <span><i class="cb-i">{pi("calendar")}</i><em><b class="cb-t">{e(d.get("years", "")) or e(d.get("era", ""))}</b><small>{"Years" if any(ch.isdigit() for ch in d.get("years", "")) else "When"}</small></em></span>
+        </div>
+        {f'<p class="place"><i>{pi("compass")}</i>{e(d.get("place", ""))}</p>' if d.get("place") else ''}
       </div>
       <div>{player}{chaps}</div>
     </div>
   </section>
 
-{poster}  <section>
+  <nav class="jumpbar" aria-label="On this page"><div class="wrap"><a href="#episodes">Episodes</a><a href="#events">Key events</a>{'<a href="#quiz">Quiz</a>' if d.get("quiz") else ''}<a href="#more-series">More series</a></div></nav>
+
+{poster}  <section id="episodes">
     <div class="wrap">
       <div class="head"><div><p class="eyebrow">Episodes</p><h2>The story, part by part</h2>
       <p class="sub">One part every evening at 7 PM IST. After the last part, the whole story as one video.</p></div></div>
@@ -329,7 +340,7 @@ def series_page(d, public, index, all_series):
   </section>
 
 {reads}
-  <section>
+  <section id="events">
     <div class="wrap two">
       <div>
         <p class="eyebrow">Key dates</p><h2>Key events</h2>
@@ -354,10 +365,10 @@ def series_page(d, public, index, all_series):
     </div>
   </section>
 
-  <section>
+  <section id="more-series">
     <div class="wrap">
-      <p class="eyebrow">More series</p><h2>Keep exploring</h2>
-      <div class="others">{others}<a class="other" href="/timeline/"><b>History timeline</b><span>All stories on one timeline</span></a></div>
+      <div class="head"><div><p class="eyebrow">More series</p><h2>Keep exploring</h2></div>{ot}</div>
+      <div class="portal">{others}</div>
     </div>
   </section>"""
 
@@ -390,45 +401,39 @@ def timeline_page(tl, public, index):
             k = ev.get("kind", "video")
             return (f"https://www.youtube.com/shorts/{l}" if k == "short" else f"https://www.youtube.com/watch?v={l}"), ("Short" if k == "short" else "Video"), ' target="_blank" rel="noopener"'
         return "", "", ""
-    blocks = []
-    for era in tl["eras"]:
-        evs = [x for x in tl["events"] if era["from"] <= x["year"] < era["to"]]
+    import inner
+    from portal import icon as pic
+    blocks, jump = [], []
+    for n, era in enumerate(tl["eras"], 1):
+        evs = sorted((x for x in tl["events"] if era["from"] <= x["year"] < era["to"]), key=lambda v: v["year"])
         if not evs:
             continue
-        items = []
-        for x in sorted(evs, key=lambda v: v["year"]):
+        cards = []
+        for x in evs:
             href, kind, tgt = target(x)
-            t = f'<b>{e(x["label"])}</b><h3>{e(x["title"])}</h3><span>{e(x["en"])}</span>'
-            items.append(f'<li><a href="{e(href)}"{tgt}>{t}<em>{e(kind)} →</em></a></li>' if href else f"<li><div>{t}</div></li>")
-        blocks.append(f'<div class="era"><h2>{e(era["name"])} <small>{e(era["en"])}</small></h2><ol class="tl">{"".join(items)}</ol></div>')
+            inner_html = ('<span class="tev-y">' + pic("calendar") + e(x["label"]) + "</span><b>" + e(x["title"]) + "</b><small>" + e(x["en"]) + "</small>"
+                          + ('<span class="tev-k">' + e(kind) + " " + pic("arrow") + "</span>" if href else ""))
+            cards.append(f'<a class="tev" href="{e(href)}"{tgt}>{inner_html}</a>' if href else f'<div class="tev">{inner_html}</div>')
+        rng = evs[0]["label"] + (" to " + evs[-1]["label"] if len(evs) > 1 else "")
+        sec = inner.section(f"Era {n} · {len(evs)} moments", era["name"] + " · " + era["en"], rng,
+                            '<div class="tlg">' + "".join(cards) + "</div>", alt=n % 2 == 0)
+        blocks.append(sec.replace('<section class="ps', f'<section id="era-{n}" data-era="{n}" class="ps', 1))
+        jump.append(f'<a href="#era-{n}">{e(era["en"])}</a>')
     fest = []
     for x in tl.get("festivals", []):
         href, kind, tgt = target(x)
         if href:
-            fest.append(f'<a class="other" href="{e(href)}"{tgt}><b>{e(x["title"])}</b><span>{e(x["en"])}</span></a>')
+            fest.append(inner.icard("flame", x["title"], x["en"], href).replace('<a class="ix" href=', '<a class="ix"' + tgt + " href=", 1))
     _ys = [x["year"] for x in tl["events"]]
     _span = (f"{abs(min(_ys))} BCE" if min(_ys) < 0 else str(min(_ys))) + " to " + str(max(_ys))
-    _tiles = ('<div class="hs-tiles">'
-              f'<span><b>{len(tl["events"])}</b><small>moments from our stories</small></span>'
-              f'<span><b>{len(tl["eras"])}</b><small>eras of Indian history</small></span>'
-              f'<span><b>{e(_span)}</b><small>from the first story to the latest</small></span></div>')
-    body = f"""  <section class="sp-hero">
-    <div class="wrap hero-side">
-      <div>
-      <p class="crumbs"><a href="/">Gyaanoxa</a> › Timeline</p>
-      <p class="eyebrow">Indian history timeline</p>
-      <h1>Indian History Timeline</h1>
-      <p class="lead">Every Gyaanoxa story in its own time, from the kings of Magadha to independent India. The timeline grows with every new video.</p>
-      </div>
-      <div class="hs-art">{_tiles}</div>
-    </div>
-  </section>
-  <section>
-    <div class="wrap">{"".join(blocks)}</div>
-  </section>
-  <section>
-    <div class="wrap"><p class="eyebrow">Festivals</p><h2>Festival stories</h2><div class="others">{"".join(fest)}</div></div>
-  </section>"""
+    body = inner.banner("Timeline", "Indian history timeline", "Indian History Timeline",
+                        "Every Gyaanoxa story in its own time, from the kings of Magadha to independent India. The timeline grows with every new video.",
+                        [("calendar", str(len(tl["events"])), "Moments from our stories"), ("layers", str(len(tl["eras"])), "Eras of Indian history"),
+                         ("clock", _span, "First story to the latest")])
+    bar = '<nav class="jumpbar" aria-label="Eras"><div class="wrap">' + "".join(jump) + ('<a href="#festivals">Festivals</a>' if fest else "") + "</nav>".replace("</nav>", "</div></nav>")
+    festsec = (inner.section("Festivals", "Festival stories", "", '<div class="ixg ixg-3 ixg-keep">' + "".join(fest) + "</div>").replace('<section class="ps', '<section id="festivals" class="ps', 1)
+               if fest else "")
+    body = inner.wrap(body + bar + "".join(blocks) + festsec + inner.follow())
     ld = {"@context": "https://schema.org", "@type": "ItemList", "name": "Indian history timeline | Gyaanoxa",
           "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": x["en"]} for i, x in enumerate(sorted(tl["events"], key=lambda v: v["year"]))]}
     return page("भारतीय इतिहास की टाइमलाइन | Indian History Timeline",
@@ -437,7 +442,7 @@ def timeline_page(tl, public, index):
 
 
 def build(public):
-    index = (ROOT / "index.html").read_text(encoding="utf-8")
+    index = (ROOT / "build" / "shell.html").read_text(encoding="utf-8")
     series = [json.loads(f.read_text(encoding="utf-8")) for f in sorted((ROOT / "data" / "series").glob("*.json"))]
     order = {"ajatashatru": 0, "ashoka": 1, "diwali": 2}
     series.sort(key=lambda s: order.get(s["slug"], 9))

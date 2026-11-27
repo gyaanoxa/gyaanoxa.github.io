@@ -121,6 +121,34 @@
    "kind": "Short",
    "label": "Maurya Spy Network",
    "title": "मंत्रियों पर भी जासूस?"
+  },
+  {
+   "at": "2026-12-01T19:00:00+05:30",
+   "kind": "Short",
+   "label": "Rajendra Prasad",
+   "title": "बहन की मौत, फिर भी परेड?",
+   "article": "rajendra-prasad"
+  },
+  {
+   "at": "2026-12-02T13:00:00+05:30",
+   "kind": "Special day",
+   "label": "Rajendra Prasad Jayanti",
+   "title": "3 साल जेल, फिर पहले राष्ट्रपति",
+   "article": "rajendra-prasad-2"
+  },
+  {
+   "at": "2026-12-02T19:00:00+05:30",
+   "kind": "Short",
+   "label": "Padmanabhaswamy",
+   "title": "तहखाने में सोने के विष्णु, Vault B बंद",
+   "article": "padmanabhaswamy"
+  },
+  {
+   "at": "2026-12-03T19:00:00+05:30",
+   "kind": "Short",
+   "label": "Chanakya",
+   "title": "चाणक्य को ज़िंदा किसने जलाया?",
+   "article": "chanakya-story"
   }
  ]
 }

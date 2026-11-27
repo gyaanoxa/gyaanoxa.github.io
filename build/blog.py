@@ -167,6 +167,10 @@ def article_page(a, arts, public, series, index):
         others = [x for x in arts.values() if x["slug"] != slug and (x.get("part") or 0) == 0]
         related = sorted(others, key=lambda x: (x.get("series") == a.get("series"), x["slug"]), reverse=True)[:4]
     rel = "".join(card(x, public) for x in related)
+    import inner
+    from portal import article_card
+    more_reads = inner.section("Keep reading", "More stories", "", '<div class="g4">' + "".join(article_card(x, public) for x in related) + "</div>",
+                               ("All articles", "/blog/"), alt=True) if related else ""
 
     yt = links.buttons(vid, short) if live else \
         '<a class="btn" href="https://www.youtube.com/@Gyaanoxa?sub_confirmation=1" target="_blank" rel="noopener"><svg><use href="#i-yt"/></svg>Subscribe</a>'
@@ -182,6 +186,7 @@ def article_page(a, arts, public, series, index):
         <p class="crumbs">{crumbs}</p>
         <div class="art-chips">{f'<span class="chip">{e(badge)}</span>' if badge else ''}<span class="chip ghost">{mins} min read</span>{f'<span class="chip ghost notranslate">{e(en)}</span>' if en else ''}</div>
         <h1>{e(head_title(a["title"]))}</h1>
+        {links.byline(a)}
         <p class="art-lead">{e(a.get("description", ""))}</p>
         {f'<div class="hl"><p class="eyebrow">What you will learn</p><ul>{hl}</ul></div>' if hl else ''}
       </div>
@@ -204,7 +209,7 @@ def article_page(a, arts, public, series, index):
       <div class="art-side">{toc}{nav}{people}</div>
     </div>
   </section>
-  {f'<section class="more-reads"><div class="wrap"><div class="head"><div><p class="eyebrow">Keep reading</p><h2>More stories</h2></div><a class="more" href="/blog/">All articles</a></div><div class="agrid">{rel}</div></div></section>' if rel else ''}"""
+  {f'<div class="portal">{more_reads}</div>' if rel else ''}"""
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "BlogPosting", "headline": head_title(a["title"])[:110], "description": a.get("description", ""),
          "inLanguage": "hi", "datePublished": a.get("written", ""), "keywords": ", ".join(a.get("keywords", [])),
@@ -242,7 +247,7 @@ def card(a, public):
     return (f'<a class="acard {shape}" href="{art_url(a["slug"])}"><div class="ac-img"><img loading="lazy" '
             f'{pages.srcset(img, 360, "(max-width: 760px) 40vw, 360px")} alt=""></div>'
             f'<div class="ac-body"><span class="ac-k">{e(label)} · {max(2, round(words(a) / 180))} min read</span>'
-            f'<h3>{e(head_title(a["title"]))}</h3><p>{e(a.get("description", ""))}</p></div></a>')
+            f'<h3>{e(head_title(a["title"]))}</h3><p>{e(a.get("description", ""))}</p>{links.by(a.get("updated") or a.get("written") or "")}</div></a>')
 
 
 def prow(a, public):
@@ -278,34 +283,35 @@ def newest_series(series):
 
 
 def index_page(arts, public, series, index):
-    groups = []
-    for sl in newest_series(series):
+    import inner
+    from portal import article_card
+    sections = ""
+    jump = []
+    for n, sl in enumerate(newest_series(series)):
         s = series[sl]
         full = arts.get(f"{sl}-full-story")
         parts = [arts[k] for k in [f"{sl}-part-{p['n']}" for p in s["parts"]] if k in arts]
         if not (full or parts):
             continue
-        lst = f'<ol class="plist{" many" if len(parts) > 5 else ""}">{"".join(prow(a, public) for a in parts)}</ol>'
-        groups.append(f'<div class="bgroup" id="{e(sl)}"><div class="head"><div><p class="eyebrow">Series · {len(s["parts"])} parts</p>'
-                      f'<h2>{e(s["title_hi"])}</h2></div><a class="more" href="{series_url(sl)}">Series page · Quiz</a></div>'
-                      f'<div class="bfeat">{feature(full, public, s) if full else ""}{lst}</div></div>')
+        cards = ([full] if full else []) + parts
+        jump.append('<a href="#' + e(sl) + '">' + e(s["title_hi"].split(":")[0]) + "</a>")
+        sections += inner.section("Series · " + str(len(s["parts"])) + " parts", s["title_hi"], "The full story and every part, in order.", '<div class="g4">' + "".join(article_card(a, public) for a in cards) + "</div>",
+                                  ("Series page and quiz", series_url(sl)), alt=n % 2 == 1).replace('<section class="ps', '<section id="' + e(sl) + '" class="ps', 1)
     singles = sorted((a for a in arts.values() if not a.get("series")), key=lambda a: story_date(a, public), reverse=True)
     if singles:
-        groups.append('<div class="bgroup" id="stories"><div class="head"><div><p class="eyebrow">Stories</p><h2>Single stories</h2></div></div>'
-                      f'<div class="agrid singles">{"".join(card(a, public) for a in singles)}</div></div>')
+        sections += inner.section("Stories", "Single stories", "", '<div class="g4">' + "".join(article_card(a, public) for a in singles) + "</div>",
+                                  alt=bool(sections.count("<section") % 2)).replace('<section class="ps', '<section id="stories" class="ps', 1)
     total = sum(max(2, round(words(a) / 180)) for a in arts.values())
-    jump = "".join(f'<a href="#{e(sl)}">{e(series[sl]["title_hi"].split(":")[0])}</a>'
-                   for sl in newest_series(series)) + '<a href="#stories">Single stories</a>'
-    body = f"""  <section class="sp-hero blog-hero">
-    <div class="wrap">
-      <p class="crumbs"><a href="/">Gyaanoxa</a> › Blog</p>
-      <h1>The Gyaanoxa Blog</h1>
-      <p class="lead">The long version of every video: the same facts and sources, with dates, the people in the story and the questions readers ask. Series articles are grouped part by part.</p>
-      <div class="bstats"><span><b>{len(arts)}</b> articles</span><span><b>{len(series)}</b> series</span><span><b>{total}</b> minutes of reading</span></div>
-      <nav class="bjump">{jump}</nav>
-    </div>
-  </section>
-  <section class="blog-list"><div class="wrap">{"".join(groups)}</div></section>"""
+    from portal import icon
+    search = ('<form class="bsearch" action="/search/" method="get" role="search">' + icon("search") + '<input type="search" name="q" placeholder="Search any story, king or festival" aria-label="Search stories">'
+              '<button class="btn" type="submit">Search</button></form>')
+    body = inner.banner("Blog", "Blog", "The Gyaanoxa Blog",
+                        "The long version of every video: the same facts and sources, with dates, the people in the story and the questions readers ask. Series articles are grouped part by part.",
+                        [("book", str(len(arts)), "Articles"), ("layers", str(len(series)), "Series"), ("clock", str(total), "Minutes of reading")], extra=search)
+    if singles:
+        jump.append('<a href="#stories">Single stories</a>')
+    bar = '<nav class="jumpbar" aria-label="Series"><div class="wrap">' + "".join(jump) + "</div></nav>" if jump else ""
+    body = inner.wrap(body + bar + sections + inner.follow())
     ld = {"@context": "https://schema.org", "@type": "Blog", "name": "Gyaanoxa Blog", "url": f"{SITE}/blog/", "inLanguage": "hi"}
     return page("इतिहास की कहानियाँ पढ़ें | Indian History Blog in Hindi", "Gyaanoxa के हर वीडियो की कहानी विस्तार से। अशोक, अजातशत्रु, दिवाली, कोहिनूर और भारत के इतिहास के अनसुने सच।",
                 "/blog/", f"{SITE}/assets/og.jpg", body, ld, index)
@@ -323,7 +329,7 @@ def build(public):
     arts = load_all()
     if not arts:
         return []
-    index = (ROOT / "index.html").read_text(encoding="utf-8")
+    index = (ROOT / "build" / "shell.html").read_text(encoding="utf-8")
     series = series_info()
     urls = []
     for a in arts.values():
