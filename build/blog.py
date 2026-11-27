@@ -19,14 +19,44 @@ READ_JS = """
   (function () {
     var bar = document.querySelector('.read-bar'), art = document.querySelector('.art');
     if (!bar || !art) return;
-    var links = [].slice.call(document.querySelectorAll('.toc a'));
+    var root = document.documentElement, grid = document.querySelector('.art-grid');
+    var left = document.getElementById('rt-left'), mins = left ? parseInt(left.getAttribute('data-mins'), 10) || 1 : 1;
+    var links = [].slice.call(document.querySelectorAll('.toc a, .toc-m a'));
+    var SIZES = [16, 17.5, 19, 20.5, 22], fs = 1;
+    function get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+    function put(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+    var saved = parseInt(get('gx-fs'), 10); if (saved >= 0 && saved < SIZES.length) fs = saved;
+    function size() {
+      root.style.setProperty('--art-fs', SIZES[fs] + 'px');
+      [].forEach.call(document.querySelectorAll('[data-fs]'), function (b) {
+        var d = parseInt(b.getAttribute('data-fs'), 10); b.disabled = (d < 0 && fs === 0) || (d > 0 && fs === SIZES.length - 1);
+      });
+    }
+    [].forEach.call(document.querySelectorAll('[data-fs]'), function (b) {
+      b.addEventListener('click', function () { fs = Math.max(0, Math.min(SIZES.length - 1, fs + parseInt(b.getAttribute('data-fs'), 10))); put('gx-fs', fs); size(); upd(); });
+    });
+    size();
+    var focus = document.getElementById('rt-focus');
+    function setFocus(on) { if (grid) grid.classList.toggle('focus', on); if (focus) { focus.setAttribute('aria-pressed', on ? 'true' : 'false'); focus.classList.toggle('on', on); } }
+    if (get('gx-focus') === '1') setFocus(true);
+    if (focus) focus.addEventListener('click', function () { var on = !(grid && grid.classList.contains('focus')); setFocus(on); put('gx-focus', on ? '1' : '0'); });
+    var wa = document.getElementById('rt-wa');
+    if (wa) wa.href = 'https://wa.me/?text=' + encodeURIComponent(document.title.split(' | ')[0] + ' ' + location.href.split('#')[0]);
+    var cp = document.getElementById('rt-copy');
+    if (cp) cp.addEventListener('click', function () {
+      var url = location.href.split('#')[0], old = cp.textContent;
+      var done = function () { cp.textContent = 'Copied'; cp.classList.add('on'); setTimeout(function () { cp.textContent = old; cp.classList.remove('on'); }, 1800); };
+      if (navigator.clipboard) navigator.clipboard.writeText(url).then(done);
+    });
     function upd() {
       var r = art.getBoundingClientRect(), h = r.height - innerHeight, cur = null;
-      bar.style.transform = 'scaleX(' + Math.min(1, Math.max(0, -r.top / (h > 0 ? h : 1))) + ')';
-      links.forEach(function (l) { var t = document.querySelector(l.getAttribute('href')); if (t && t.getBoundingClientRect().top < 140) cur = l; });
-      links.forEach(function (l) { l.classList.toggle('on', l === cur); });
+      var p = Math.min(1, Math.max(0, -r.top / (h > 0 ? h : 1)));
+      bar.style.transform = 'scaleX(' + p + ')';
+      if (left) { var m = Math.ceil(mins * (1 - p)); left.textContent = p < 0.02 ? mins + ' min read' : p > 0.985 ? 'Finished' : m + ' min left'; }
+      links.forEach(function (l) { var t = document.querySelector(l.getAttribute('href')); if (t && t.getBoundingClientRect().top < 140) cur = l.getAttribute('href'); });
+      links.forEach(function (l) { l.classList.toggle('on', l.getAttribute('href') === cur); });
     }
-    addEventListener('scroll', upd, {passive: true}); upd();
+    addEventListener('scroll', upd, {passive: true}); addEventListener('resize', upd); upd();
   })();
 """
 
@@ -126,7 +156,7 @@ def article_page(a, arts, public, series, index):
     if s:
         crumbs += f' › <a href="{series_url(s["slug"])}">{e(s["title_en"])}</a>'
         badge = f"Part {a['part']} of {a['of']}" if a.get("part") else "Full story"
-    secs = "".join(f'<h2 id="s{i}">{e(x["h2"])}</h2>' + "".join(f"<p>{e(p)}</p>" for p in x["paras"])
+    secs = "".join(f'<h2 id="s{i}">{e(x["h2"])}<a class="h-a" href="#s{i}" aria-label="Link to this section">#</a></h2>' + "".join(f"<p>{e(p)}</p>" for p in x["paras"])
                    for i, x in enumerate(a["sections"], 1))
     dyk = a.get("did_you_know") or []
     if dyk:                    # one "did you know" box in the middle of the article
@@ -179,6 +209,13 @@ def article_page(a, arts, public, series, index):
     tags = "".join(f'<span class="tag-chip">#{e(k)}</span>' for k in a.get("keywords", []))
     en = a["title"].split(" | ")[1] if " | " in a["title"] else ""
     tall = "tall" in player or "soon-box" in player
+    rtools = ('<div class="rtools" role="toolbar" aria-label="Reading tools"><span class="rt-left" id="rt-left" data-mins="' + str(mins) + '">' + str(mins) + " min read</span>"
+              '<span class="rt-sp"></span><button type="button" class="rt-b" data-fs="-1" aria-label="Smaller text"><b>A</b><small>-</small></button>'
+              '<button type="button" class="rt-b" data-fs="1" aria-label="Larger text"><b>A</b><small>+</small></button>'
+              '<button type="button" class="rt-b" id="rt-focus" aria-pressed="false" title="Hide the side boxes">Focus</button>'
+              '<a class="rt-b rt-wa" id="rt-wa" target="_blank" rel="noopener" href="https://wa.me/">WhatsApp</a>'
+              '<button type="button" class="rt-b" id="rt-copy">Copy link</button></div>')
+    toc_m = ('<nav class="toc-m" aria-label="Jump to a section">' + "".join(f'<a href="#s{i}">{e(x["h2"])}</a>' for i, x in enumerate(a["sections"], 1)) + "</nav>") if len(a["sections"]) > 1 else ""
     body = f"""  <div class="read-bar" aria-hidden="true"></div>
   <section class="art-hero">
     <div class="wrap art-top{' wide' if not tall else ''}">
@@ -196,6 +233,7 @@ def article_page(a, arts, public, series, index):
   <section class="art-body">
     <div class="wrap art-grid">
       <article class="art">
+        {rtools}{toc_m}
         <p class="art-intro">{e(a.get("intro", ""))}</p>
         {secs}
         {f'<div class="kd"><h2>Key dates</h2><ol class="vt">{dates}</ol></div>' if dates else ''}
