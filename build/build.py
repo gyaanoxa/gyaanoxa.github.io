@@ -480,6 +480,8 @@ def main():
     public = {v["id"]: v for v in allv}
     hub_urls = hubs.build(longs, shorts, upcoming_cards(site.get("upcoming", []), now, 40), doc_card, short_card, show,
                           (count, site.get("series_count", 3), n_art))
+    import home2                                  # preview of the new home page (not linked, noindex)
+    home2.build(longs, shorts, allv, site, now, show)
     import search                                 # search.json + /search/
     urls = (["/"] + hub_urls + pages.build(public) + blog.build(public) + search.build(public)
             + ["/privacy.html", "/terms.html"])
