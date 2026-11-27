@@ -243,19 +243,19 @@ def page_videos(public):
         d = json.loads(f.read_text(encoding="utf-8"))
         v = public.get((d.get("full") or {}).get("id") or "")
         if v:
-            out[f"/{d['slug']}/"] = (v, d.get("about_en") or d.get("title_en", ""))
+            out[f"/{d['slug']}/"] = (v, d.get("about_en") or d.get("title_en", ""), [])
     for f in sorted((ROOT / "data" / "blog").glob("*.json")):
         a = json.loads(f.read_text(encoding="utf-8"))
-        v = public.get(a.get("video") or "")
+        v = public.get(a.get("video") or "") or public.get(a.get("short") or "")
         if v:
-            out[art_url(a["slug"])] = (v, a.get("description", ""))
+            out[art_url(a["slug"])] = (v, a.get("description", ""), a.get("keywords") or [])
     return out
 
 
 def video_xml(item):
     if not item:
         return ""
-    v, desc = item
+    v, desc, tags = item
     title = re.sub(r"\s*#\w+", "", v["title"]).strip()
     return ("<video:video>"
             f"<video:thumbnail_loc>https://i.ytimg.com/vi/{e(v['id'])}/hqdefault.jpg</video:thumbnail_loc>"
@@ -263,7 +263,32 @@ def video_xml(item):
             f"<video:description>{e((desc or title)[:2000])}</video:description>"
             f"<video:player_loc>https://www.youtube.com/embed/{e(v['id'])}</video:player_loc>"
             f"<video:publication_date>{e(v['published'])}</video:publication_date>"
-            "</video:video>")
+            + "".join(f"<video:tag>{e(str(t)[:60])}</video:tag>" for t in list(dict.fromkeys(tags))[:10])
+            + "<video:family_friendly>yes</video:family_friendly></video:video>")
+
+
+def git_date(path):
+    """The day a file's content last changed in Git (YYYY-MM-DD), or ''."""
+    import subprocess
+    return subprocess.run(["git", "log", "-1", "--format=%cs", "--", str(path)], cwd=ROOT, capture_output=True,
+                          text=True).stdout.strip()
+
+
+def lastmod(url, today):
+    """A real last-changed day per page (Google ignores a sitemap whose dates are all 'today').
+    Articles and series: the day their data file last changed; policy pages: their own file; home and the lists change
+    every day (new videos, view counts), so they use today."""
+    if url.startswith("/blog/"):
+        for f in (ROOT / "data" / "blog").glob("*.json"):
+            if art_url(f.stem) == url:
+                return git_date(f.relative_to(ROOT)) or json.loads(f.read_text(encoding="utf-8")).get("written") or today
+    elif url in ("/privacy.html", "/terms.html"):
+        return git_date(url.lstrip("/")) or today
+    else:
+        f = ROOT / "data" / "series" / f"{url.strip('/')}.json"
+        if f.exists():
+            return git_date(f.relative_to(ROOT)) or today
+    return today
 
 
 def put(page, name, body):
@@ -371,12 +396,13 @@ def main():
         home = (ROOT / "index.html").read_text(encoding="utf-8")
         (ROOT / "index.html").write_text(no_dashes(put(home, "blog", cards)), encoding="utf-8", newline="\n")
     vids = page_videos(public)
-    sm = "".join(f"  <url><loc>https://gyaanoxa.com{u}</loc><lastmod>{today}</lastmod>{video_xml(vids.get(u))}</url>\n"
+    sm = "".join(f"  <url><loc>https://gyaanoxa.com{u}</loc><lastmod>{lastmod(u, today)}</lastmod>{video_xml(vids.get(u))}</url>\n"
                  for u in urls)
     (ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n'
                                       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
                                       'xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">\n'
                                       + sm + "</urlset>\n", encoding="utf-8", newline="\n")
+    ET.parse(ROOT / "sitemap.xml")                # the sitemap must be valid XML
     print(f"ok: {len(longs)} videos, {len(shorts)} shorts, {total} views, feed {len(feed)}, pages {len(urls)}")
 
 
