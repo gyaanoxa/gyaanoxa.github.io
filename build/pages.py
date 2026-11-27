@@ -85,6 +85,21 @@ def art_path(key):
     return _PATHS[key]
 
 
+_SPATHS = {}
+
+
+def series_path(slug):
+    """The public address of a series page: its "path" (e.g. birsa-munda) or its slug."""
+    if slug not in _SPATHS:
+        f = ROOT / "data" / "series" / f"{slug}.json"
+        _SPATHS[slug] = (json.loads(f.read_text(encoding="utf-8")).get("path") or slug) if f.exists() else slug
+    return _SPATHS[slug]
+
+
+def series_url(slug):
+    return f"/{series_path(slug)}/"
+
+
 def art_url(key):
     return f"/blog/{art_path(key)}/"
 
@@ -269,7 +284,7 @@ def series_page(d, public, index, all_series):
         + "".join(f'<button class="opt" type="button">{e(o)}</button>' for o in q["o"])
         + f'</div><p class="why">{e(q["why"])}</p></div>' for i, q in enumerate(d.get("quiz", []), 1))
     others = "".join(
-        f'<a class="other" href="/{e(o["slug"])}/"><b>{e(o["title_hi"])}</b><span>{e(o["title_en"])}</span></a>'
+        f'<a class="other" href="{series_url(o["slug"])}"><b>{e(o["title_hi"])}</b><span>{e(o["title_en"])}</span></a>'
         for o in all_series if o["slug"] != slug)
 
     reads = ""
@@ -361,7 +376,8 @@ def series_page(d, public, index, all_series):
     kw = [d["title_hi"], d["title_en"], f"{d['title_en']} in Hindi", f"{slug} history in Hindi", "भारत का इतिहास",
           "Indian history in Hindi", "Gyaanoxa"]
     head = f'  <meta name="keywords" content="{e(", ".join(kw))}">' + chr(10)
-    return page(f"{d['title_hi']} | {d['title_en']} | Gyaanoxa", desc, f"/{slug}/", image, body, ld, index, QUIZ_JS, head)
+    return page(d.get("seo_title") or f"{d['title_hi']} | {d['title_en']} | Gyaanoxa", d.get("seo_desc") or desc,
+                series_url(slug), image, body, ld, index, QUIZ_JS, head)
 
 
 def timeline_page(tl, public, index):
@@ -405,7 +421,7 @@ def timeline_page(tl, public, index):
   </section>"""
     ld = {"@context": "https://schema.org", "@type": "ItemList", "name": "Indian history timeline | Gyaanoxa",
           "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": x["en"]} for i, x in enumerate(sorted(tl["events"], key=lambda v: v["year"]))]}
-    return page("Indian History Timeline | Gyaanoxa",
+    return page("भारतीय इतिहास की टाइमलाइन | Indian History Timeline",
                 "Gyaanoxa's stories of Indian history on one timeline: Magadha, the Mauryas, Ashoka, the Koh-i-Noor, Sardar Patel and more.",
                 "/timeline/", f"{SITE}/assets/og.jpg", body, ld, index)
 
@@ -417,10 +433,14 @@ def build(public):
     series.sort(key=lambda s: order.get(s["slug"], 9))
     urls = []
     for d in series:
-        out = ROOT / d["slug"] / "index.html"
+        out = ROOT / series_path(d["slug"]) / "index.html"
         out.parent.mkdir(exist_ok=True)
         out.write_text(series_page(d, public, index, series), encoding="utf-8", newline="\n")
-        urls.append(f"/{d['slug']}/")
+        urls.append(series_url(d["slug"]))
+        for old in [d["slug"]] + list(d.get("aliases", [])):      # earlier addresses redirect to the new one
+            if old != series_path(d["slug"]):
+                (ROOT / old).mkdir(exist_ok=True)
+                (ROOT / old / "index.html").write_text(redirect_page(series_url(d["slug"])), encoding="utf-8", newline="\n")
     tl = json.loads((ROOT / "data" / "timeline.json").read_text(encoding="utf-8"))
     (ROOT / "timeline").mkdir(exist_ok=True)
     (ROOT / "timeline" / "index.html").write_text(timeline_page(tl, public, index), encoding="utf-8", newline="\n")

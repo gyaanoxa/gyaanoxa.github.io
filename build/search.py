@@ -104,7 +104,7 @@ def index_items(public):
         card = ROOT / "assets" / "s" / "series" / f"{sl}-380.webp"
         if card.exists() and (not img or "og." in img):     # not out yet: the series card on the home page
             img = f"/assets/s/series/{sl}-380.webp"
-        out.append(item("series", f'{s["title_hi"]} | {s["title_en"]}', s.get("about_en", ""), f"/{sl}/", img,
+        out.append(item("series", f'{s["title_hi"]} | {s["title_en"]}', s.get("about_en", ""), pages.series_url(sl), img,
                         blog.series_date(s), 0, sl + " " + s.get("about_hi", "")))
     for v in public.values():
         short = v.get("kind") == "short"
@@ -221,8 +221,9 @@ def search_page(index, n):
   </section>
   <section class="srch-list"><div class="wrap"><p id="count" class="srch-count">Loading...</p><div id="results" class="sresults"></div></div></section>"""
     ld = {"@context": "https://schema.org", "@type": "WebPage", "name": "Search Gyaanoxa", "url": "https://gyaanoxa.com/search/"}
-    return page("Search | Gyaanoxa", "Search every Gyaanoxa story, Short, video and series in Hindi or English.",
-                "/search/", "https://gyaanoxa.com/assets/og.jpg", body, ld, index, SEARCH_JS)
+    return page("खोजें | Search Gyaanoxa", "Search every Gyaanoxa story, Short, video and series in Hindi or English.",
+                "/search/", "https://gyaanoxa.com/assets/og.jpg", body, ld, index, SEARCH_JS,
+                '  <meta name="robots" content="noindex, follow">\n')
 
 
 def build(public):

@@ -8,6 +8,7 @@ import re
 from datetime import datetime, timezone
 from email.utils import format_datetime
 
+import pages
 from pages import SITE, ROOT, art_url, e, page
 
 FB = "https://www.facebook.com/gyaanoxa"
@@ -82,7 +83,7 @@ def videos_page(longs, doc_card, index):
           {"@type": "ItemList", "name": "Gyaanoxa documentaries", "itemListElement": [
               {"@type": "ListItem", "position": i + 1, "url": f"https://www.youtube.com/watch?v={v['id']}"}
               for i, v in enumerate(longs)]}]}
-    return page("Documentaries | Indian History in Hindi | Gyaanoxa",
+    return page("इतिहास की डॉक्यूमेंट्री | Indian History Documentaries",
                 "Full-length Hindi documentaries on Indian history from Gyaanoxa: Ashoka, Diwali's 5 days, the Koh-i-Noor, "
                 "Aurangzeb's Diwali ban and more.", "/videos/", f"{SITE}/assets/og.jpg", body, ld, index)
 
@@ -110,7 +111,7 @@ def shorts_page(shorts, short_card, show, index):
     </div>
   </section>{FOLLOW}"""
     ld = {"@context": "https://schema.org", "@graph": [crumbs_ld("Shorts", "/shorts/")]}
-    return page("Shorts | 1 Minute History Stories in Hindi | Gyaanoxa",
+    return page("1 मिनट की इतिहास कहानियाँ | Indian History Shorts in Hindi",
                 "Every Gyaanoxa Short: one-minute true stories from Indian history and festivals in Hindi, new every evening at 7 PM IST.",
                 "/shorts/", f"{SITE}/assets/og.jpg", body, ld, index)
 
@@ -120,7 +121,7 @@ def series_page(index, all_series):
     cards = home[:home.index("</section>")]
     cards = cards[:cards.rindex("</div>")]                       # drop the .wrap closing tag
     cards = absolute(cards.replace("series reveal", "series"))
-    rows = "".join(f'<a class="other" href="/{e(s["slug"])}/"><b>{e(s["title_hi"])}</b><span>{e(s["title_en"])} · '
+    rows = "".join(f'<a class="other" href="{pages.series_url(s["slug"])}"><b>{e(s["title_hi"])}</b><span>{e(s["title_en"])} · '
                    f'{len(s["parts"])} parts + full video</span></a>' for s in all_series)
     body = hero("Series", "Series", "Stories told part by part", "A big story comes out one short part each evening. After the last part, "
                 "the whole thing comes out as one full video, with an article and a quiz on its own page.") + f"""
@@ -139,7 +140,7 @@ def series_page(index, all_series):
           {"@type": "ItemList", "name": "Gyaanoxa series", "itemListElement": [
               {"@type": "ListItem", "position": i + 1, "url": f"{SITE}/{s['slug']}/", "name": s["title_en"]}
               for i, s in enumerate(all_series)]}]}
-    return page("Series | Indian History Stories Part by Part | Gyaanoxa",
+    return page("इतिहास की कहानियाँ भाग दर भाग | Indian History Series in Hindi",
                 "Gyaanoxa's story series in Hindi: Ajatashatru, Ashoka, Diwali's 5 days and more, told one part each evening "
                 "and then as one full video.", "/series/", f"{SITE}/assets/og.jpg", body, ld, index)
 
@@ -171,7 +172,7 @@ def next_page(cards, index):
     </div>
   </section>{FOLLOW}"""
     ld = {"@context": "https://schema.org", "@graph": [crumbs_ld("Coming next", "/coming-next/")]}
-    return page("Coming next | Upcoming Videos and Shorts | Gyaanoxa",
+    return page("आने वाले वीडियो और Shorts | Gyaanoxa Upcoming",
                 "The Gyaanoxa release schedule: upcoming Hindi Shorts, full videos and festival stories, with dates and times in IST.",
                 "/coming-next/", f"{SITE}/assets/og.jpg", body, ld, index, NEXT_JS)
 
@@ -281,9 +282,9 @@ def about_page(index, n_videos, n_series, n_articles):
         {"@type": "AboutPage", "name": "About Gyaanoxa", "url": f"{SITE}/about/", "inLanguage": "hi"},
         {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}}
                                             for q, a in FAQ]}]}
-    return page("About Gyaanoxa | Indian History in Simple Hindi",
-                "About Gyaanoxa: a Hindi channel of true stories from Indian history, festivals and mysteries, with sources named. "
-                "How a story is made, where to watch, and answers to common questions.", "/about/", f"{SITE}/assets/og.jpg",
+    return page("Gyaanoxa के बारे में | Indian History in Simple Hindi",
+                "About Gyaanoxa: a Hindi channel of true stories from Indian history and festivals. How a story is made, "
+                "where to watch, and answers to common questions.", "/about/", f"{SITE}/assets/og.jpg",
                 body, ld, index)
 
 
@@ -328,7 +329,7 @@ def contact_page(index):
         {"@type": "ContactPage", "name": "Contact Gyaanoxa", "url": f"{SITE}/contact/",
          "mainEntity": {"@type": "Organization", "name": "Gyaanoxa", "email": "gyaanoxa@gmail.com", "url": SITE + "/",
                         "sameAs": [YT, IG, FB]}}]}
-    return page("Contact Gyaanoxa | Suggest a Story", "Contact Gyaanoxa: suggest a story from Indian history, send a correction "
+    return page("संपर्क करें, कहानी सुझाएँ | Contact Gyaanoxa", "Contact Gyaanoxa: suggest a story from Indian history, send a correction "
                 "or talk about working together. Email gyaanoxa@gmail.com.", "/contact/", f"{SITE}/assets/og.jpg", body, ld, index)
 
 
@@ -342,7 +343,7 @@ def clean(t):
 
 
 def footer_lists(all_series):
-    series = "\n".join(f'      <a href="/{e(s["slug"])}/">{e(s["title_en"])}</a>' for s in all_series)
+    series = "\n".join(f'      <a href="{pages.series_url(s["slug"])}">{e(s["title_en"])}</a>' for s in all_series)
     series += '\n      <a href="/series/">All series →</a>'
     reads = "\n".join(f'      <a href="{art_url(a["slug"])}">{e(clean(a["title"]))}</a>' for a in articles()[:5])
     reads += '\n      <a href="/blog/">All articles →</a>'

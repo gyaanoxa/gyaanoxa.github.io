@@ -20,7 +20,7 @@ from pathlib import Path
 from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from pages import art_url, no_dashes, small, srcset, ver  # noqa: E402
+from pages import art_url, no_dashes, series_url, small, srcset, ver  # noqa: E402
 import links  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -236,20 +236,51 @@ def upcoming_cards(items, now, limit=8):
 
 
 def page_videos(public):
-    """{page url: (video, description)} for pages that show a public YouTube video (the click-to-play player loads
-    YouTube only after a click, so the video sitemap tells Google which video is on which page)."""
-    out = {}
-    for f in sorted((ROOT / "data" / "series").glob("*.json")):
-        d = json.loads(f.read_text(encoding="utf-8"))
-        v = public.get((d.get("full") or {}).get("id") or "")
-        if v:
-            out[f"/{d['slug']}/"] = (v, d.get("about_en") or d.get("title_en", ""), [])
+    """{page url: (video, description, tags)}: each YouTube video is listed on ONE page only, its article (the page with
+    the full text). Series pages embed the full video but are not listed with it in the sitemap."""
+    out, seen = {}, set()
     for f in sorted((ROOT / "data" / "blog").glob("*.json")):
         a = json.loads(f.read_text(encoding="utf-8"))
-        v = public.get(a.get("video") or "") or public.get(a.get("short") or "")
-        if v:
+        if a.get("redirect_to"):
+            continue
+        vid = a.get("video") or a.get("short") or ""
+        v = public.get(vid)
+        if v and vid not in seen:
+            seen.add(vid)
             out[art_url(a["slug"])] = (v, a.get("description", ""), a.get("keywords") or [])
     return out
+
+
+VMETA = ROOT / "data" / "vmeta.json"
+
+
+def vmeta(vid):
+    """{"d": seconds, "max": has a 1280x720 thumbnail}, looked up once per video and kept in data/vmeta.json."""
+    try:
+        cache = json.loads(VMETA.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        cache = {}
+    m = cache.get(vid, {})
+    if "d" not in m:
+        try:
+            html_ = urllib.request.urlopen(urllib.request.Request(f"https://www.youtube.com/watch?v={vid}", headers=UA),
+                                           timeout=15).read().decode("utf-8", "ignore")
+            hit = re.search(r'"lengthSeconds":"(\d+)"', html_)
+            if hit:
+                m["d"] = int(hit.group(1))
+        except Exception:
+            pass
+    if "max" not in m:
+        try:
+            r = urllib.request.urlopen(urllib.request.Request(f"https://i.ytimg.com/vi/{vid}/maxresdefault.jpg",
+                                                              headers=UA, method="HEAD"), timeout=10)
+            m["max"] = r.status == 200
+        except Exception:
+            m["max"] = False
+    if m != cache.get(vid):
+        cache[vid] = m
+        VMETA.write_text(json.dumps(cache, indent=1, sort_keys=True) + chr(10), encoding="utf-8", newline=chr(10))
+    return m
 
 
 def video_xml(item):
@@ -257,12 +288,15 @@ def video_xml(item):
         return ""
     v, desc, tags = item
     title = re.sub(r"\s*#\w+", "", v["title"]).strip()
+    meta = vmeta(v["id"])
+    thumb = "maxresdefault" if meta.get("max") else "hqdefault"
     return ("<video:video>"
-            f"<video:thumbnail_loc>https://i.ytimg.com/vi/{e(v['id'])}/hqdefault.jpg</video:thumbnail_loc>"
+            f"<video:thumbnail_loc>https://i.ytimg.com/vi/{e(v['id'])}/{thumb}.jpg</video:thumbnail_loc>"
             f"<video:title>{e(title[:100])}</video:title>"
             f"<video:description>{e((desc or title)[:2000])}</video:description>"
             f"<video:player_loc>https://www.youtube.com/embed/{e(v['id'])}</video:player_loc>"
             f"<video:publication_date>{e(v['published'])}</video:publication_date>"
+            + (f"<video:duration>{meta['d']}</video:duration>" if meta.get("d") else "")
             + "".join(f"<video:tag>{e(str(t)[:60])}</video:tag>" for t in list(dict.fromkeys(tags))[:10])
             + "<video:family_friendly>yes</video:family_friendly></video:video>")
 
@@ -274,21 +308,46 @@ def git_date(path):
                           text=True).stdout.strip()
 
 
-def lastmod(url, today):
-    """A real last-changed day per page (Google ignores a sitemap whose dates are all 'today').
-    Articles and series: the day their data file last changed; policy pages: their own file; home and the lists change
-    every day (new videos, view counts), so they use today."""
-    if url.startswith("/blog/"):
-        for f in (ROOT / "data" / "blog").glob("*.json"):
-            if art_url(f.stem) == url:
-                return git_date(f.relative_to(ROOT)) or json.loads(f.read_text(encoding="utf-8")).get("written") or today
-    elif url in ("/privacy.html", "/terms.html"):
-        return git_date(url.lstrip("/")) or today
-    else:
-        f = ROOT / "data" / "series" / f"{url.strip('/')}.json"
-        if f.exists():
-            return git_date(f.relative_to(ROOT)) or today
-    return today
+def first_date(path):
+    """The day a file was first added to Git (its creation day), or ''."""
+    import subprocess
+    out = subprocess.run(["git", "log", "--diff-filter=A", "--format=%cs", "--", str(path)], cwd=ROOT,
+                         capture_output=True, text=True).stdout.split()
+    return out[-1] if out else ""
+
+
+def lastmods(allv, today):
+    """{page url: YYYY-MM-DD} = the day the page's CONTENT was created or really changed, never the build day.
+    An article: its "updated" day (set when its script/article is rewritten) or the "written" (created) day.
+    A series page: its newest article. Lists and the home page: their newest item. Policy and info pages: the day
+    their own text last changed."""
+    arts = {}
+    for f in (ROOT / "data" / "blog").glob("*.json"):
+        a = json.loads(f.read_text(encoding="utf-8"))
+        if not a.get("redirect_to"):
+            arts[a["slug"]] = (a, a.get("updated") or a.get("written") or git_date(f.relative_to(ROOT)) or today)
+    out = {art_url(k): d for k, (a, d) in arts.items()}
+    sdates = []
+    for f in (ROOT / "data" / "series").glob("*.json"):
+        d = json.loads(f.read_text(encoding="utf-8"))
+        mine = [dt for a, dt in arts.values() if a.get("series") == d["slug"]]
+        out[series_url(d["slug"])] = max(mine) if mine else (git_date(f.relative_to(ROOT)) or today)
+        sdates.append(out[series_url(d["slug"])])
+    newest_art = max([dt for _, dt in arts.values()] or [today])
+    longs_ = [v["published"][:10] for v in allv if v["kind"] == "video"]
+    shorts_ = [v["published"][:10] for v in allv if v["kind"] == "short"]
+    out["/blog/"] = newest_art
+    out["/series/"] = max(sdates or [newest_art])
+    out["/videos/"] = max(longs_ or [newest_art])
+    out["/shorts/"] = max(shorts_ or [newest_art])
+    out["/"] = max([newest_art] + longs_[:1] + shorts_[:1])
+    out["/coming-next/"] = git_date("data/site.json") or newest_art
+    out["/timeline/"] = git_date("data/timeline.json") or newest_art
+    for u in ("/about/", "/contact/"):
+        out[u] = first_date(u.strip("/") + "/index.html") or newest_art
+    for u in ("/privacy.html", "/terms.html"):
+        out[u] = git_date(u.lstrip("/")) or newest_art
+    return out
 
 
 def put(page, name, body):
@@ -396,8 +455,11 @@ def main():
         home = (ROOT / "index.html").read_text(encoding="utf-8")
         (ROOT / "index.html").write_text(no_dashes(put(home, "blog", cards)), encoding="utf-8", newline="\n")
     vids = page_videos(public)
-    sm = "".join(f"  <url><loc>https://gyaanoxa.com{u}</loc><lastmod>{lastmod(u, today)}</lastmod>{video_xml(vids.get(u))}</url>\n"
-                 for u in urls)
+    lm = lastmods(allv, today)
+    has_next = any(x.get("at", "") > now.astimezone().isoformat() for x in site.get("upcoming", []))
+    listed = [u for u in urls if u != "/search/" and (u != "/coming-next/" or has_next)]   # no tool pages, no empty list
+    sm = "".join(f"  <url><loc>https://gyaanoxa.com{u}</loc><lastmod>{lm.get(u) or today}</lastmod>{video_xml(vids.get(u))}</url>\n"
+                 for u in listed)
     (ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n'
                                       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
                                       'xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">\n'

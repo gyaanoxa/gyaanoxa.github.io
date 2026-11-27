@@ -9,7 +9,7 @@ from pathlib import Path
 
 import links
 import pages
-from pages import SITE, art_path, art_url, e, page, redirect_page, when
+from pages import SITE, art_path, art_url, e, page, redirect_page, series_url, when
 
 ROOT = Path(__file__).resolve().parent.parent
 SERIES_ORDER = {"ajatashatru": 0, "ashoka": 1, "diwali": 2}
@@ -31,9 +31,13 @@ READ_JS = """
 """
 
 
+def load_raw():
+    return [json.loads(f.read_text(encoding="utf-8")) for f in sorted((ROOT / "data" / "blog").glob("*.json"))]
+
+
 def load_all():
-    arts = [json.loads(f.read_text(encoding="utf-8")) for f in sorted((ROOT / "data" / "blog").glob("*.json"))]
-    return {a["slug"]: a for a in arts}
+    """Every article that has its own page (an article with "redirect_to" is merged into another one)."""
+    return {a["slug"]: a for a in load_raw() if not a.get("redirect_to")}
 
 
 def head_title(t):
@@ -120,7 +124,7 @@ def article_page(a, arts, public, series, index):
     crumbs = '<a href="/">Gyaanoxa</a> › <a href="/blog/">Blog</a>'
     badge = ""
     if s:
-        crumbs += f' › <a href="/{e(s["slug"])}/">{e(s["title_en"])}</a>'
+        crumbs += f' › <a href="{series_url(s["slug"])}">{e(s["title_en"])}</a>'
         badge = f"Part {a['part']} of {a['of']}" if a.get("part") else "Full story"
     secs = "".join(f'<h2 id="s{i}">{e(x["h2"])}</h2>' + "".join(f"<p>{e(p)}</p>" for p in x["paras"])
                    for i, x in enumerate(a["sections"], 1))
@@ -144,9 +148,9 @@ def article_page(a, arts, public, series, index):
         items = [(f"{base}-full-story", "Full story")] + [(f"{base}-part-{p['n']}", f"Part {p['n']}: {p['topic']}") for p in s["parts"]]
         nav = "".join(f'<li{" class=on" if k == slug else ""}><a href="{art_url(k)}">{e(t)}</a></li>'
                       for k, t in items if k in arts)
-        nav = f'<aside class="side-box series-nav"><p class="eyebrow">Articles in this series</p><ol>{nav}</ol><a class="more" href="/{e(base)}/">Series page · Quiz</a></aside>'
+        nav = f'<aside class="side-box series-nav"><p class="eyebrow">Articles in this series</p><ol>{nav}</ol><a class="more" href="{series_url(base)}">Series page · Quiz</a></aside>'
         if (ROOT / "assets" / "posters" / f"{base}.webp").exists():
-            nav = (f'<a class="side-poster" href="/{e(base)}/"><img src="/assets/posters/{e(base)}.webp" '
+            nav = (f'<a class="side-poster" href="{series_url(base)}"><img src="/assets/posters/{e(base)}.webp" '
                    f'alt="{e(s["title_en"])} series poster with the release dates" width="920" height="1150" loading="lazy"></a>') + nav
         keys = [k for k, _ in items if k in arts]
         at = keys.index(slug) if slug in keys else 0
@@ -228,7 +232,8 @@ def article_page(a, arts, public, series, index):
             f'  <meta property="article:modified_time" content="{e(d0)}">\n'
             f'  <meta property="article:section" content="{e(s["title_en"] if s else "Indian History")}">\n'
             + "".join(f'  <meta property="article:tag" content="{e(k)}">\n' for k in a.get("keywords", [])))
-    return page(f"{a['title']} | Gyaanoxa", a.get("description", ""), art_url(slug), SITE + img, body, ld, index, READ_JS, head, "article")
+    return page(a.get("seo_title") or f"{a['title']} | Gyaanoxa", a.get("seo_desc") or a.get("description", ""), art_url(slug),
+                SITE + img, body, ld, index, READ_JS, head, "article")
 
 
 def card(a, public):
@@ -282,7 +287,7 @@ def index_page(arts, public, series, index):
             continue
         lst = f'<ol class="plist{" many" if len(parts) > 5 else ""}">{"".join(prow(a, public) for a in parts)}</ol>'
         groups.append(f'<div class="bgroup" id="{e(sl)}"><div class="head"><div><p class="eyebrow">Series · {len(s["parts"])} parts</p>'
-                      f'<h2>{e(s["title_hi"])}</h2></div><a class="more" href="/{e(sl)}/">Series page · Quiz</a></div>'
+                      f'<h2>{e(s["title_hi"])}</h2></div><a class="more" href="{series_url(sl)}">Series page · Quiz</a></div>'
                       f'<div class="bfeat">{feature(full, public, s) if full else ""}{lst}</div></div>')
     singles = sorted((a for a in arts.values() if not a.get("series")), key=lambda a: story_date(a, public), reverse=True)
     if singles:
@@ -302,7 +307,7 @@ def index_page(arts, public, series, index):
   </section>
   <section class="blog-list"><div class="wrap">{"".join(groups)}</div></section>"""
     ld = {"@context": "https://schema.org", "@type": "Blog", "name": "Gyaanoxa Blog", "url": f"{SITE}/blog/", "inLanguage": "hi"}
-    return page("Blog | Indian History Stories in Hindi | Gyaanoxa", "Gyaanoxa के हर वीडियो की कहानी विस्तार से। अशोक, अजातशत्रु, दिवाली, कोहिनूर और भारत के इतिहास के अनसुने सच।",
+    return page("इतिहास की कहानियाँ पढ़ें | Indian History Blog in Hindi", "Gyaanoxa के हर वीडियो की कहानी विस्तार से। अशोक, अजातशत्रु, दिवाली, कोहिनूर और भारत के इतिहास के अनसुने सच।",
                 "/blog/", f"{SITE}/assets/og.jpg", body, ld, index)
 
 
@@ -326,9 +331,17 @@ def build(public):
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(article_page(a, arts, public, series, index), encoding="utf-8", newline="\n")
         urls.append(art_url(a["slug"]))
-        if art_path(a["slug"]) != a["slug"]:        # the old address (already in video descriptions) redirects
-            old = ROOT / "blog" / a["slug"] / "index.html"
-            old.parent.mkdir(parents=True, exist_ok=True)
-            old.write_text(redirect_page(art_url(a["slug"])), encoding="utf-8", newline="\n")
+        olds = ([a["slug"]] if art_path(a["slug"]) != a["slug"] else []) + list(a.get("aliases", []))
+        for o in olds:                              # every earlier address (already in video descriptions) redirects
+            if o != art_path(a["slug"]):
+                old = ROOT / "blog" / o / "index.html"
+                old.parent.mkdir(parents=True, exist_ok=True)
+                old.write_text(redirect_page(art_url(a["slug"])), encoding="utf-8", newline="\n")
+    for a in load_raw():                            # merged articles: their addresses lead to the article they joined
+        if a.get("redirect_to") and a["redirect_to"] in arts:
+            for o in {a["slug"], a.get("path") or a["slug"]} | set(a.get("aliases", [])):
+                old = ROOT / "blog" / o / "index.html"
+                old.parent.mkdir(parents=True, exist_ok=True)
+                old.write_text(redirect_page(art_url(a["redirect_to"])), encoding="utf-8", newline="\n")
     (ROOT / "blog" / "index.html").write_text(index_page(arts, public, series, index), encoding="utf-8", newline="\n")
     return ["/blog/"] + urls
