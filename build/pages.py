@@ -406,12 +406,21 @@ def timeline_page(tl, public, index):
         href, kind, tgt = target(x)
         if href:
             fest.append(f'<a class="other" href="{e(href)}"{tgt}><b>{e(x["title"])}</b><span>{e(x["en"])}</span></a>')
+    _ys = [x["year"] for x in tl["events"]]
+    _span = (f"{abs(min(_ys))} BCE" if min(_ys) < 0 else str(min(_ys))) + " to " + str(max(_ys))
+    _tiles = ('<div class="hs-tiles">'
+              f'<span><b>{len(tl["events"])}</b><small>moments from our stories</small></span>'
+              f'<span><b>{len(tl["eras"])}</b><small>eras of Indian history</small></span>'
+              f'<span><b>{e(_span)}</b><small>from the first story to the latest</small></span></div>')
     body = f"""  <section class="sp-hero">
-    <div class="wrap">
+    <div class="wrap hero-side">
+      <div>
       <p class="crumbs"><a href="/">Gyaanoxa</a> › Timeline</p>
       <p class="eyebrow">Indian history timeline</p>
       <h1>Indian History Timeline</h1>
       <p class="lead">Every Gyaanoxa story in its own time, from the kings of Magadha to independent India. The timeline grows with every new video.</p>
+      </div>
+      <div class="hs-art">{_tiles}</div>
     </div>
   </section>
   <section>

@@ -1782,3 +1782,55 @@ footer { margin: 56px clamp(8px, 1.6vw, 24px) 14px; border: 1px solid var(--card
     background: var(--card-bg); border: 1px solid var(--card-line); box-shadow: var(--card-shadow); font-size: 16px; }
   .blog-hero .bstats b { font-size: 38px; line-height: 1; }
 }
+
+/* ================= LAYOUT FIXES: no stretched, half-empty boxes ================= */
+/* documentaries: one big picture card + compact horizontal cards */
+.docs { grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
+.docs .card:first-child { position: relative; display: block; min-height: 460px; grid-column: span 2; grid-row: span 2; overflow: hidden;
+  --text: #f5f6fc; --text-strong: #ffffff; --muted: #d3d7ef; --dim: #b4bad8; --gold-t: var(--gold); --gold-t2: var(--gold-2); }
+.docs .card:first-child .thumb { position: absolute; inset: 0; aspect-ratio: auto; border-radius: 0; }
+.docs .card:first-child .thumb img { width: 100%; height: 100%; object-fit: cover; }
+.docs .card:first-child .meta { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; flex: none; justify-content: flex-end; gap: 6px;
+  padding: 120px clamp(18px, 2.4vw, 32px) 22px; background: linear-gradient(180deg, transparent 0, rgb(var(--ovl) / .78) 38%, rgb(var(--ovl) / .96) 100%); }
+.docs .card:first-child h3 { font-size: clamp(24px, 2.4vw, 32px); }
+.docs .card:first-child .hl, .docs .card:first-child ul { margin: 6px 0 4px; }
+.docs .card:not(:first-child) { flex-direction: row; align-items: stretch; }
+.docs .card:not(:first-child) .thumb { position: relative; flex: none; width: 42%; aspect-ratio: auto; min-height: 150px; }
+.docs .card:not(:first-child) .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.docs .card:not(:first-child) .meta { padding: 14px 16px; justify-content: center; }
+.docs .card:not(:first-child) h3 { font-size: 17px; line-height: 1.3; }
+.docs .card:not(:first-child) .desc { -webkit-line-clamp: 2; font-size: 14px; margin-top: 4px; }
+.docs .card:not(:first-child) .card-foot { padding-top: 8px; }
+.sub-tile { display: grid; grid-template-columns: 64px 1fr; gap: 4px 16px; align-items: center; text-align: left; padding: 20px 22px;
+  background: linear-gradient(135deg, rgb(var(--blue-rgb) / .35), rgb(var(--acc) / .14)); }
+.sub-tile img { grid-row: 1 / span 3; width: 64px; height: 64px; border-radius: 18px; }
+.sub-tile h3 { font-size: 19px; }
+.sub-tile p { font-size: 14px; color: var(--muted); margin: 0; }
+.sub-tile .btn { justify-self: start; margin-top: 6px; }
+
+/* article tiles on the home page: the cover no longer sets the card height */
+#read .acard { min-height: 150px; }
+#read .ac-img { position: relative; min-height: 150px; }
+#read .ac-img img { position: absolute; inset: 0; }
+#read .ac-body { display: flex; flex-direction: column; justify-content: center; }
+
+/* series cards: same height without a gap inside */
+a.s-card { display: flex; flex-direction: column; }
+.s-body { flex: 1; display: flex; flex-direction: column; }
+.s-body p { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.s-body .s-d, .s-body .soon { margin-top: auto; align-self: flex-start; }
+@media (max-width: 1100px) { .docs .card:first-child { grid-column: 1 / -1; grid-row: auto; min-height: 380px; } .docs { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 760px) { .docs { grid-template-columns: 1fr; } .docs .card:first-child { min-height: 340px; } .docs .card:not(:first-child) .thumb { width: 38%; } }
+
+.docs .card:first-child .read-a, .docs .card:first-child .pi { background: rgb(255 255 255 / .14); border-color: rgb(255 255 255 / .32); color: #ffffff; box-shadow: none; }
+.docs .card:first-child .read-a:hover, .docs .card:first-child .pi:hover { background: rgb(255 255 255 / .26); }
+.docs .card:first-child .watch { color: var(--gold-2); }
+
+/* ---------- page headers: stat tiles fill the right side ---------- */
+.hs-tiles { display: grid; gap: 12px; width: 100%; max-width: 420px; justify-self: end; }
+.hs-tiles span { display: flex; align-items: baseline; gap: 14px; padding: 18px 22px; border-radius: var(--r);
+  background: var(--card-bg); border: 1px solid var(--card-line); box-shadow: var(--card-shadow); }
+.hs-tiles b { font: 800 clamp(26px, 2.6vw, 36px)/1 var(--display); color: var(--gold-t); }
+.hs-tiles small { font-size: 15px; color: var(--muted); }
+.hs-art:has(.hs-tiles) { place-items: center end; }
+@media (max-width: 900px) { .hs-tiles { max-width: none; grid-template-columns: 1fr 1fr 1fr; } .hs-tiles span { flex-direction: column; gap: 6px; padding: 14px; } }

@@ -8,6 +8,7 @@ import re
 from datetime import datetime, timezone
 from email.utils import format_datetime
 
+import blog
 import pages
 from pages import SITE, ROOT, art_url, e, page
 
@@ -43,6 +44,11 @@ def hero(crumb, eyebrow, h1, lead, extra="", side=""):
 """
 
 
+def tiles(*rows):
+    """Stat tiles for the right side of a page header: (big text, small text) pairs."""
+    return '<div class="hs-tiles">' + "".join(f"<span><b>{e(a)}</b><small>{e(b)}</small></span>" for a, b in rows) + "</div>"
+
+
 def crumbs_ld(name, url):
     return {"@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Gyaanoxa", "item": SITE + "/"},
@@ -68,7 +74,9 @@ FOLLOW = f"""
 def videos_page(longs, doc_card, index):
     cards = "\n".join(doc_card(v, i == 0) for i, v in enumerate(longs))
     body = hero("Documentaries", "Full videos", "Documentaries", "The whole story in one sitting: Ashoka, Diwali, the Koh-i-Noor and more. "
-                "Told as one clear story in simple Hindi.") + f"""
+                "Told as one clear story in simple Hindi.",
+                side=tiles((str(len(longs)), "full-length videos"), (str(len(blog.load_all())), "articles to read"),
+                           ("1", "clear story in every video"))) + f"""
   <section>
     <div class="wrap">
       <div class="head"><div><p class="eyebrow">{len(longs)} videos</p><h2>Every full-length video</h2>
@@ -92,7 +100,9 @@ def shorts_page(shorts, short_card, show, index):
     latest = "\n".join(short_card(v, show) for v in shorts)
     top = "\n".join(short_card(v, show) for v in sorted(shorts, key=lambda v: -v["views"])[:12])
     body = hero("Shorts", "Shorts", "One story in a minute", "Every Gyaanoxa Short in one place. A new one goes live every evening at 7 PM IST "
-                "on YouTube, Instagram and Facebook.") + f"""
+                "on YouTube, Instagram and Facebook.",
+                side=tiles((str(len(shorts)), "Shorts so far"), ("7 PM", "a new Short every evening, IST"),
+                           ("1 min", "one story, one Short"))) + f"""
   <section>
     <div class="wrap">
       <div class="head"><div><p class="eyebrow">Popular</p><h2>Most watched</h2></div>
@@ -124,7 +134,9 @@ def series_page(index, all_series):
     rows = "".join(f'<a class="other" href="{pages.series_url(s["slug"])}"><b>{e(s["title_hi"])}</b><span>{e(s["title_en"])} · '
                    f'{len(s["parts"])} parts + full video</span></a>' for s in all_series)
     body = hero("Series", "Series", "Stories told part by part", "A big story comes out one short part each evening. After the last part, "
-                "the whole thing comes out as one full video, with an article and a quiz on its own page.") + f"""
+                "the whole thing comes out as one full video, with an article and a quiz on its own page.",
+                side=tiles((str(len(all_series)), "story series"), (str(sum(len(s["parts"]) for s in all_series)), "short parts"),
+                           (str(sum(1 for s in all_series if s.get("quiz"))), "quizzes to play"))) + f"""
   <section>
     <div class="wrap">
       {cards}
@@ -161,7 +173,8 @@ NEXT_JS = """
 
 def next_page(cards, index):
     body = hero("Coming next", "Coming next", "What is coming next", "What goes live next on YouTube, Instagram and Facebook. Shorts at "
-                "7 PM IST, full videos at 6 PM, festival stories at 1 PM a day before the festival.") + f"""
+                "7 PM IST, full videos at 6 PM, festival stories at 1 PM a day before the festival.",
+                side=tiles(("7 PM", "Shorts, IST"), ("6 PM", "full videos, IST"), ("1 PM", "festival stories, a day before"))) + f"""
   <section>
     <div class="wrap">
       <div class="upcoming">
