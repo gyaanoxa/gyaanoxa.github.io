@@ -1,0 +1,9 @@
+Noto Sans Devanagari (variable font, files NotoSansDevanagari-var-*.woff2)
+Copyright 2022 The Noto Project Authors (https://github.com/notofonts/devanagari)
+Licensed under the SIL Open Font License 1.1, the same licence as the other fonts in this folder (see OFL.txt).
+Source: Google Fonts (fonts.google.com/noto/specimen/Noto+Sans+Devanagari).
+
+Inter (variable font, file Inter-var-latin.woff2)
+Copyright 2020 The Inter Project Authors (https://github.com/rsms/inter)
+Licensed under the SIL Open Font License 1.1, the same licence as the other fonts in this folder.
+Source: Google Fonts (fonts.google.com/specimen/Inter).

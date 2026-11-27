@@ -1,0 +1,129 @@
+{
+ "_help": "Names that link to a story page inside the article text. terms: the spelling(s) in the text; slug: the article it opens. The first mention in an article is linked (at most 5 per article).",
+ "links": [
+  {
+   "terms": [
+    "अशोक"
+   ],
+   "slug": "ashoka-full-story"
+  },
+  {
+   "terms": [
+    "बिंदुसार",
+    "बिन्दुसार"
+   ],
+   "slug": "bindusara-full-story"
+  },
+  {
+   "terms": [
+    "चंद्रगुप्त"
+   ],
+   "slug": "chandragupta-maurya-origin"
+  },
+  {
+   "terms": [
+    "चाणक्य"
+   ],
+   "slug": "chanakya-story"
+  },
+  {
+   "terms": [
+    "अजातशत्रु"
+   ],
+   "slug": "ajatashatru-full-story"
+  },
+  {
+   "terms": [
+    "बिंबिसार",
+    "बिम्बिसार"
+   ],
+   "slug": "ajatashatru-part-1"
+  },
+  {
+   "terms": [
+    "बिरसा मुंडा",
+    "बिरसा"
+   ],
+   "slug": "dharti-full-story"
+  },
+  {
+   "terms": [
+    "कलिंग"
+   ],
+   "slug": "kalinga-war"
+  },
+  {
+   "terms": [
+    "दिवाली"
+   ],
+   "slug": "diwali-full-story"
+  },
+  {
+   "terms": [
+    "राजेंद्र प्रसाद"
+   ],
+   "slug": "rajendra-prasad"
+  },
+  {
+   "terms": [
+    "गुरु नानक"
+   ],
+   "slug": "guru-nanak-jayanti"
+  },
+  {
+   "terms": [
+    "गुरु तेग बहादुर"
+   ],
+   "slug": "guru-tegh-bahadur"
+  },
+  {
+   "terms": [
+    "रानी लक्ष्मीबाई"
+   ],
+   "slug": "rani-lakshmibai"
+  },
+  {
+   "terms": [
+    "सरदार पटेल"
+   ],
+   "slug": "sardar-patel-ekta-diwas"
+  },
+  {
+   "terms": [
+    "होमी भाभा"
+   ],
+   "slug": "homi-bhabha-death"
+  },
+  {
+   "terms": [
+    "कोहिनूर"
+   ],
+   "slug": "kohinoor-curse"
+  },
+  {
+   "terms": [
+    "पद्मनाभस्वामी"
+   ],
+   "slug": "padmanabhaswamy"
+  },
+  {
+   "terms": [
+    "छठ"
+   ],
+   "slug": "chhath-puja-ki-kahani"
+  },
+  {
+   "terms": [
+    "राधागुप्त"
+   ],
+   "slug": "ashoka-story"
+  },
+  {
+   "terms": [
+    "सुसीम",
+    "सुशीम"
+   ],
+   "slug": "bindusara-part-4"
+  }
+ ]
+}

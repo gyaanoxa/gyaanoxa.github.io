@@ -187,6 +187,9 @@ HN_JS = """
   })();
 """
 
+CHAKRA = '<svg class="ph-chakra" viewBox="0 0 100 100" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="41"/><circle cx="50" cy="50" r="11"/><line x1="63.00" y1="50.00" x2="91.00" y2="50.00"/><line x1="62.56" y1="53.36" x2="89.60" y2="60.61"/><line x1="61.26" y1="56.50" x2="85.51" y2="70.50"/><line x1="59.19" y1="59.19" x2="78.99" y2="78.99"/><line x1="56.50" y1="61.26" x2="70.50" y2="85.51"/><line x1="53.36" y1="62.56" x2="60.61" y2="89.60"/><line x1="50.00" y1="63.00" x2="50.00" y2="91.00"/><line x1="46.64" y1="62.56" x2="39.39" y2="89.60"/><line x1="43.50" y1="61.26" x2="29.50" y2="85.51"/><line x1="40.81" y1="59.19" x2="21.01" y2="78.99"/><line x1="38.74" y1="56.50" x2="14.49" y2="70.50"/><line x1="37.44" y1="53.36" x2="10.40" y2="60.61"/><line x1="37.00" y1="50.00" x2="9.00" y2="50.00"/><line x1="37.44" y1="46.64" x2="10.40" y2="39.39"/><line x1="38.74" y1="43.50" x2="14.49" y2="29.50"/><line x1="40.81" y1="40.81" x2="21.01" y2="21.01"/><line x1="43.50" y1="38.74" x2="29.50" y2="14.49"/><line x1="46.64" y1="37.44" x2="39.39" y2="10.40"/><line x1="50.00" y1="37.00" x2="50.00" y2="9.00"/><line x1="53.36" y1="37.44" x2="60.61" y2="10.40"/><line x1="56.50" y1="38.74" x2="70.50" y2="14.49"/><line x1="59.19" y1="40.81" x2="78.99" y2="21.01"/><line x1="61.26" y1="43.50" x2="85.51" y2="29.50"/><line x1="62.56" y1="46.64" x2="89.60" y2="39.39"/></svg>'
+
+
 TOPICS = ["Ashoka", "Kalinga War", "Mauryan Empire", "Chanakya", "Bindusara", "Ajatashatru", "Chandragupta Maurya", "Birsa Munda", "Guru Nanak",
           "Guru Tegh Bahadur", "Rani Lakshmibai", "Rajendra Prasad", "Sardar Patel", "Homi Bhabha", "Koh-i-Noor", "Diwali", "Chhath Puja",
           "Dussehra", "26/11 Mumbai attacks", "Padmanabhaswamy"]
@@ -239,12 +242,14 @@ def build(longs, shorts, allv, site, now, show, upcoming_cards, upcoming_article
               '<a class="hf hf-yt" href="https://www.youtube.com/@Gyaanoxa?sub_confirmation=1" target="_blank" rel="noopener" aria-label="YouTube">' + icon("youtube") + "</a>"
               '<a class="hf hf-ig" href="https://www.instagram.com/gyaanoxa" target="_blank" rel="noopener" aria-label="Instagram">' + icon("instagram") + "</a>"
               '<a class="hf hf-fb" href="https://www.facebook.com/gyaanoxa" target="_blank" rel="noopener" aria-label="Facebook">' + icon("facebook") + "</a></div>")
-    hero = ('<section class="ph"><div class="pw ph-grid"><div class="ph-l"><div class="ph-tags"><span class="k-chip">' + icon("spark") + ' Welcome to Gyaanoxa</span>'
+    hero = ('<section class="ph"><div class="pw ph-grid">' + CHAKRA + '<div class="ph-l"><div class="ph-tags"><span class="k-chip">' + icon("spark") + ' Welcome to Gyaanoxa</span>'
             '<span class="ph-live"><i></i>New Short every evening, 7 PM IST</span></div>'
             "<h1>भारत के <span>अनसुने सच</span></h1>"
+            '<p class="ph-sub">Untold truths of Indian history</p>'
             '<p class="ph-lead">True stories from Indian history that most of us never heard in school. Kings, wars, festivals and old mysteries, told as one clear story in simple Hindi.</p>'
-            '<ul class="ph-ul"><li>' + icon("check") + "Facts from named sources</li><li>" + icon("check") + "One clear story, told in everyday Hindi</li><li>" + icon("check") +
-            "Free to watch on YouTube, Instagram and Facebook</li></ul>"
+            '<form class="bsearch ph-search" action="/search/" method="get" role="search">' + icon("search") + '<input type="search" name="q" placeholder="Search any story, king or festival" aria-label="Search stories">'
+            '<button class="btn" type="submit">Search</button></form>'
+            '<div class="ph-topics"><span>Popular</span>' + "".join('<a href="/search/?q=' + e(x.replace(" ", "+")) + '">' + e(x) + "</a>" for x in ("Ashoka", "Birsa Munda", "Chanakya", "Kalinga War", "26/11 Mumbai attacks", "Diwali")) + "</div>"
             '<div class="ph-cta"><a class="btn" href="https://www.youtube.com/@Gyaanoxa?sub_confirmation=1" target="_blank" rel="noopener">' + icon("play") + ' Subscribe on YouTube</a>'
             '<a class="btn ghost" href="/blog/">Explore the stories</a></div>'
             + cb + follow + '</div>'

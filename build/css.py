@@ -1,4 +1,4 @@
-"""One small stylesheet for every page: style.css + portal.css, minified and trimmed, written to site.min.css.
+"""One small stylesheet for every page: fonts.css + style.css + portal.css, minified and trimmed, written to site.min.css.
 
 The two source files stay as they are (edit those). At the end of the build, site.min.css is made from them:
 comments and spaces are removed, and rules whose class or id names appear nowhere in the site's pages or scripts are
@@ -10,7 +10,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-PARTS = ("style.css", "portal.css")
+PARTS = ("fonts.css", "style.css", "portal.css")
 _KEEP = re.compile(r'("(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'|url\([^)]*\))')
 LINK = re.compile(r"/site\.min\.css\?v=\w+")
 

@@ -40,6 +40,10 @@ READ_JS = """
     function setFocus(on) { if (grid) grid.classList.toggle('focus', on); if (focus) { focus.setAttribute('aria-pressed', on ? 'true' : 'false'); focus.classList.toggle('on', on); } }
     if (get('gx-focus') === '1') setFocus(true);
     if (focus) focus.addEventListener('click', function () { var on = !(grid && grid.classList.contains('focus')); setFocus(on); put('gx-focus', on ? '1' : '0'); });
+    var paper = document.getElementById('rt-paper');
+    function setPaper(on) { art.classList.toggle('paper', on); if (paper) { paper.setAttribute('aria-pressed', on ? 'true' : 'false'); paper.classList.toggle('on', on); } }
+    if (get('gx-paper') === '1') setPaper(true);
+    if (paper) paper.addEventListener('click', function () { var on = !art.classList.contains('paper'); setPaper(on); put('gx-paper', on ? '1' : '0'); });
     var wa = document.getElementById('rt-wa');
     if (wa) wa.href = 'https://wa.me/?text=' + encodeURIComponent(document.title.split(' | ')[0] + ' ' + location.href.split('#')[0]);
     var cp = document.getElementById('rt-copy');
@@ -48,14 +52,53 @@ READ_JS = """
       var done = function () { cp.textContent = 'Copied'; cp.classList.add('on'); setTimeout(function () { cp.textContent = old; cp.classList.remove('on'); }, 1800); };
       if (navigator.clipboard) navigator.clipboard.writeText(url).then(done);
     });
+    var rail = document.querySelector('.read-rail'), fill = rail && rail.querySelector('.rr-fill'), pct = rail && rail.querySelector('.rr-pct'), ticks = [];
+    if (rail) {
+      [].slice.call(art.querySelectorAll('h2[id]')).forEach(function (hd) {
+        var b = document.createElement('button'); b.type = 'button'; b.className = 'rr-t';
+        b.title = hd.textContent.replace('#', '').trim(); b.setAttribute('aria-label', 'Go to: ' + b.title);
+        b.addEventListener('click', function () { hd.scrollIntoView({behavior: 'smooth', block: 'start'}); });
+        rail.appendChild(b); ticks.push([b, hd]);
+      });
+    }
     function upd() {
       var r = art.getBoundingClientRect(), h = r.height - innerHeight, cur = null;
       var p = Math.min(1, Math.max(0, -r.top / (h > 0 ? h : 1)));
       bar.style.transform = 'scaleX(' + p + ')';
+      if (rail) {
+        rail.classList.toggle('show', r.top < innerHeight * 0.6 && r.bottom > innerHeight * 0.3);
+        if (fill) fill.style.height = (p * 100) + '%';
+        if (pct) pct.textContent = Math.round(p * 100) + '%';
+        var act = null;
+        ticks.forEach(function (x) {
+          var top = x[1].getBoundingClientRect().top;
+          x[0].style.top = Math.min(100, Math.max(0, (top - r.top) / r.height * 100)) + '%';
+          if (top < 140) act = x[0];
+        });
+        ticks.forEach(function (x) { x[0].classList.toggle('on', x[0] === act); });
+      }
       if (left) { var m = Math.ceil(mins * (1 - p)); left.textContent = p < 0.02 ? mins + ' min read' : p > 0.985 ? 'Finished' : m + ' min left'; }
       links.forEach(function (l) { var t = document.querySelector(l.getAttribute('href')); if (t && t.getBoundingClientRect().top < 140) cur = l.getAttribute('href'); });
       links.forEach(function (l) { l.classList.toggle('on', l.getAttribute('href') === cur); });
     }
+    var posKey = 'gx-pos:' + location.pathname, lastSave = 0;
+    function save(p) {
+      var now = Date.now(); if (now - lastSave < 700) return; lastSave = now;
+      if (p > 0.97) { try { localStorage.removeItem(posKey); } catch (e) {} } else if (p > 0.04) put(posKey, p.toFixed(3));
+    }
+    function place(p) { var r = art.getBoundingClientRect(), h = r.height - innerHeight; return scrollY + r.top + p * (h > 0 ? h : 0); }
+    var back = parseFloat(get(posKey));
+    if (back > 0.06 && back < 0.94 && !location.hash && scrollY < 240) {
+      var box = document.createElement('div'); box.className = 'resume';
+      box.innerHTML = '<span>Continue where you left off? <b>' + Math.round(back * 100) + '%</b> read</span><button type="button" data-go>Continue</button><button type="button" data-no aria-label="Start over">Start over</button>';
+      document.body.appendChild(box);
+      var hide = function () { box.classList.remove('show'); setTimeout(function () { box.remove(); }, 300); };
+      box.querySelector('[data-go]').addEventListener('click', function () { scrollTo({top: place(back), behavior: 'smooth'}); hide(); });
+      box.querySelector('[data-no]').addEventListener('click', function () { try { localStorage.removeItem(posKey); } catch (e) {} hide(); });
+      setTimeout(function () { box.classList.add('show'); }, 500); setTimeout(hide, 14000);
+    }
+    var _upd = upd;
+    upd = function () { _upd(); var r = art.getBoundingClientRect(), h = r.height - innerHeight; if (h > 0) save(Math.min(1, Math.max(0, -r.top / h))); };
     addEventListener('scroll', upd, {passive: true}); addEventListener('resize', upd); upd();
   })();
 """
@@ -68,6 +111,36 @@ def load_raw():
 def load_all():
     """Every article that has its own page (an article with "redirect_to" is merged into another one)."""
     return {a["slug"]: a for a in load_raw() if not a.get("redirect_to")}
+
+
+AUTOLINKS = ROOT / "data" / "autolinks.json"
+DEV = "\u0900-\u097F"
+
+
+def autolinker(arts, self_slug, limit=5):
+    """Returns f(text) that links the first mention of known names (data/autolinks.json) to their story, in text that is already
+    escaped. Each story is linked once per article, never to the article itself, at most `limit` links in all."""
+    try:
+        rows = json.loads(AUTOLINKS.read_text(encoding="utf-8"))["links"]
+    except (OSError, ValueError, KeyError):
+        rows = []
+    to = {}
+    for r in rows:
+        if r["slug"] in arts and r["slug"] != self_slug:
+            for term in r["terms"]:
+                to[term] = r["slug"]
+    if not to:
+        return lambda x: x
+    pat = re.compile("(?<![" + DEV + "])(" + "|".join(re.escape(k) for k in sorted(to, key=len, reverse=True)) + ")(?![" + DEV + "])")
+    used = set()
+
+    def one(m):
+        slug = to[m.group(1)]
+        if slug in used or len(used) >= limit:
+            return m.group(0)
+        used.add(slug)
+        return '<a class="x-link" href="' + art_url(slug) + '">' + m.group(1) + "</a>"
+    return lambda x: pat.sub(one, x)
 
 
 def head_title(t):
@@ -156,7 +229,9 @@ def article_page(a, arts, public, series, index):
     if s:
         crumbs += f' › <a href="{series_url(s["slug"])}">{e(s["title_en"])}</a>'
         badge = f"Part {a['part']} of {a['of']}" if a.get("part") else "Full story"
-    secs = "".join(f'<h2 id="s{i}">{e(x["h2"])}<a class="h-a" href="#s{i}" aria-label="Link to this section">#</a></h2>' + "".join(f"<p>{e(p)}</p>" for p in x["paras"])
+    link = autolinker(arts, slug)
+    intro_html = link(e(a.get("intro", "")))
+    secs = "".join(f'<h2 id="s{i}">{e(x["h2"])}<a class="h-a" href="#s{i}" aria-label="Link to this section">#</a></h2>' + "".join(f"<p>{link(e(p))}</p>" for p in x["paras"])
                    for i, x in enumerate(a["sections"], 1))
     dyk = a.get("did_you_know") or []
     if dyk:                    # one "did you know" box in the middle of the article
@@ -167,9 +242,9 @@ def article_page(a, arts, public, series, index):
     faq = "".join(f"<details><summary>{e(q['q'])}</summary><p>{e(q['a'])}</p></details>" for q in a.get("faq", []))
     hl = "".join(f"<li>{e(t)}</li>" for t in a.get("highlights", []))
     toc = "".join(f'<li><a href="#s{i}">{e(x["h2"])}</a></li>' for i, x in enumerate(a["sections"], 1))
-    toc = f'<nav class="side-box toc"><p class="eyebrow">In this article</p><ol>{toc}</ol></nav>' if toc else ""
+    toc = f'<details class="side-box toc" open><summary><span>In this article</span><em>{len(a["sections"])}</em></summary><ol>{toc}</ol></details>' if toc else ""
     people = "".join(f"<li><b>{e(n)}</b><span>{e(r)}</span></li>" for n, r in a.get("people", []))
-    people = f'<div class="side-box people"><p class="eyebrow">People in this story</p><ul>{people}</ul></div>' if people else ""
+    people = f'<details class="side-box people" open><summary><span>People in this story</span><em>{len(a.get("people", []))}</em></summary><ul>{people}</ul></details>' if people else ""
 
     nav = pnav = ""
     related = []
@@ -178,10 +253,7 @@ def article_page(a, arts, public, series, index):
         items = [(f"{base}-full-story", "Full story")] + [(f"{base}-part-{p['n']}", f"Part {p['n']}: {p['topic']}") for p in s["parts"]]
         nav = "".join(f'<li{" class=on" if k == slug else ""}><a href="{art_url(k)}">{e(t)}</a></li>'
                       for k, t in items if k in arts)
-        nav = f'<aside class="side-box series-nav"><p class="eyebrow">Articles in this series</p><ol>{nav}</ol><a class="more" href="{series_url(base)}">Series page · Quiz</a></aside>'
-        if (ROOT / "assets" / "posters" / f"{base}.webp").exists():
-            nav = (f'<a class="side-poster" href="{series_url(base)}"><img src="/assets/posters/{e(base)}.webp" '
-                   f'alt="{e(s["title_en"])} series poster with the release dates" width="920" height="1150" loading="lazy"></a>') + nav
+        nav = f'<details class="side-box series-nav" open><summary><span>Articles in this series</span><em>{len(items)}</em></summary><ol>{nav}</ol><a class="more" href="{series_url(base)}">Series page and quiz</a></details>'
         keys = [k for k, _ in items if k in arts]
         at = keys.index(slug) if slug in keys else 0
         related = [arts[k] for k in keys[at + 1:] + keys[:at]][:4]
@@ -208,15 +280,44 @@ def article_page(a, arts, public, series, index):
     mins = max(2, round(words(a) / 180))
     tags = "".join(f'<span class="tag-chip">#{e(k)}</span>' for k in a.get("keywords", []))
     en = a["title"].split(" | ")[1] if " | " in a["title"] else ""
+    import urllib.parse as _up
+    from portal import icon as _icon
+    _title = head_title(a["title"])
+    _mail = ("mailto:gyaanoxa@gmail.com?subject=" + _up.quote("Correction: " + _title) + "&body="
+             + _up.quote("Article: " + SITE + art_url(slug) + chr(10) + chr(10) + "What is wrong:" + chr(10) + chr(10) + "The source:" + chr(10)))
+    fix = ('<div class="fix"><i class="fix-i">' + _icon("shield") + "</i><div><b>Found a mistake?</b><p>Send us what is wrong and the source. A correction with a source is fixed in this article and in the next video.</p></div>"
+           '<a class="btn ghost" href="' + _mail + '">' + _icon("mail") + " Report a mistake</a></div>")
+    nx, nlabel = None, "Keep reading"
+    if s and a.get("part"):
+        nk = f"{s['slug']}-part-{a['part'] + 1}"
+        fk = f"{s['slug']}-full-story"
+        if nk in arts:
+            nx, nlabel = arts[nk], f"Next up · Part {a['part'] + 1} of {a['of']}"
+        elif fk in arts:
+            nx, nlabel = arts[fk], "Next up · The full story"
+    elif s:
+        fp = f"{s['slug']}-part-1"
+        if fp in arts:
+            nx, nlabel = arts[fp], "Start from Part 1"
+    if nx is None and related:
+        nx = related[0]
+    nextup = ""
+    if nx is not None:
+        _img, _ = thumb(nx, public)
+        nextup = ('<a class="nextup" href="' + art_url(nx["slug"]) + '"><span class="nu-im"><img loading="lazy" decoding="async" ' + pages.srcset(_img, 480, "(max-width: 700px) 92vw, 300px", (640,))
+                  + ' alt=""></span><span class="nu-b"><small>' + e(nlabel) + "</small><b>" + e(head_title(nx["title"])) + "</b><p>" + e((nx.get("description") or "")[:170])
+                  + '</p><span class="nu-go">Read next ' + _icon("arrow") + "</span></span></a>")
     tall = "tall" in player or "soon-box" in player
     rtools = ('<div class="rtools" role="toolbar" aria-label="Reading tools"><span class="rt-left" id="rt-left" data-mins="' + str(mins) + '">' + str(mins) + " min read</span>"
               '<span class="rt-sp"></span><button type="button" class="rt-b" data-fs="-1" aria-label="Smaller text"><b>A</b><small>-</small></button>'
               '<button type="button" class="rt-b" data-fs="1" aria-label="Larger text"><b>A</b><small>+</small></button>'
               '<button type="button" class="rt-b" id="rt-focus" aria-pressed="false" title="Hide the side boxes">Focus</button>'
+              '<button type="button" class="rt-b" id="rt-paper" aria-pressed="false" title="Warm paper colour for reading">Paper</button>'
               '<a class="rt-b rt-wa" id="rt-wa" target="_blank" rel="noopener" href="https://wa.me/">WhatsApp</a>'
               '<button type="button" class="rt-b" id="rt-copy">Copy link</button></div>')
     toc_m = ('<nav class="toc-m" aria-label="Jump to a section">' + "".join(f'<a href="#s{i}">{e(x["h2"])}</a>' for i, x in enumerate(a["sections"], 1)) + "</nav>") if len(a["sections"]) > 1 else ""
     body = f"""  <div class="read-bar" aria-hidden="true"></div>
+  <div class="read-rail" aria-label="Reading progress"><span class="rr-pct">0%</span><i class="rr-fill"></i></div>
   <section class="art-hero">
     <div class="wrap art-top{' wide' if not tall else ''}">
       <div class="art-head">
@@ -234,7 +335,7 @@ def article_page(a, arts, public, series, index):
     <div class="wrap art-grid">
       <article class="art">
         {rtools}{toc_m}
-        <p class="art-intro">{e(a.get("intro", ""))}</p>
+        <p class="art-intro">{intro_html}</p>
         {secs}
         {f'<div class="kd"><h2>Key dates</h2><ol class="vt">{dates}</ol></div>' if dates else ''}
         {f'<h2>Questions people ask</h2><div class="faq">{faq}</div>' if faq else ''}
@@ -243,6 +344,8 @@ def article_page(a, arts, public, series, index):
         {f'<div class="tags"><span>Tags</span>{tags}</div>' if tags else ''}
         <div class="actions">{yt}<a class="btn ghost" href="/blog/">All articles</a></div>
         {pnav}
+        {fix}
+        {nextup}
       </article>
       <div class="art-side">{toc}{nav}{people}</div>
     </div>
