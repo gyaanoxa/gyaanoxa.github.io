@@ -154,7 +154,7 @@ def article_page(a, arts, public, series, index):
                    f'alt="{e(s["title_en"])} series poster with the release dates" width="920" height="1150" loading="lazy"></a>') + nav
         keys = [k for k, _ in items if k in arts]
         at = keys.index(slug) if slug in keys else 0
-        related = [arts[k] for k in keys[at + 1:] + keys[:at]][:3]
+        related = [arts[k] for k in keys[at + 1:] + keys[:at]][:4]
         if a.get("part"):
             prev_k, next_k = f"{base}-part-{a['part'] - 1}", f"{base}-part-{a['part'] + 1}"
             pn = ""
@@ -165,7 +165,7 @@ def article_page(a, arts, public, series, index):
             pnav = f'<div class="prevnext">{pn}</div>' if pn else ""
     if not related:
         others = [x for x in arts.values() if x["slug"] != slug and (x.get("part") or 0) == 0]
-        related = sorted(others, key=lambda x: (x.get("series") == a.get("series"), x["slug"]), reverse=True)[:3]
+        related = sorted(others, key=lambda x: (x.get("series") == a.get("series"), x["slug"]), reverse=True)[:4]
     rel = "".join(card(x, public) for x in related)
 
     yt = links.buttons(vid, short) if live else \
@@ -315,7 +315,7 @@ def home_cards(public):
     """Up to 6 cards for the home page: each series' full story first, then single stories (relative links)."""
     arts = load_all()
     order = [f"{s}-full-story" for s in sorted(SERIES_ORDER, key=SERIES_ORDER.get)] + sorted(k for k, a in arts.items() if not a.get("series"))
-    picks = [arts[k] for k in order if k in arts][:6]
+    picks = [arts[k] for k in order if k in arts][:8]
     return "\n".join("        " + card(a, public) for a in picks)
 
 

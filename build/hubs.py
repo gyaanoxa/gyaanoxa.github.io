@@ -68,7 +68,7 @@ FOLLOW = f"""
 def videos_page(longs, doc_card, index):
     cards = "\n".join(doc_card(v, i == 0) for i, v in enumerate(longs))
     body = hero("Documentaries", "Full videos", "Documentaries", "The whole story in one sitting: Ashoka, Diwali, the Koh-i-Noor and more. "
-                "Where the old books disagree, you hear both sides.") + f"""
+                "Told as one clear story in simple Hindi.") + f"""
   <section>
     <div class="wrap">
       <div class="head"><div><p class="eyebrow">{len(longs)} videos</p><h2>Every full-length video</h2>
@@ -196,7 +196,7 @@ FAQ = [
 
 STEPS = [
     ("1. Pick the story", "Topics come from viewers' questions, festival dates and the stories that fit the timeline next."),
-    ("2. Read the sources", "History books, inscriptions and encyclopaedias. Where two old texts disagree, both versions are noted."),
+    ("2. Read the sources", "History books, inscriptions and encyclopaedias. Every story is told as one clear account."),
     ("3. Write in simple Hindi", "One clear story for a one minute Short, and a longer version for the full video and the article."),
     ("4. Pictures with credit", "Old paintings and photos are credited by name and licence. Drawn scenes only explain what words cannot."),
     ("5. Publish everywhere", "YouTube, Instagram and Facebook at 7 PM IST, then the long article goes up on this website."),
@@ -224,7 +224,7 @@ def about_page(index, n_videos, n_series, n_articles):
         <p class="eyebrow">Our promise</p><h2>What you can expect</h2>
         <ul class="sp-facts">
           <li>Facts from named sources, and legends clearly marked as legends</li>
-          <li>Both sides when old books disagree</li>
+          <li>One clear story, told in simple Hindi</li>
           <li>No misleading titles: the title says what the video shows</li>
           <li>A new Short every evening and a full video after every series</li>
           <li>Credit for every picture's artist and licence</li>

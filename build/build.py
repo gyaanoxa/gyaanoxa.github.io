@@ -350,6 +350,36 @@ def lastmods(allv, today):
     return out
 
 
+def era_cards(public):
+    """A row of timeline moments (oldest first) for the home page; each opens its story."""
+    tl = json.loads((ROOT / "data" / "timeline.json").read_text(encoding="utf-8"))
+    out = []
+    for ev in sorted(tl["events"], key=lambda x: x["year"]):
+        link = ev.get("link", "")
+        if link.startswith("/"):
+            href, tgt = series_url(link.strip("/")) if (ROOT / "data" / "series" / (link.strip("/") + ".json")).exists() else link + "/", ""
+        elif link in public:
+            k = ev.get("kind", "video")
+            href = (f"https://www.youtube.com/shorts/{link}" if k == "short" else f"https://www.youtube.com/watch?v={link}")
+            tgt = ' target="_blank" rel="noopener"'
+        else:
+            href, tgt = "/timeline/", ""
+        out.append(f'<a class="tl-c" href="{e(href)}"{tgt}><b>{e(ev["label"])}</b><h3>{e(ev["title"])}</h3><span>{e(ev["en"])}</span></a>')
+    return "".join(out)
+
+
+def quiz_cards():
+    """One card per series that has a quiz: it opens the quiz on the series page."""
+    out = []
+    for f in sorted((ROOT / "data" / "series").glob("*.json")):
+        d = json.loads(f.read_text(encoding="utf-8"))
+        n = len(d.get("quiz", []))
+        if n:
+            out.append(f'<a class="qz" href="{series_url(d["slug"])}#quiz"><span class="qz-n">{n}</span><div><b>{e(d["title_hi"])}</b>'
+                       f'<small>{e(d["title_en"])} - {n} questions</small></div><i aria-hidden="true">Play</i></a>')
+    return "".join(out)
+
+
 def put(page, name, body):
     pat = re.compile(rf"(<!-- AUTO:{name} -->).*?(<!-- /AUTO:{name} -->)", re.S)
     if not pat.search(page):
@@ -419,7 +449,10 @@ def main():
     page = re.sub(r'src="assets/s/360/covers/([\w-]+)\.webp(\?v=\d+)?"( srcset="[^"]*" sizes="[^"]*")?', hero_cover, page)
     page = put(page, "docs", "\n".join(doc_card(v, i == 0) for i, v in enumerate(docs)) + "\n" + tile)
     show = site.get("show_views", False)        # view counts stay hidden until the channel is bigger
-    page = put(page, "latest", "\n".join(short_card(v, show) for v in shorts[:5]))
+    page = put(page, "latest", "\n".join(short_card(v, show) for v in shorts[:7]))
+    page = put(page, "popular", "\n".join(short_card(v, show) for v in sorted(shorts, key=lambda v: v.get("views", 0), reverse=True)[:7]))
+    page = put(page, "eras", era_cards({v["id"]: v for v in allv}))
+    page = put(page, "quizzes", quiz_cards())
     total = sum(v.get("views", 0) for v in allv)
     k = f"{total // 1000}K" if total >= 1000 else str(total)
     count = len(allv)
