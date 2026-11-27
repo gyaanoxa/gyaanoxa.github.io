@@ -795,7 +795,8 @@ footer { padding: 28px 0 32px; margin-top: 10px; }
 .blog-hero .lead { margin-bottom: 14px; max-width: 680px; }
 .bstats { display: flex; flex-wrap: wrap; gap: 10px 22px; color: var(--muted); font-size: 15px; }
 .bstats b { font: 700 22px var(--display); color: var(--gold); margin-right: 4px; }
-.bjump { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.bjump { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; min-height: 40px; align-content: flex-start; }
+@media (max-width: 760px) { .bjump { min-height: 88px; } }
 .bjump a { padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line-2); background: var(--surface); color: var(--text); font-size: 15px; }
 .bjump a:hover { border-color: var(--gold); color: var(--gold-2); }
 .blog-list { padding: 18px 0 44px !important; }
